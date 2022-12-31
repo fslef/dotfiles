@@ -1,2 +1,3 @@
 .oh-my-zsh/cache
 .vscode/
+.DS_Store
