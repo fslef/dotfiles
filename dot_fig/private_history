@@ -1,0 +1,349 @@
+
+- command: ls
+  exit_code: 0
+  shell: zsh
+  session_id: 8379afba-e15a-407c-a49d-f7cacd57c78d
+  cwd: /Users/francoislefebvre
+  time: 1672299599
+- command: ls
+  exit_code: 0
+  shell: zsh
+  session_id: 2a4c1c96-70bd-4f53-8b76-0485c7afa15f
+  cwd: /Users/francoislefebvre
+  time: 1672299643
+- command: cd gitRepos
+  exit_code: 0
+  shell: zsh
+  session_id: 2a4c1c96-70bd-4f53-8b76-0485c7afa15f
+  cwd: /Users/francoislefebvre
+  time: 1672299652
+- command: ls
+  exit_code: 0
+  shell: zsh
+  session_id: 2a4c1c96-70bd-4f53-8b76-0485c7afa15f
+  cwd: /Users/francoislefebvre/gitRepos
+  time: 1672299657
+- command: cd gitRepos/Project-Agora/
+  exit_code: 0
+  shell: zsh
+  session_id: 06e2d4f0-89a2-44e0-b160-a19ab0c44b22
+  cwd: /Users/francoislefebvre
+  time: 1672299886
+- command: brew tap homebrew/autoupdate
+  exit_code: 0
+  shell: zsh
+  session_id: 4ecf362b-09cd-4a00-a0b9-a1fdc2f83dc8
+  cwd: /Users/francoislefebvre
+  time: 1672300678
+- command: brew autoupdate status
+  exit_code: 0
+  shell: zsh
+  session_id: 4ecf362b-09cd-4a00-a0b9-a1fdc2f83dc8
+  cwd: /Users/francoislefebvre
+  time: 1672300965
+- command: brew autoupdate start
+  exit_code: 0
+  shell: zsh
+  session_id: 4ecf362b-09cd-4a00-a0b9-a1fdc2f83dc8
+  cwd: /Users/francoislefebvre
+  time: 1672300999
+- command: brew autoupdate status
+  exit_code: 0
+  shell: zsh
+  session_id: 4ecf362b-09cd-4a00-a0b9-a1fdc2f83dc8
+  cwd: /Users/francoislefebvre
+  time: 1672301048
+- command: $ZSH_CUSTOM
+  exit_code: 0
+  shell: zsh
+  session_id: 6a89fd1b-0779-4cbf-abd6-4c6fd20aabbe
+  cwd: /Users/francoislefebvre
+  time: 1672301506
+- command: cd $ZSH_CUSTOM
+  exit_code: 0
+  shell: zsh
+  session_id: 6a89fd1b-0779-4cbf-abd6-4c6fd20aabbe
+  cwd: /Users/francoislefebvre/.local/share/fig/plugins/ohmyzsh/custom
+  time: 1672301514
+- command: $SHELL
+  exit_code: 0
+  shell: zsh
+  session_id: 6a89fd1b-0779-4cbf-abd6-4c6fd20aabbe
+  cwd: /Users/francoislefebvre/.local/share/fig/plugins/ohmyzsh/custom
+  time: 1672301784
+- command: zsh
+  exit_code: 0
+  shell: zsh
+  session_id: 6a89fd1b-0779-4cbf-abd6-4c6fd20aabbe
+  cwd: /Users/francoislefebvre/.local/share/fig/plugins/ohmyzsh/custom
+  time: 1672301794
+- command: brew list
+  exit_code: 0
+  shell: zsh
+  session_id: 6a89fd1b-0779-4cbf-abd6-4c6fd20aabbe
+  cwd: /Users/francoislefebvre/.local/share/fig/plugins/ohmyzsh/custom
+  time: 1672301837
+- command: zsh --version
+  exit_code: 0
+  shell: zsh
+  session_id: 6a89fd1b-0779-4cbf-abd6-4c6fd20aabbe
+  cwd: /Users/francoislefebvre/.local/share/fig/plugins/ohmyzsh/custom
+  time: 1672302026
+- command: ls =
+  exit_code: 1
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /Users/francoislefebvre
+  time: 1672352114
+- command: cd ~
+  exit_code: 0
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /Users/francoislefebvre
+  time: 1672352122
+- command: cd ..
+  exit_code: 0
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /Users/francoislefebvre
+  time: 1672352130
+- command: cd ..
+  exit_code: 0
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /Users
+  time: 1672352132
+- command: cd ..
+  exit_code: 0
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /
+  time: 1672352132
+- command: ls =
+  exit_code: 1
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /
+  time: 1672352135
+- command: ls -
+  exit_code: 1
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /
+  time: 1672352150
+- command: ls
+  exit_code: 0
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /
+  time: 1672352157
+- command: cd ~
+  exit_code: 0
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /
+  time: 1672352184
+- command: ls
+  exit_code: 0
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /Users/francoislefebvre
+  time: 1672352188
+- command: ls -
+  exit_code: 1
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /Users/francoislefebvre
+  time: 1672352195
+- command: brew list
+  exit_code: 0
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /Users/francoislefebvre
+  time: 1672394599
+- command: sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"
+  exit_code: 1
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /Users/francoislefebvre
+  time: 1672394844
+- command: sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"
+  exit_code: 1
+  shell: zsh
+  session_id: d8b1172d-d3a6-4c7f-9ff4-e3212ca5ca19
+  cwd: /Users/francoislefebvre
+  time: 1672395007
+- command: sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"
+  exit_code: 0
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672395047
+- command: pip install --user powerline-status
+  exit_code: 127
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672395518
+- command: brew install pyenv
+  exit_code: 0
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672395746
+- command: pip install --user powerline-status
+  exit_code: 127
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672395812
+- command: python get-pip.py
+  exit_code: 127
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672396392
+- command: brew uninstall pyenv
+  exit_code: 0
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672396433
+- command: brew install python
+  exit_code: 0
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672396481
+- command: pip3 -v
+  exit_code: 0
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672396544
+- command: pip3 install --user powerline-status
+  exit_code: 0
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672396745
+- command: git clone git clone https://github.com/powerline/fonts /Users/francoislefebvre/GitRepos/tools/powerline-fonts
+  exit_code: 129
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672396900
+- command: git clone git clone https://github.com/powerline/fonts.git /Users/francoislefebvre/GitRepos/tools/powerline-fonts
+  exit_code: 129
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672396942
+- command: git clone https://github.com/powerline/fonts.git /Users/francoislefebvre/GitRepos/tools/powerline-fonts
+  exit_code: 0
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672396954
+- command: cd /Users/francoislefebvre/GitRepos/tools/powerline-fonts
+  exit_code: 0
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre
+  time: 1672396967
+- command: /install.sh
+  exit_code: 127
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre/gitRepos/tools/powerline-fonts
+  time: 1672396995
+- command: ls
+  exit_code: 0
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre/gitRepos/tools/powerline-fonts
+  time: 1672396999
+- command: install
+  exit_code: 64
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre/gitRepos/tools/powerline-fonts
+  time: 1672397042
+- command: install.sh
+  exit_code: 127
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre/gitRepos/tools/powerline-fonts
+  time: 1672397050
+- command: ./install.sh
+  exit_code: 0
+  shell: zsh
+  session_id: 5e0163f9-4ab2-4e4c-8c8a-b1ec692a8496
+  cwd: /Users/francoislefebvre/gitRepos/tools/powerline-fonts
+  time: 1672397070
+- command: ls
+  exit_code: 0
+  shell: zsh
+  session_id: a679bbd6-e4f2-4e1f-836b-5a65ae558ce9
+  cwd: /
+  time: 1672397386
+- command: cd Users/francoislefebvre/gitRepos/
+  exit_code: 0
+  shell: zsh
+  session_id: a679bbd6-e4f2-4e1f-836b-5a65ae558ce9
+  cwd: /
+  time: 1672397398
+- command: ls
+  exit_code: 0
+  shell: zsh
+  session_id: a679bbd6-e4f2-4e1f-836b-5a65ae558ce9
+  cwd: /Users/francoislefebvre/gitRepos
+  time: 1672397400
+- command: cd tools/
+  exit_code: 0
+  shell: zsh
+  session_id: a679bbd6-e4f2-4e1f-836b-5a65ae558ce9
+  cwd: /Users/francoislefebvre/gitRepos
+  time: 1672397411
+- command: git status
+  exit_code: 128
+  shell: zsh
+  session_id: a679bbd6-e4f2-4e1f-836b-5a65ae558ce9
+  cwd: /Users/francoislefebvre/gitRepos/tools
+  time: 1672397419
+- command: cd powerline-fonts/
+  exit_code: 0
+  shell: zsh
+  session_id: a679bbd6-e4f2-4e1f-836b-5a65ae558ce9
+  cwd: /Users/francoislefebvre/gitRepos/tools
+  time: 1672397425
+- command: p
+  exit_code: 127
+  shell: zsh
+  session_id: a679bbd6-e4f2-4e1f-836b-5a65ae558ce9
+  cwd: /Users/francoislefebvre/gitRepos/tools/powerline-fonts
+  time: 1672397469
+- command: ls
+  exit_code: 0
+  shell: zsh
+  session_id: 5ed53baa-997e-4b10-bdaf-fceca0254a60
+  cwd: /
+  time: 1672397573
+- command: cd Users/francoislefebvre/gitRepos/tools/powerline-fonts/
+  exit_code: 0
+  shell: zsh
+  session_id: 5ed53baa-997e-4b10-bdaf-fceca0254a60
+  cwd: /
+  time: 1672397636
+- command: ls
+  exit_code: 0
+  shell: zsh
+  session_id: 926a9811-9cd7-4500-a69f-12a8786e84f1
+  cwd: /Users/francoislefebvre/gitRepos
+  time: 1672399117
+- command: ls
+  exit_code: 0
+  shell: zsh
+  session_id: 578aa7e0-9e85-41c3-8f0e-0e3bd18666d2
+  cwd: /Users/francoislefebvre/gitRepos
+  time: 1672399160
