@@ -1,3 +1,4 @@
 .oh-my-zsh/cache
 .vscode/
-.DS_Storeinstall.sh
+.DS_Store
+.chezmoi.toml
