@@ -34,7 +34,7 @@
 
 {{- $email := promptStringOnce . "email" "Email address" -}}
 
-// source of inspiration: https://github.com/twpayne/dotfiles/blob/f384f1d7c9ef137b7453f4a695a1443599cc1fd8/home/.chezmoi.toml.tmpl
+{{/* source of inspiration: https://github.com/twpayne/dotfiles/blob/f384f1d7c9ef137b7453f4a695a1443599cc1fd8/home/.chezmoi.toml.tmpl */}}
 [data]
     docker = {{ $docker }}
     ephemeral = {{ $ephemeral }}
