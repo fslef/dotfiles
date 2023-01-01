@@ -1,0 +1,9 @@
+[data]
+    docker = "false"
+    ephemeral = "false"
+    email = "fslef"
+    headless = "false"
+    hostname = "fslef-mbp"
+    personal = "false"
+    osid = "darwin"
+    github_user = "FSLEF"
