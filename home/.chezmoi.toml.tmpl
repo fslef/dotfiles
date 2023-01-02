@@ -40,7 +40,7 @@
     ephemeral = {{ $ephemeral }}
     {{- if (not .ephemeral) -}}
     email = {{ $email | quote }}
-    {{- end -}}
+    {{ end -}}
     headless = {{ $headless }}
     hostname = {{ $hostname | quote }}
     personal = {{ $personal }}
