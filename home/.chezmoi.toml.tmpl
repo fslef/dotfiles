@@ -38,7 +38,9 @@
 [data]
     docker = {{ $docker }}
     ephemeral = {{ $ephemeral }}
-    email = {{ $email | quote }}
+    {{- if eq ephemeral true -}}
+        email = {{ $email | quote }}
+    {{- end -}}
     headless = {{ $headless }}
     hostname = {{ $hostname | quote }}
     personal = {{ $personal }}
