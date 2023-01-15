@@ -38,7 +38,7 @@
 [data]
     docker = {{ $docker }}
     ephemeral = {{ $ephemeral }}
-    {{- if (not .ephemeral) -}}
+    {{- if (not $ephemeral) -}}
     {{- $email := promptStringOnce . "email" "Email address" -}}
     email = {{ $email | quote }}
     {{- end -}}
