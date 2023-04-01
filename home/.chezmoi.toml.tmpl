@@ -21,7 +21,7 @@
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
 {{-   if eq $computerName "Francoiss MacBook Pro" -}}
-{{-     $hostname = "fslef-mbp" -}}
+{{-     $hostname = "fslef-mba" -}}
 {{-   else -}}
 {{-     $hostname = $computerName -}}
 {{-   end -}}
@@ -31,14 +31,12 @@
 {{-   $ephemeral = true -}}
 {{- end -}}
 
-{{/* source of inspiration: https://github.com/twpayne/dotfiles/blob/f384f1d7c9ef137b7453f4a695a1443599cc1fd8/home/.chezmoi.toml.tmpl */}}
+{{- $email := "23463958+fslef@users.noreply.github.com" -}}
+
 [data]
     docker = {{ $docker }}
     ephemeral = {{ $ephemeral }}
-    {{- if (not $ephemeral) -}}
-    {{- $email := "23463958+fslef@users.noreply.github.com" -}}
     email = {{ $email | quote }}
-    {{- end -}}
     headless = {{ $headless }}
     hostname = {{ $hostname | quote }}
     personal = {{ $personal }}
