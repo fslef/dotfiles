@@ -36,7 +36,7 @@
     docker = {{ $docker }}
     ephemeral = {{ $ephemeral }}
     {{- if (not $ephemeral) -}}
-    {{- $email := promptStringOnce . "email" "Email address" -}}
+    {{- $email := "23463958+fslef@users.noreply.github.com" -}}
     email = {{ $email | quote }}
     {{- end -}}
     headless = {{ $headless }}
