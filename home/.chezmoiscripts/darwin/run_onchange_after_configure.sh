@@ -25,6 +25,10 @@ defaults write NSGlobalDomain KeyRepeat -int 2
 # disable keyboard spotlight search sortcut (cmd + space). Will be replaced by Raycast
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "<dict><key>enabled</key><false/></dict>"
 
+# Set the number of Spaces (desktops) to 7
+defaults write com.apple.dock "spaces-number" -int 7
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 118 "<dict><key>enabled</key><true/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>65535</integer><integer>18</integer><integer>1</integer></array></dict></dict>" # enable keyboard shortcut for theses 7 spaces
+
 # Disable animation when switching between Spaces (desktops)
 # could require the terminal to have a full disk access
 # in (System Preferences > Security & Privacy > Privacy > Full Disk Access)
