@@ -1,0 +1,43 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+# Install This anytime
+{{ $brews := list
+     "zsh"
+     "zsh-autosuggestions"
+     "zsh-syntax-highlighting"
+     "git"
+     "chezmoi"
+     "bitwarden-cli"
+     "oh-my-posh" -}}
+{{ $casks := list
+     "iterm2"
+     "visual-studio-code"
+     "unnaturalscrollwheels"
+     "qmk-toolbox"
+     "powershell"
+     "microsoft-edge" -}}
+
+# Install This on Personal
+{{ if .personal -}}
+{{   $brews = concat $brews (list
+       "postgis"
+       "postgresql"
+       "pspg") -}}
+{{   $casks = concat $casks (list
+       "microsoft-auto-update"
+       "microsoft-office"
+       "qobuz"
+       "signal"
+       "whatsapp") -}}
+{{ end -}}
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+EOF
