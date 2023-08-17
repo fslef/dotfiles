@@ -2,7 +2,8 @@
 {{- $docker := false -}}{{/* true if this machine should have Docker installed */}}
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
-{{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
+{{- $personal := false -}}{{/* true if this machine is for personal usage */}}
+{{- $work := false -}}{{/* true if this machine is for professional usage */}}
 {{- "" -}}
 
 {{- $osID := .chezmoi.os -}}
@@ -20,8 +21,12 @@
 {{- $hostname := .chezmoi.hostname -}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
-{{-   if eq $computerName "Francoiss MacBook Pro" -}}
-{{-     $hostname = "fslef-mba" -}}
+{{-   if eq $computerName "Francois Corp MBP" -}}
+{{-     $hostname = "fslef-corp-mbp" -}}
+{{-     $work = true -}}
+{{-   elseif eq $computerName "Francois MBP" -}}
+{{-     $hostname = fslef-mbp -}}
+{{-     $personal = true -}}
 {{-   else -}}
 {{-     $hostname = $computerName -}}
 {{-   end -}}
