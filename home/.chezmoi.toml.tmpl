@@ -21,10 +21,10 @@
 {{- $hostname := .chezmoi.hostname -}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
-{{-   if eq $computerName "Francois Corp MBP" -}}
+{{-   if eq $computerName "FSLEF Corp MBP" -}}
 {{-     $hostname = "fslef-corp-mbp" -}}
 {{-     $work = true -}}
-{{-   else if eq $computerName "Francois MBP" -}}
+{{-   else if eq $computerName "FSLEF MBP" -}}
 {{-     $hostname = "fslef-mbp" -}}
 {{-     $personal = true -}}
 {{-   else -}}
