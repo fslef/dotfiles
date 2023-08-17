@@ -10,14 +10,17 @@ set -eufo pipefail
      "git"
      "chezmoi"
      "bitwarden-cli"
-     "oh-my-posh" -}}
+     "oh-my-posh"
+     "terraform"
+     "azure-cli" -}}
 {{ $casks := list
      "iterm2"
      "visual-studio-code"
      "unnaturalscrollwheels"
      "qmk-toolbox"
      "powershell"
-     "microsoft-edge" -}}
+     "microsoft-edge"
+     "raycast" -}}
 
 # Install This on Personal
 {{ if .personal -}}
