@@ -1,6 +1,0 @@
-{
-  "autocomplete.keybindings.insertCommonPrefix": "tab",
-  "autocomplete.keybindings.insertCommonPrefixOrNavigateDown": "tab",
-  "autocomplete.keybindings.insertSelected": "tab",
-  "autocomplete.theme": "cobalt2"
-}
