@@ -134,10 +134,10 @@ export NVM_DIR="$HOME/.nvm"
 
 {{- /* vim: set filetype=zsh: */}}
 
-{{- if (and (eq .chezmoi.os "darwin") (eq $personal true)) }}
+{{- if (and (eq .chezmoi.os "darwin") (eq .chezmoi.personal true)) }}
 cd /Users/francois/GitRepos/
 {{- end }}
 
-{{- if (and (eq .chezmoi.os "darwin") (eq $work true)) }}
+{{- if (and (eq .chezmoi.os "darwin") (eq .chezmoi.work true)) }}
 cd /Users/francoislefebvre/GitRepos/
 {{- end }}
