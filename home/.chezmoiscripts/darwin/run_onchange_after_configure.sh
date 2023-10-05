@@ -71,18 +71,13 @@ defaults write com.apple.dock wvous-bl-corner -int 0
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
 # Finder settings
-# Display full POSIX path as Finder window title
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
-# list view by default
-defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv" && killall Finder
-# Keep folders on top
-# defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true" && killall Finder
-# Default search scope to current folder
-# defaults write com.apple.finder "FXDefaultSearchScope" -string "SCcf" && killall Finder
-# Automatically empty recycle bin after 30 days
-# defaults write com.apple.finder "FXRemoveOldTrashItems" -bool "true" && killall Finder
-# disable file extension change warning
-defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false" && killall Finder
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true # Display full POSIX path as Finder window title
+defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv" # list view by default
+defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true" # Keep folders on top
+defaults write com.apple.finder "FXDefaultSearchScope" -string "SCcf" # Default search scope to current folder
+defaults write com.apple.finder "FXRemoveOldTrashItems" -bool "true" # Automatically empty recycle bin after 30 days
+defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false" # disable file extension change warning
+killall Finder # to apply finder settings now
 
 # Top Menu Bar
 # clock display settings
