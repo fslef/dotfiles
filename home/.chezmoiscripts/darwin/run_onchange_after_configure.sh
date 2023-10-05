@@ -81,7 +81,12 @@ killall Finder # to apply finder settings now
 
 # Top Menu Bar
 # clock display settings
-defaults write com.apple.menuextra.clock "DateFormat" -string "\"EEE HH:mm:ss\""
+defaults write com.apple.menuextra.clock "FlashDateSeparators" -bool "False"
+defaults write com.apple.menuextra.clock "IsAnalog" -bool "False"
+defaults write com.apple.menuextra.clock "ShowAMPM" -bool "False"
+defaults write com.apple.menuextra.clock "ShowDate" -int 0 # 0 When Space Allows; 1 Always; 2 Never
+defaults write com.apple.menuextra.clock "ShowDayOfWeek" -bool "False"
+defaults write com.apple.menuextra.clock "ShowSeconds" -bool "False"
 
 # Disable Resume system-wide
 defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
