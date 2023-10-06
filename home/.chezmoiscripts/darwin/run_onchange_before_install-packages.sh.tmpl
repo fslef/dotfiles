@@ -2,6 +2,9 @@
 
 set -eufo pipefail
 
+# Update Homebrew first
+brew update
+
 # Install This anytime
 {{ $brews := list
      "zsh"
