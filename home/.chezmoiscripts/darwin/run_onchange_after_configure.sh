@@ -49,6 +49,9 @@ defaults write com.apple.dock orientation bottom # set the Dock to the bottom
 defaults write com.apple.dock show-recents -bool false # don’t show recent applications in Dock
 defaults write -g ApplePressAndHoldEnabled -bool false # if on, the accents menu is displayed when holding a key
 
+# Always show the expanded print dialog
+defaults write -g PMPrintingExpandedStateForPrint -bool "True"
+
 # Hot corners
 # Possible values:
 #  0: no-op
