@@ -6,4 +6,4 @@ source /Users/francoislefebvre/.docker/init-bash.sh || true # Added by Docker De
 [[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.post.bash"
 
 alias tt="taskwarrior-tui"
-alias ls="ls -lAhF --color=always -a | sort -f -k9"
+alias ll="ls -lAhF --color=always -a | sort -f -k9"
