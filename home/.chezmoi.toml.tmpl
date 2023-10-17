@@ -36,7 +36,7 @@
 {{-   $ephemeral = true -}}
 {{- end -}}
 
-{{- $email := "23463958+fslef@users.noreply.github.com" -}}
+{{- $email := {{ (bitwarden "item" "c358ce27-ec3a-4db4-bc04-b09e012d5d52").login.username }} -}}
 
 [data]
     docker = {{ $docker }}
