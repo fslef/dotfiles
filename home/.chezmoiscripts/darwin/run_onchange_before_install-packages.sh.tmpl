@@ -37,10 +37,6 @@ brew tap azure/bicep
 
 # Install This on Personal
 {{ if .personal -}}
-{{   $brews = concat $brews (list
-       "postgis"
-       "postgresql"
-       "pspg") -}}
 {{   $casks = concat $casks (list
        "qobuz"
        "signal"
