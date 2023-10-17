@@ -2,6 +2,22 @@
 
 FSLEF dotfiles, managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
 
-Install them with:
+## Configure a new machine by following these steps:
 
-    chezmoi init fslef
+#### Install Homebrew and minmimum packages:
+
+``` shell
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)
+brew install bitwarden-cli
+brew install --cask bitwarden --no-quarantine
+```
+
+#### Login to bw
+``` shell
+bw login
+```
+
+#### Initialize Chezmoi config
+```
+chezmoi init fslef
+```
