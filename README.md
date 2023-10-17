@@ -6,10 +6,12 @@ FSLEF dotfiles, managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
 
 #### Install Homebrew and minmimum packages:
 
+Install Homebrew
 ``` shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
+Install packages
 ``` shell
 brew install bitwarden-cli
 brew install --cask bitwarden --no-quarantine
