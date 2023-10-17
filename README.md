@@ -6,6 +6,8 @@ FSLEF dotfiles, managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
 
 #### Install Homebrew and minmimum packages:
 
+Rename Computer Host Name
+
 Install Homebrew
 ``` shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
