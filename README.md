@@ -15,6 +15,7 @@ Install packages
 ``` shell
 brew install bitwarden-cli
 brew install --cask bitwarden --no-quarantine
+brew install chezmoi
 ```
 
 #### Login to bw
