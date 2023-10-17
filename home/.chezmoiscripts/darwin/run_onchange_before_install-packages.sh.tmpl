@@ -38,6 +38,10 @@ brew tap azure/bicep
 # Install This on Personal
 {{ if .personal -}}
 {{   $casks = concat $casks (list
+       "microsoft-auto-update"
+       "microsoft-word"
+       "microsoft-excel"
+       "microsoft-powerpoint"
        "qobuz"
        "signal"
        "whatsapp") -}}
