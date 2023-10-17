@@ -20,6 +20,9 @@ brew install --cask bitwarden --no-quarantine
 brew install chezmoi
 ```
 
+#### Manualy install bws
+https://github.com/bitwarden/sdk/releases
+
 #### Login to bw
 ``` shell
 bw login
