@@ -8,6 +8,9 @@ FSLEF dotfiles, managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
 
 ``` shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+``` shell
 brew install bitwarden-cli
 brew install --cask bitwarden --no-quarantine
 ```
