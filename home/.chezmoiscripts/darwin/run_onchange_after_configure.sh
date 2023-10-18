@@ -90,8 +90,7 @@ defaults write com.apple.menuextra.clock "ShowAMPM" -bool "False"
 defaults write com.apple.menuextra.clock "ShowDate" -int 0 # 0 When Space Allows; 1 Always; 2 Never
 defaults write com.apple.menuextra.clock "ShowDayOfWeek" -bool "False"
 defaults write com.apple.menuextra.clock "ShowSeconds" -bool "False"
-defaults write com.apple.menuextra.battery "ShowPercent" -string "YES"
-killall SystemUIServer
+defaults write com.apple.controlcenter.plist BatteryShowPercentage -bool true
 
 # Disable Resume system-wide
 defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
