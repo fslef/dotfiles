@@ -57,6 +57,9 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
+# Disable the “Are you sure you want to open this application?” dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
 # Hot corners
 # Possible values:
 #  0: no-op
@@ -79,6 +82,12 @@ defaults write com.apple.dock wvous-bl-corner -int 0
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
 # Finder settings
+defaults write com.apple.finder AppleShowAllFiles -bool true # show hidden files by default
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true # show all filename extensions
+defaults write NSGlobalDomain com.apple.springing.enabled -bool true # Enable spring loading for directories
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true # Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true # Avoid creating .DS_Store files on USB volumes
+defaults write NSGlobalDomain com.apple.springing.delay -float 0 # Remove the spring loading delay for directories
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true # Display full POSIX path as Finder window title
 defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv" # list view by default
 defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true" # Keep folders on top
