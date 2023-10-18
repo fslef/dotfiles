@@ -3,7 +3,9 @@
 set -eufo pipefail
 
 # Update Homebrew first
+Echo "Updating Homebrew"
 brew update
+Echo "Adding azure/bicep tap"
 brew tap azure/bicep
 
 # Install This anytime
@@ -48,6 +50,7 @@ brew tap azure/bicep
        "whatsapp") -}}
 {{ end -}}
 
+Echo "Installing Brew Bundle"
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
