@@ -55,4 +55,8 @@ brew "{{ . }}"
 {{ range ($casks | sortAlpha | uniq) -}}
 cask "{{ . }}"
 {{ end -}}
+
+# Install Apps from Mac App Store using mas CLI
+mas install 1268962404
+
 EOF
