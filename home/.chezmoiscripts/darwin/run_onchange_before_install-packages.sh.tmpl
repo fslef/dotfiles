@@ -3,9 +3,9 @@
 set -eufo pipefail
 
 # Update Homebrew first
-Echo "Updating Homebrew"
+Echo "--Updating Homebrew--"
 brew update
-Echo "Adding azure/bicep tap"
+Echo "--Adding azure/bicep tap--"
 brew tap azure/bicep
 
 # Install This anytime
@@ -50,7 +50,7 @@ brew tap azure/bicep
        "whatsapp") -}}
 {{ end -}}
 
-Echo "Installing Brew Bundle"
+Echo "--Installing Brew Bundle--"
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
@@ -62,5 +62,5 @@ EOF
 
 
 # Install Apps from Mac App Store using mas CLI
-Echo "Installing Mac OS app store apps"
+Echo "--Installing Mac OS app store apps--"
 mas install 1268962404
