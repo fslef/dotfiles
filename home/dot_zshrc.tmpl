@@ -140,8 +140,13 @@ export NVM_DIR="$HOME/.nvm"
 {{- /* vim: set filetype=zsh: */}}
 
 {{- if eq .chezmoi.os "darwin" }}
+
+Set Git HomeFolder
 cd /Users/francoislefebvre/GitRepos/
+
+# Load Modules installed with Homebrew
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
 {{- end }}
 
