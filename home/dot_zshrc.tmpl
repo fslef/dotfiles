@@ -52,8 +52,8 @@ ZSH_DISABLE_COMPFIX=true
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   #per-directory-history
-  zsh-syntax-highlighting
-	zsh-autosuggestions
+  # zsh-syntax-highlighting
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -143,4 +143,6 @@ export NVM_DIR="$HOME/.nvm"
 
 {{- if eq .chezmoi.os "darwin" }}
 cd /Users/francoislefebvre/GitRepos/
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 {{- end }}
+
