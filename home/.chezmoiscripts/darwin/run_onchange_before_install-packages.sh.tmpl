@@ -9,6 +9,10 @@ brew update
 Echo ""
 Echo "--Adding azure/bicep tap--"
 brew tap azure/bicep
+{{ if .work -}}
+Echo "--Adding homebrew/cask-versions tap--"
+brew tap homebrew/cask-versions
+{{ end -}}
 
 # Install This anytime
 {{ $brews := list
@@ -65,7 +69,8 @@ brew tap azure/bicep
 # Install This on Work
 {{ if .work -}}
 {{   $casks = concat $casks (list
-       "azure-data-studio") -}}
+       "azure-data-studio"
+       "visual-studio-code-insiders" ) -}}
 {{ end -}}
 
 Echo ""
