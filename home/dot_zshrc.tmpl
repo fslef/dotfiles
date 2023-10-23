@@ -90,37 +90,6 @@ export RIPGREP_CONFIG_PATH=~/.config/ripgrep/config
 {{ output "direnv" "hook" "zsh" | trim }}
 {{- end }}
 
-github-cd() {
-	local dir="${HOME}/src/github.com/$1"
-	cd "${dir}"
-}
-
-github-clone-cd() {
-	local prefix=https://github.com/
-	if [ "$1" = "--ssh" ]; then
-		prefix=git@github.com:
-		shift
-	fi
-	local dir="${HOME}/src/github.com/$1"
-	if [ ! -d "${dir}" ]; then
-		git clone "${prefix}$1.git" "${dir}"
-	fi
-	cd "${dir}"
-}
-
-github-clone-code() {
-	local prefix=https://github.com/
-	if [ "$1" = "--ssh" ]; then
-		prefix=git@github.com:
-		shift
-	fi
-	local dir="${HOME}/src/github.com/$1"
-	if [ ! -d "${dir}" ]; then
-		git clone "${prefix}$1.git" "${dir}"
-	fi
-	code "${dir}"
-}
-
 {{ if stat (joinPath .chezmoi.homeDir ".nvm") }}
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
