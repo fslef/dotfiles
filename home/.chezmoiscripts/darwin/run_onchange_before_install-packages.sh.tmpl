@@ -56,7 +56,7 @@ brew tap azure/bicep
 
 Echo ""
 Echo "--Installing Brew Bundle--"
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --force cleanup --no-lock --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
