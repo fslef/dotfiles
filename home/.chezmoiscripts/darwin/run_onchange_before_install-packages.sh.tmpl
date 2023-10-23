@@ -28,18 +28,26 @@ brew tap azure/bicep
      "azure-cli" -}}
 {{ $casks := list
      "appcleaner"
+     "git-credential-manager"
      "docker"
      "iterm2"
+     "cheatsheet"
+     "bitwarden"
      "visual-studio-code"
      "unnaturalscrollwheels"
      "qmk-toolbox"
+     "unclack
      "powershell"
+     "postman"
+     "obsidian"
+     "signal"
      "microsoft-edge"
      "tor-browser"
      "raycast"
-     "Fork"
+     "tower"
      "via"
      "snagit"
+     "drawio"
      "adobe-acrobat-reader" -}}
 
 # Install This on Personal
@@ -52,6 +60,12 @@ brew tap azure/bicep
        "qobuz"
        "signal"
        "whatsapp") -}}
+{{ end -}}
+
+# Install This on Work
+{{ if .work -}}
+{{   $casks = concat $casks (list
+       "azure-data-studio") -}}
 {{ end -}}
 
 Echo ""
