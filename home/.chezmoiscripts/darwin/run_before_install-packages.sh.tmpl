@@ -18,61 +18,65 @@ brew tap homebrew/cask-versions
 
 # Install This anytime
 {{ $brews := list
-     "zsh"
+     "azure-cli"
+     "bicep"
+     "bitwarden-cli"
+     "chezmoi"
+     "coreutils"
+     "git"
+     "mas"
+     "oh-my-posh"
      "spaceship"
+     "terraform"
      "zsh-autosuggestions"
      "zsh-syntax-highlighting"
-     "git"
-     "chezmoi"
-     "bitwarden-cli"
-     "oh-my-posh"
-     "terraform"
-     "bicep"
-     "coreutils"
-     "mas"
      "zsh-you-should-use"
-     "azure-cli" -}}
+     "zsh"
+      -}}
 {{ $casks := list
+     "adobe-acrobat-reader"
      "appcleaner"
-     "git-credential-manager"
-     "docker"
-     "iterm2"
-     "cheatsheet"
      "bitwarden"
-     "visual-studio-code"
-     "unnaturalscrollwheels"
-     "qmk-toolbox"
-     "unclack"
-     "powershell"
-     "postman"
-     "obsidian"
-     "signal"
-     "microsoft-edge"
-     "tor-browser"
-     "raycast"
-     "tower"
-     "via"
-     "snagit"
+     "cheatsheet"
+     "docker"
      "drawio"
-     "adobe-acrobat-reader" -}}
+     "git-credential-manager"
+     "iterm2"
+     "microsoft-edge"
+     "obsidian"
+     "postman"
+     "powershell"
+     "qmk-toolbox"
+     "raycast"
+     "signal"
+     "snagit"
+     "tor-browser"
+     "tower"
+     "unclack"
+     "unnaturalscrollwheels"
+     "via"
+     "visual-studio-code"
+      -}}
 
 # Install This on Personal
 {{ if .personal -}}
 {{   $casks = concat $casks (list
        "microsoft-auto-update"
-       "microsoft-word"
        "microsoft-excel"
        "microsoft-powerpoint"
+       "microsoft-word"
        "qobuz"
        "signal"
-       "whatsapp") -}}
+       "whatsapp"
+       ) -}}
 {{ end -}}
 
 # Install This on Work
 {{ if .work -}}
 {{   $casks = concat $casks (list
        "azure-data-studio"
-       "visual-studio-code-insiders" ) -}}
+       "visual-studio-code-insiders"
+        ) -}}
 {{ end -}}
 
 Echo ""
@@ -85,7 +89,6 @@ brew "{{ . }}"
 cask "{{ . }}"
 {{ end -}}
 EOF
-
 
 # Install Apps from Mac App Store using mas CLI
 Echo ""
