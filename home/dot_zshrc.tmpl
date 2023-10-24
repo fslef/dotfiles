@@ -15,6 +15,7 @@ export PATH={{ toStrings $paths | join ":" }}:$PATH
 export ZSH=$HOME/.oh-my-zsh # Path to your oh-my-zsh installation.
 export HOMEBREW_CASK_OPTS=--no-quarantine # remove warning for software installed from internet
 {{- if eq .work true }}
+export BW_SESSION=$(bw unlock --raw)
 export BWS_ACCESS_TOKEN={{ (bitwarden "item" "b14f520f-7fd8-43cf-a258-b09e00bf70f3").login.password }}
 {{- end }}
 {{- if eq .personal true }}
