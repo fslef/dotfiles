@@ -6,17 +6,12 @@ set -eufo pipefail
 Echo ""
 Echo "--Updating Homebrew--"
 brew update
-Echo ""
-Echo "--Adding azure/bicep tap--"
-brew tap azure/bicep
-Echo "--Adding jandedobbeleer/oh-my-posh tap--"
-brew tap jandedobbeleer/oh-my-posh
-{{ if .work -}}
-Echo "--Adding homebrew/cask-versions tap--"
-brew tap homebrew/cask-versions
-{{ end -}}
 
 # Install This anytime
+{{ $taps := list
+     "azure/bicep"
+     "jandedobbeleer/oh-my-posh"
+      -}}
 {{ $brews := list
      "azure-cli"
      "bicep"
@@ -73,6 +68,9 @@ brew tap homebrew/cask-versions
 
 # Install This on Work
 {{ if .work -}}
+{{   $taps = concat $taps (list
+     "homebrew/cask-versions"
+        ) -}}
 {{   $casks = concat $casks (list
        "azure-data-studio"
        "visual-studio-code-insiders"
@@ -82,6 +80,9 @@ brew tap homebrew/cask-versions
 Echo ""
 Echo "--Installing Brew Bundle--"
 brew bundle --force cleanup --no-lock --file=/dev/stdin <<EOF
+{{ range ($taps | sortAlpha | uniq) -}}
+tap "{{ . }}"
+{{ end -}}
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
