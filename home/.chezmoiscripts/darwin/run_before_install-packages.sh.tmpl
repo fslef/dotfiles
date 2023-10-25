@@ -71,6 +71,10 @@ brew update
        "visual-studio-code-insiders") -}}
 {{ end -}}
 
+
+echo "----Debug: Casks to install----"
+echo $casks
+
 echo ""
 echo "--Installing Brew Bundle--"
 brew bundle --force cleanup --no-lock --file=/dev/stdin <<EOF
