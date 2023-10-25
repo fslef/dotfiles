@@ -10,7 +10,8 @@ brew update
 # Install This anytime
 {{ $taps := list
      "azure/bicep"
-     "jandedobbeleer/oh-my-posh" -}}
+     "jandedobbeleer/oh-my-posh"
+      -}}
 {{ $brews := list
      "azure-cli"
      "bicep"
@@ -25,7 +26,8 @@ brew update
      "zsh-autosuggestions"
      "zsh-syntax-highlighting"
      "zsh-you-should-use"
-     "zsh" -}}
+     "zsh"
+      -}}
 {{ $casks := list
      "adobe-acrobat-reader"
      "appcleaner"
@@ -48,7 +50,8 @@ brew update
      "unclack"
      "unnaturalscrollwheels"
      "via"
-     "visual-studio-code" -}}
+     "visual-studio-code"
+      -}}
 
 # Install This on Personal
 {{ if .personal -}}
@@ -59,25 +62,23 @@ brew update
        "microsoft-word"
        "qobuz"
        "signal"
-       "whatsapp") -}}
+       "whatsapp"
+       ) -}}
 {{ end -}}
 
 # Install This on Work
 {{ if .work -}}
 {{   $taps = concat $taps (list
-       "homebrew/cask-versions") -}}
+       "homebrew/cask-versions"
+       ) -}}
 {{   $casks = concat $casks (list
        "azure-data-studio"
-       "visual-studio-code-insiders") -}}
+       ) -}}
 {{ end -}}
-
-
-echo "----Debug: Casks to install----"
-echo $casks
 
 echo ""
 echo "--Installing Brew Bundle--"
-brew bundle --force cleanup --no-lock --file=/dev/stdin <<EOF
+brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range ($taps | sortAlpha | uniq) -}}
 tap "{{ . }}"
 {{ end -}}
