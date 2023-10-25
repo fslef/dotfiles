@@ -65,11 +65,15 @@ brew update
 # Install This on Work
 {{ if .work -}}
 {{   $taps = concat $taps (list
-     "homebrew/cask-versions") -}}
+       "homebrew/cask-versions") -}}
 {{   $casks = concat $casks (list
        "azure-data-studio"
        "visual-studio-code-insiders") -}}
 {{ end -}}
+
+
+echo "----Debug: Casks to install----"
+echo $casks
 
 echo ""
 echo "--Installing Brew Bundle--"
