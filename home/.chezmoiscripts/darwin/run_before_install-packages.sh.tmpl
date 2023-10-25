@@ -73,7 +73,7 @@ brew update
 
 echo ""
 echo "--Installing Brew Bundle--"
-brew bundle --force cleanup --no-lock --file=/dev/stdin <<EOF
+brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range ($taps | sortAlpha | uniq) -}}
 tap "{{ . }}"
 {{ end -}}
