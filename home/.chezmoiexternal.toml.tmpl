@@ -1,14 +1,8 @@
 {{ $forkRefreshPeriod := "168h" -}} # One Week
-
-# WORK Repos
 {{ if .work -}}
-{{ (bitwarden "item" "e92a4929-e938-40b9-9ac6-b0a601470ecb").notes }}
+{{ (bitwarden "item" "e92a4929-e938-40b9-9ac6-b0a601470ecb").notes }} # WORK Repos
 {{ end -}}
-
-# PERSONAL Repos
 {{ if .personal -}}
-{{ (bitwarden "item" "5a0c64c8-fc70-4bbb-81dd-b0a6014248a5").notes }}
+{{ (bitwarden "item" "5a0c64c8-fc70-4bbb-81dd-b0a6014248a5").notes }} # PERSONAL Repos
 {{ end -}}
-
-# SHARED Repos
-{{ (bitwarden "item" "f3311005-ef5c-409f-8a5e-b0a601473b0f").notes }}
+{{ (bitwarden "item" "f3311005-ef5c-409f-8a5e-b0a601473b0f").notes }} # SHARED Repos
