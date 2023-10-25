@@ -73,7 +73,9 @@ brew update
 
 
 echo "----Debug: Casks to install----"
-echo "$casks"
+for cask in "${casks[@]}"; do
+    echo "$cask"
+done
 
 echo ""
 echo "--Installing Brew Bundle--"
