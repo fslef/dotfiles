@@ -12,7 +12,9 @@
     defaultBranch = main
 
 [credential]
-    helper = git-credential-manager
+{{- if eq .chezmoi.os "darwin" }}
+    helper = /usr/local/bin/git-credential-manager
+{{- end }}
 
 [gpg]
     program = pg
