@@ -41,7 +41,7 @@
     tool = vscode
 
 [difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+    cmd = code --wait --new-window --diff $LOCAL $REMOTE
     
 [merge]
     tool = vscode
@@ -52,7 +52,7 @@
     keepBackup = false
 
 [mergetool "vscode"]
-    cmd = code --wait $MERGED
+    cmd = code --wait --new-window $MERGED
     
 [branch "main"]
     remote = origin
