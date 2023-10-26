@@ -29,6 +29,9 @@
 [pull]
     default = simple
     rebase = true # Rebase when pulling
+
+[rebase]
+    autostash = true
     
 [push]
     default = current
@@ -48,6 +51,7 @@
 [merge]
     tool = vscode
     conflictStyle = diff3
+    autostash = true
     
 [mergetool]
     prompt = false
