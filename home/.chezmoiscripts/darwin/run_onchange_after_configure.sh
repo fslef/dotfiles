@@ -73,6 +73,7 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # 11: Launchpad
 # 12: Notification Center
 # 13: Lock Screen
+# 14: quick note
 # Top left screen corner → Mission Control
 defaults write com.apple.dock wvous-tl-corner -int 0
 defaults write com.apple.dock wvous-tl-modifier -int 0
