@@ -106,7 +106,7 @@ defaults write com.apple.menuextra.clock "ShowAMPM" -bool "False"
 defaults write com.apple.menuextra.clock "ShowDate" -int 0 # 0 When Space Allows; 1 Always; 2 Never
 defaults write com.apple.menuextra.clock "ShowDayOfWeek" -bool "False"
 defaults write com.apple.menuextra.clock "ShowSeconds" -bool "False"
-defaults write com.apple.controlcenter.plist BatteryShowPercentage -bool true
+defaults write com.apple.menuextra.battery ShowPercent -string "YES" # show battery percentage
 
 # Disable Resume system-wide
 defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
@@ -117,4 +117,4 @@ launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.
 # Siri
  defaults write com.apple.Siri "StatusMenuVisible" -bool "False"
  defaults write com.apple.Siri "VoiceTriggerUserEnabled" -bool "False"
- 
+
