@@ -1,3 +1,7 @@
 {
     "git.branchProtectionPrompt": "alwaysCommit",
+    "files.associations": {
+        "*.sh.tmpl": "shellscript",
+        "*.toml.tmpl": "toml"
+    }
 }
