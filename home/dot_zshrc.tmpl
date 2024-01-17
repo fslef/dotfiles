@@ -1,3 +1,4 @@
+# Configure PATH
 # If you come from bash you might have to change your $PATH.
 {{- $paths := list }}
 {{- $homeDir := .chezmoi.homeDir }}
@@ -68,12 +69,13 @@ alias ls=exa
 {{ if eq .osid "linux-ubuntu" -}}
 export EDITOR=$HOME/.local/bin/nvim
 {{ else -}}
-export EDITOR=nvim
+export EDITOR=code
 {{ end -}}
 export GOPATH=$HOME
 export GO111MODULE=on
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_AUTO_UPDATE=1
+export SPACESHIP_CONFIG="$HOME/.dotfiles/spaceship/config-spaceship.zsh
 {{- end }}
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -83,18 +85,12 @@ export RIPGREP_CONFIG_PATH=~/.config/ripgrep/config
 {{ output "direnv" "hook" "zsh" | trim }}
 {{- end }}
 
-{{ if stat (joinPath .chezmoi.homeDir ".nvm") }}
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-{{ end }}
-
 {{- /* vim: set filetype=zsh: */}}
 
 {{- if eq .chezmoi.os "darwin" }}
 
 # Set Git HomeFolder
-cd /Users/francoislefebvre/GitRepos/
+cd /Users/francoislefebvre/gitrepos/
 
 # Load Modules installed with Homebrew
 source $HOMEBREW_PREFIX/opt/spaceship/spaceship.zsh
