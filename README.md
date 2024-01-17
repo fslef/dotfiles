@@ -15,17 +15,15 @@ Install Homebrew
 
 Install packages
 ``` shell
-brew install bitwarden-cli
+brew install rbw
 brew install --cask bitwarden --no-quarantine
 brew install chezmoi
 ```
 
-#### Manualy install bws
-https://github.com/bitwarden/sdk/releases
-
-#### Login to bw
+#### Login to bitwarden
 ``` shell
-bw login
+rbw config set email <email>
+rbw login
 ```
 
 #### Initialize Chezmoi config
