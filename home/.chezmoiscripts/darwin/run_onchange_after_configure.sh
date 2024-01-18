@@ -32,7 +32,8 @@ defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 118 "<di
 # Disable animation when switching between Spaces (desktops)
 # could require the terminal to have a full disk access
 # in (System Preferences > Security & Privacy > Privacy > Full Disk Access)
-defaults write com.apple.universalaccess reduceMotion -bool true
+# Seems to not work anymore on Sonona
+# defaults write com.apple.universalaccess reduceMotion -bool true
 
 # Disable autocorrect and key substitutions
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false # automatic key capitalization
