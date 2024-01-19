@@ -58,6 +58,7 @@ brew update
      "unclack"
      "unnaturalscrollwheels"
      "visual-studio-code"
+     "yabai"
       -}}
 
 # Install This on Personal
@@ -99,8 +100,9 @@ cask "{{ . }}"
 {{ end -}}
 EOF
 
-# skhd to be managed by launchd (start automatically upon login)
+# skhd and yabai to be managed by launchd (start automatically upon login)
 skhd --start-service
+yabai --start-service
 
 # Install Apps from Mac App Store using mas CLI
 echo ""
