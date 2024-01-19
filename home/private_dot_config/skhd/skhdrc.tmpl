@@ -1,66 +1,46 @@
 {{- if eq .chezmoi.os "darwin" }}
-# change window focus within space
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
-alt - h : yabai -m window --focus west
-alt - l : yabai -m window --focus east
+# SKHD Configuration for Yabai Window Management
 
-#change focus between external displays (left and right)
-alt - s: yabai -m display --focus west
-alt - g: yabai -m display --focus east
+# Basic Window Focus Commands
+# Use Ctrl with arrow keys (h,j,k,l) to focus windows in different directions
+ctrl - , : yabai -m window --focus south  # Focus window below
+ctrl - k : yabai -m window --focus north  # Focus window above
+ctrl - h : yabai -m window --focus west   # Focus window to the left
+ctrl - j : yabai -m window --focus east   # Focus window to the right
 
-# rotate layout clockwise
-shift + alt - r : yabai -m space --rotate 270
+# Window Swapping
+# Swap windows with adjacent windows using Ctrl + Shift
+ctrl + shift - , : yabai -m window --swap south # Swap with window below
+ctrl + shift - k : yabai -m window --swap north # Swap with window above
+ctrl + shift - h : yabai -m window --swap west  # Swap with window to the left
+ctrl + shift - j : yabai -m window --swap east  # Swap with window to the right
 
-# flip along y-axis
-shift + alt - y : yabai -m space --mirror y-axis
+# Advanced Window Manipulations
+# Rotate, flip, and balance windows using Ctrl + Shift
+ctrl + shift - n : yabai -m space --rotate 90    # Rotate layout clockwise
+ctrl + shift - m : yabai -m space --rotate 270   # Rotate layout counterclockwise
+ctrl + shift - y : yabai -m space --mirror y-axis # Flip along y-axis
+ctrl + shift - x : yabai -m space --mirror x-axis # Flip along x-axis
+ctrl + shift - t : yabai -m window --toggle float --grid 4:4:1:1:2:2 # Toggle window float
+ctrl + shift - m : yabai -m window --toggle zoom-fullscreen # Maximize window
+ctrl + shift - e : yabai -m space --balance # Balance windows in space
 
-# flip along x-axis
-shift + alt - x : yabai -m space --mirror x-axis
+# Display and Space Management
+# Use Cmd + Shift for moving windows across displays and spaces
+cmd + shift - s : yabai -m window --display west; yabai -m display --focus west; # Move window to left display
+cmd + shift - g : yabai -m window --display east; yabai -m display --focus east; # Move window to right display
+cmd + shift - p : yabai -m window --space prev; # Move window to previous space
+cmd + shift - n : yabai -m window --space next; # Move window to next space
 
-# toggle window float
-shift + alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+# Customizations
+# Replace [additional keys] and [modifiers] - [number] with your preferred shortcuts
+# for window movement, split, and specific space management.
 
-# maximize a window
-shift + alt - m : yabai -m window --toggle zoom-fullscreen
+# Yabai Service Control (Currently Commented Out)
+# Uncomment if you wish to use shortcuts for starting/stopping/restarting Yabai
+# ctrl + alt - q : brew services stop yabai
+# ctrl + alt - s : brew services start yabai
+# ctrl + alt - r : brew services restart yabai
 
-# balance out tree of windows (resize to occupy same area)
-shift + alt - e : yabai -m space --balance
-
-# swap windows
-shift + alt - j : yabai -m window --swap south
-shift + alt - k : yabai -m window --swap north
-shift + alt - h : yabai -m window --swap west
-shift + alt - l : yabai -m window --swap east
-
-# move window and split
-ctrl + alt - j : yabai -m window --warp south
-ctrl + alt - k : yabai -m window --warp north
-ctrl + alt - h : yabai -m window --warp west
-ctrl + alt - l : yabai -m window --warp east
-
-# move window to display left and right
-shift + alt - s : yabai -m window --display west; yabai -m display --focus west;
-shift + alt - g : yabai -m window --display east; yabai -m display --focus east;
-
-# move window to prev and next space
-shift + alt - p : yabai -m window --space prev;
-shift + alt - n : yabai -m window --space next;
-
-# move window to space and focus
-ctrl + shift - 1 : yabai -m window --space 1; yabai -m space --focus 1;
-ctrl + shift - 2 : yabai -m window --space 2; yabai -m space --focus 2;
-ctrl + shift - 3 : yabai -m window --space 3; yabai -m space --focus 3;
-ctrl + shift - 4 : yabai -m window --space 4; yabai -m space --focus 4;
-ctrl + shift - 5 : yabai -m window --space 5; yabai -m space --focus 5;
-ctrl + shift - 6 : yabai -m window --space 6; yabai -m space --focus 6;
-ctrl + shift - 7 : yabai -m window --space 7; yabai -m space --focus 7;
-ctrl + shift - 8 : yabai -m window --space 8; yabai -m space --focus 8;
-ctrl + shift - 9 : yabai -m window --space 9; yabai -m space --focus 9;
-
-# stop/start/restart yabai
-ctrl + alt - q : brew services stop yabai
-ctrl + alt - s : brew services start yabai
-ctrl + alt - r : brew services restart yabai
 
 {{- end }}
