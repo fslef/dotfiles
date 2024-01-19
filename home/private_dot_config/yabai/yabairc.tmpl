@@ -1,0 +1,98 @@
+{{- if eq .chezmoi.os "darwin" }}
+#!/usr/bin/env sh
+
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# default layout (can be bsp, stack or float)
+yabai -m config layout bsp
+
+# Configure split ration and auto balance
+yabai -m config auto_balance off
+yabai -m config split_ratio 0.5
+
+# New window spawns to the right if vertical split, or bottom if horizontal split
+yabai -m config window_placement second_child
+
+# center mouse on window with focus
+yabai -m config mouse_follows_focus on
+
+# modifier for clicking and dragging with mouse
+yabai -m config mouse_modifier alt
+# set modifier + left-click drag to move window
+yabai -m config mouse_action1 move
+# set modifier + right-click drag to resize window
+yabai -m config mouse_action2 resize
+
+# when window is dropped in center of another window, swap them (on edges it will split it)
+yabai -m mouse_drop_action swap
+
+#
+# setup spaces
+#
+for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 6)'); do
+  yabai -m space --destroy 7
+done
+
+function setup_space {
+  local idx="$1"
+  local name="$2"
+  local space=
+  echo "setup space $idx : $name"
+
+  space=$(yabai -m query --spaces --space "$idx")
+  if [ -z "$space" ]; then
+    yabai -m space --create
+  fi
+
+  yabai -m space "$idx" --label "$name"
+}
+
+yabai -m space 1 --label terminal
+yabai -m space 2 --label code
+yabai -m space 3 --label web
+yabai -m space 4 --label social
+yabai -m space 5 --label other
+
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="Microsoft Teams$" manage=off
+yabai -m rule --add label="Microsoft Outlook" app="^Microsoft Outlook$" title="Reminder" sticky=on manage=off
+
+# move some apps automatically to specific spaces
+yabai -m rule --add app="^iTerm$" space=1
+yabai -m rule --add app="^Code$" space=2
+yabai -m rule --add app="^Safari$" space=^3
+yabai -m rule --add app="^Edge$" space=^3
+yabai -m rule --add app="^Signal$" space=4
+yabai -m rule --add app="^Microsoft Outlook$" space=4
+yabai -m rule --add app="^Teams$" space=4
+
+# # default layout (can be bsp, stack or float)
+# yabai -m config layout bsp
+
+# # New window spawns to the right if vertical split, or bottom if horizontal split
+# yabai -m config window_placement second_child
+
+# # center mouse on window with focus
+# yabai -m config mouse_follows_focus on
+
+# # modifier for clicking and dragging with mouse
+# yabai -m config mouse_modifier alt
+# # set modifier + left-click drag to move window
+# yabai -m config mouse_action1 move
+# # set modifier + right-click drag to resize window
+# yabai -m config mouse_action2 resize
+
+
+# # when window is dropped in center of another window, swap them (on edges it will split it)
+# yabai -m mouse_drop_action swap
+
+# yabai -m rule --add app="^System Settings$" manage=off
+# yabai -m rule --add app="^Calculator$" manage=off
+# yabai -m rule --add app="Microsoft Teams$" manage=off
+# yabai -m rule --add label="Microsoft Outlook" app="^Microsoft Outlook$" title="Reminder" sticky=on manage=off
+
+{{- end }}
