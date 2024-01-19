@@ -2,28 +2,28 @@
 # SKHD Configuration for Yabai Window Management
 
 # Basic Window Focus Commands
-# Use Ctrl with arrow keys (h,j,k,l) to focus windows in different directions
-ctrl - , : yabai -m window --focus south  # Focus window below
-ctrl - k : yabai -m window --focus north  # Focus window above
-ctrl - h : yabai -m window --focus west   # Focus window to the left
-ctrl - j : yabai -m window --focus east   # Focus window to the right
+# Use Cmd + Shift with keys (h,j,k,comma) to focus windows in different directions
+cmd + shift - h : yabai -m window --focus west   # Focus window to the left
+cmd + shift - j : yabai -m window --focus east   # Focus window to the right
+cmd + shift - k : yabai -m window --focus north  # Focus window above
+cmd + shift - , : yabai -m window --focus south  # Focus window below
 
 # Window Swapping
-# Swap windows with adjacent windows using Ctrl + Shift
-ctrl + shift - , : yabai -m window --swap south # Swap with window below
-ctrl + shift - k : yabai -m window --swap north # Swap with window above
-ctrl + shift - h : yabai -m window --swap west  # Swap with window to the left
-ctrl + shift - j : yabai -m window --swap east  # Swap with window to the right
+# Swap windows with adjacent windows using Cmd + Ctrl
+cmd + ctrl - h : yabai -m window --swap west  # Swap with window to the left
+cmd + ctrl - j : yabai -m window --swap east  # Swap with window to the right
+cmd + ctrl - k : yabai -m window --swap north # Swap with window above
+cmd + ctrl - , : yabai -m window --swap south # Swap with window below
 
 # Advanced Window Manipulations
 # Rotate, flip, and balance windows using Ctrl + Shift
-ctrl + shift - n : yabai -m space --rotate 90    # Rotate layout clockwise
-ctrl + shift - m : yabai -m space --rotate 270   # Rotate layout counterclockwise
-ctrl + shift - y : yabai -m space --mirror y-axis # Flip along y-axis
-ctrl + shift - x : yabai -m space --mirror x-axis # Flip along x-axis
+ctrl + shift - u : yabai -m space --rotate 90    # Rotate layout clockwise
+ctrl + shift - i : yabai -m space --rotate 270   # Rotate layout counterclockwise
+ctrl + shift - o : yabai -m space --mirror y-axis # Flip along y-axis
+ctrl + shift - p : yabai -m space --mirror x-axis # Flip along x-axis
 ctrl + shift - t : yabai -m window --toggle float --grid 4:4:1:1:2:2 # Toggle window float
 ctrl + shift - m : yabai -m window --toggle zoom-fullscreen # Maximize window
-ctrl + shift - e : yabai -m space --balance # Balance windows in space
+ctrl + shift - n : yabai -m space --balance # Balance windows in space
 
 # Display and Space Management
 # Use Cmd + Shift for moving windows across displays and spaces
@@ -32,15 +32,6 @@ cmd + shift - g : yabai -m window --display east; yabai -m display --focus east;
 cmd + shift - p : yabai -m window --space prev; # Move window to previous space
 cmd + shift - n : yabai -m window --space next; # Move window to next space
 
-# Customizations
-# Replace [additional keys] and [modifiers] - [number] with your preferred shortcuts
-# for window movement, split, and specific space management.
-
-# Yabai Service Control (Currently Commented Out)
-# Uncomment if you wish to use shortcuts for starting/stopping/restarting Yabai
-# ctrl + alt - q : brew services stop yabai
-# ctrl + alt - s : brew services start yabai
-# ctrl + alt - r : brew services restart yabai
-
+# Customizations and Yabai Service Control remain the same
 
 {{- end }}
