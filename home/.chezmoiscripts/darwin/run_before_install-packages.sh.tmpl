@@ -12,6 +12,7 @@ brew update
      "azure/bicep"
      "homebrew/cask-fonts"
      "jandedobbeleer/oh-my-posh"
+     "koekeishiya/formulae"
      "qmk/qmk"
       -}}
 {{ $brews := list
@@ -25,6 +26,7 @@ brew update
      "qmk"
      "rbw"
      "ripgrep"
+     "skhd"
      "spaceship"
      "terraform"
      "zsh-autosuggestions"
@@ -96,6 +98,9 @@ brew "{{ . }}"
 cask "{{ . }}"
 {{ end -}}
 EOF
+
+# skhd to be managed by launchd (start automatically upon login)
+skhd --start-service
 
 # Install Apps from Mac App Store using mas CLI
 echo ""
