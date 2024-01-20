@@ -21,17 +21,17 @@ layouts:
 
 # First mod (default option + shift).
 mod1:
-  - command
+  # - command
   - control
   - shift
-  - option
+  # - option
 
 # Second mod (default option + shift + control).
 mod2:
   - command
   - control
   - shift
-  - option
+ # - option
 
 # true if the mouse should move position to the center of a window when it becomes focused (default false). Note that this is largely incompatible with focus-follows-mouse.
 mouse-follows-focus: true
