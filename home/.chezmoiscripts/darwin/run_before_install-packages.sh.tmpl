@@ -97,10 +97,6 @@ cask "{{ . }}"
 {{ end -}}
 EOF
 
-# skhd and yabai to be managed by launchd (start automatically upon login)
-skhd --start-service
-yabai --start-service
-
 # Install Apps from Mac App Store using mas CLI
 echo ""
 echo "--Installing Mac OS app store apps--"
