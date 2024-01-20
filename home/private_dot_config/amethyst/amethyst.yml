@@ -18,3 +18,14 @@ layouts:
   - bsp
   - fullscreen
   - floating
+
+# First mod (default option + shift).
+mod1:
+  - control
+  - shift
+
+# Second mod (default option + shift + control).
+mod2:
+  - command
+  - control
+  - shift
