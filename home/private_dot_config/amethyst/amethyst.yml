@@ -44,3 +44,6 @@ mouse-resizes-windows: true
 
 # true to display the name of the layout when moving to a new space (default true).
 enables-layout-hud-on-space-change: true
+
+# true if windows smaller than a 500px square should be floating by default (default true)
+float-small-windows: true
