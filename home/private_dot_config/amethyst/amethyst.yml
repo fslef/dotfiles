@@ -46,4 +46,4 @@ mouse-resizes-windows: true
 enables-layout-hud-on-space-change: false
 
 # true if windows smaller than a 500px square should be floating by default (default true)
-float-small-windows: false
+float-small-windows: true
