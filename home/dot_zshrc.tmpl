@@ -54,9 +54,10 @@ setopt rm_star_silent
 
 alias g=git
 alias tf=terraform
-alias tfp=terraform plan
-alias tfa=terraform apply -auto-approve
-alias tfg=terraform plan -generate-config-out=generated_resources.tf
+alias tfp="terraform plan"
+alias tfa="terraform apply -auto-approve"
+alias tfg="terraform plan -generate-config-out=generated_resources.tf"
+alias cmu="chezmoi update"
 alias gnp="git --no-pager"
 {{- if lookPath "bat" }}
 alias cat=bat
