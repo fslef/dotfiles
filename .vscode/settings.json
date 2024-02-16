@@ -3,5 +3,6 @@
     "files.associations": {
         "*.sh.tmpl": "shellscript",
         "*.toml.tmpl": "toml"
-    }
+    },
+    "window.title": "dotFiles",
 }
