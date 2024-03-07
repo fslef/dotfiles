@@ -49,3 +49,6 @@ enables-layout-hud-on-space-change: false
 
 # true if windows smaller than a 500px square should be floating by default (default true)
 float-small-windows: true
+
+# The max number of windows that may be visible on a screen at one time before additional windows are minimized. A value of 0 disables the feature.
+window-max-count: 3
