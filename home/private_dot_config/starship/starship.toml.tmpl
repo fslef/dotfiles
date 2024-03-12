@@ -1,0 +1,14 @@
+{{- if eq .chezmoi.os "darwin" -}}
+# Display time
+SPACESHIP_TIME_SHOW=false
+
+# Display time execution of last command
+SPACESHIP_EXEC_TIME_SHOW=true
+SPACESHIP_EXEC_TIME_ELAPSED=10
+SPACESHIP_EXEC_TIME_PRECISION=1
+
+SPACESHIP_GOLANG_SHOW=false
+
+# Display username when needed
+SPACESHIP_USER_SHOW=needed
+{{- end -}}
