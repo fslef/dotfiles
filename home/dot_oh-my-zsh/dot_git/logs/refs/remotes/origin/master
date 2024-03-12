@@ -1,7 +1,0 @@
-0000000000000000000000000000000000000000 a3c579bf27b34942d4c6ad64e7cfd75788b05ea3 Francois LEFEBVRE <23463958+fslef@users.noreply.github.com> 1672395048 +0100	fetch --depth=1 origin: storing head
-a3c579bf27b34942d4c6ad64e7cfd75788b05ea3 6dc6646d529a7dc6a1d8e1a2c1507dff7e528c8d Francois LEFEBVRE <23463958+fslef@users.noreply.github.com> 1673532444 +0100	pull --quiet --rebase origin master: fast-forward
-6dc6646d529a7dc6a1d8e1a2c1507dff7e528c8d 7de55844b26394688221b1cd12ef4053b3c7f6c7 Francois LEFEBVRE <23463958+fslef@users.noreply.github.com> 1674632248 +0100	pull --quiet --rebase origin master: fast-forward
-7de55844b26394688221b1cd12ef4053b3c7f6c7 45571bfa03934359a49f7043cbcf50abccdf448c Francois LEFEBVRE <23463958+fslef@users.noreply.github.com> 1675862694 +0100	pull --quiet --rebase origin master: fast-forward
-45571bfa03934359a49f7043cbcf50abccdf448c 9f9d3b7d247b3c3e21542abaaf107e3d15aac1a5 Francois LEFEBVRE <23463958+fslef@users.noreply.github.com> 1677017947 +0100	pull --quiet --rebase origin master: fast-forward
-9f9d3b7d247b3c3e21542abaaf107e3d15aac1a5 3ea0e0d2343a2e79be0c2c6ace030a595d5cec2f Francois LEFEBVRE <23463958+fslef@users.noreply.github.com> 1678453179 +0100	pull --quiet --rebase origin master: fast-forward
-3ea0e0d2343a2e79be0c2c6ace030a595d5cec2f c08b925d282e35ea7bd9a8f4c29de2ece0debb49 Francois LEFEBVRE <23463958+fslef@users.noreply.github.com> 1679584777 +0100	pull --quiet --rebase origin master: fast-forward
