@@ -23,12 +23,12 @@ export GOPATH=$HOME
 export GO111MODULE=on
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_AUTO_UPDATE=1
-export SPACESHIP_CONFIG="$HOME/.config/spaceship/config-spaceship.zsh"
 {{- end }}
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/config
 
+# Configure Zsh options
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
 
@@ -42,13 +42,13 @@ DISABLE_AUTO_UPDATE="true"
 ZSH_DISABLE_COMPFIX=true
 
 # User configuration
-
 PROMPT="%{$fg[white]%}%n@%{$fg[green]%}%m%{$reset_color%} ${PROMPT}"
 
 setopt autocd
 setopt histignorespace
 setopt rm_star_silent
 
+# Configure aliases
 alias g=git
 alias al0="cd ~/gitrepos/fslef-automatedLab/IaC/terraform/L0-shared-config/"
 alias al1="cd ~/gitrepos/fslef-automatedLab/IaC/terraform/L1-management/"
@@ -77,12 +77,14 @@ alias fd=fdfind
 alias ls=exa
 {{- end }}
 
+# Configure direnv
 {{- if lookPath "direnv" }}
 {{ output "direnv" "hook" "zsh" | trim }}
 {{- end }}
 
 {{- /* vim: set filetype=zsh: */}}
 
+# Configure macOS specific settings
 {{- if eq .chezmoi.os "darwin" }}
 
 # Navigating to Git HomeFolder
@@ -93,4 +95,3 @@ source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOMEBREW_PREFIX/share/zsh-you-should-use/you-should-use.plugin.zsh
 {{- end }}
-
