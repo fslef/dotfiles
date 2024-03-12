@@ -1,1 +1,2 @@
 alias ll="gls -lAhF --group-directories-first --color=always -a"
+eval "$(starship init bash)"
