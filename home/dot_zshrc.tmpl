@@ -49,33 +49,7 @@ setopt histignorespace
 setopt rm_star_silent
 
 # Configure aliases
-alias g=git
-alias al0="cd ~/gitrepos/fslef-automatedLab/IaC/terraform/L0-shared-config/"
-alias al1="cd ~/gitrepos/fslef-automatedLab/IaC/terraform/L1-management/"
-alias al2="cd ~/gitrepos/fslef-automatedLab/IaC/terraform/L2-hub/"
-alias al3="cd ~/gitrepos/fslef-automatedLab/IaC/terraform/L3-labs/"
-alias al4="cd ~/gitrepos/fslef-automatedLab/IaC/terraform/L4-sandbox/"
-alias ale="cd ~/gitrepos/fslef-automatedLab/IaC/epac/"
-alias alt="cd ~/gitrepos/fslef-automatedLab/tools/"
-alias tf=terraform
-alias tfp="terraform plan"
-alias tfpq="terraform plan -refresh=false"
-alias tfa="terraform apply -auto-approve"
-alias tfaq="terraform apply -auto-approve -refresh=false"
-alias tfg="terraform plan -generate-config-out=generated_resources.tf"
-alias cmu="chezmoi update"
-alias gnp="git --no-pager"
-{{- if lookPath "bat" }}
-alias cat=bat
-{{- else if lookPath "batcat" }}
-alias cat=batcat
-{{- end }}
-{{- if lookPath "fdfind" }}
-alias fd=fdfind
-{{- end }}
-{{- if lookPath "exa" }}
-alias ls=exa
-{{- end }}
+source ˜/.config/.zshrc_aliases.tmpl
 
 # Configure direnv
 {{- if lookPath "direnv" }}
