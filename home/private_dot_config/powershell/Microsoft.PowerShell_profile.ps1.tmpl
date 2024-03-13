@@ -1,2 +1,31 @@
 Invoke-Expression (&starship init powershell)
-cd $HOME/gitrepos
+Set-Location $HOME/gitrepos
+
+# Get the content of the .zshrc_aliases.tmpl file
+$aliases = Get-Content -Path ~/.zshrc_aliases
+
+# Loop through each line in the file
+foreach ($aliasRaw in $aliases) {
+    # Split the line into the alias name and command
+    $alias = $aliasRaw -split "=", 2
+
+    # Check if the command is a cd command
+    if ($alias[1] -match '^"cd ') {
+        # Get the directory from the command
+        $directory = $alias[1] -replace '^"cd ', '' -replace '"$', ''
+
+        # Create a PowerShell function that changes the current directory
+        $function = {
+            Set-Location -Path $directory
+        }
+
+        # Set the alias to the function
+        Set-Alias -Name $alias[0] -Value $function
+    } else {
+        # Remove the quotes from the command
+        $command = $alias[1] -replace '^"', '' -replace '"$', ''
+
+        # Set the alias to the command
+        Set-Alias -Name $alias[0] -Value $command
+    }
+}
