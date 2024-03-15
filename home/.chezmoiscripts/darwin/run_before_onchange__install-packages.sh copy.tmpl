@@ -97,12 +97,7 @@ cask "{{ . }}"
 {{ end -}}
 EOF
 
-brew upgrade
-
 # Install Apps from Mac App Store using mas CLI
 echo ""
 echo "--Installing Mac OS app store apps--"
 mas install 1268962404
-
-echo ""
-echo "--Syncing Git Repos--"
