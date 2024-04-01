@@ -62,7 +62,11 @@ source ~/.zshrc_aliases
 {{- if eq .chezmoi.os "darwin" }}
 
 # Navigating to Git HomeFolder
+{{ if .personal -}}
+cd /Users/francois/gitrepos/
+{{ else -}}
 cd /Users/francoislefebvre/gitrepos/
+{{ end -}}
 
 # Load Modules installed with Homebrew
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
