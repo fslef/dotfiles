@@ -1,22 +1,22 @@
 {{- if eq .chezmoi.os "darwin" -}}
 {
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.9.5",
   "schemes" : [
     {
-      "scrolling" : {
-        "reverse" : {
-          "vertical" : false
-        }
-      },
       "if" : {
         "device" : {
-          "category" : "mouse",
-          "vendorID" : "0x1532",
+          "productName" : "Razer Lancehead Wireless",
           "productID" : "0x70",
-          "productName" : "Razer Lancehead Wireless"
+          "category" : "mouse",
+          "vendorID" : "0x1532"
+        }
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : true
         }
       }
     }
-  ],
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.9.5"
+  ]
 }
 {{- end -}}
