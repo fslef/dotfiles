@@ -21,6 +21,7 @@ export EDITOR=code
 {{ end -}}
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_UPGRADE_GREEDY=1
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export CYBERSHELL_CONFIG=~/gitrepos/cs/cybershell/Environment-NoSync/CyberShellSettings.jsonc
 {{- end }}
