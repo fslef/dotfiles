@@ -5,7 +5,7 @@ set -eufo pipefail
 # https://github.com/mathiasbynens/dotfiles/blob/main/.macos
 
 # Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
+sudo nvram StartupMute=%01
 
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
