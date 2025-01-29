@@ -1,32 +1,13 @@
-# FSLEF dotfiles
+# My dotfiles
 
-FSLEF dotfiles, managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
+managed by [chezmoi](https://www.chezmoi.io/)
 
-## Configure a new machine by following these steps:
+## Setup a new machine
 
-#### Install Homebrew and minmimum packages:
-
-Rename Computer Host Name
-
-Install Homebrew
-``` shell
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+### MacOs / Linux
+```bash
+curl -sfL https://raw.githubusercontent.com/fslef/dotfiles/main/.install-macos.sh | bash
 ```
 
-Install packages
-``` shell
-brew install rbw
-brew install --cask bitwarden --no-quarantine
-brew install chezmoi
-```
-
-#### Login to bitwarden
-``` shell
-rbw config set email <email>
-rbw login
-```
-
-#### Initialize Chezmoi config
-```
-chezmoi init fslef
-```
+### Windows
+> Work in progress
