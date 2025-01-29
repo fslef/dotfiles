@@ -20,7 +20,7 @@ else
 fi
 
 # Install bitwarden and rbw
-brew install --cask bitwarden
+brew install --cask bitwarden --no-quarantine
 brew install rbw
 
 # Install and configure chezmoi
