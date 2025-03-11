@@ -96,7 +96,7 @@ BREW_DIR="$(brew --prefix)/bin/"
 
 for tap in ${tap[@]}; do
     if ! _inArray_ -i "${tap}" "${currently_installed_taps[@]}"; then
-        brew tap -q --tap ${tap}
+        brew tap ${tap}
     fi
 done
 
