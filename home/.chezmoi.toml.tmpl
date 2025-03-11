@@ -1,9 +1,9 @@
-{{/* boolean feature tags */}}
-{{- $docker := false -}}{{/* true if this machine should have Docker installed */}}
-{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
-{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
-{{- $personal := false -}}{{/* true if this machine is for personal usage */}}
-{{- $work := false -}}{{/* true if this machine is for professional usage */}}
+{{/* boolean feature tags will be prompted once */}}
+{{- $personal_computer := promptBoolOnce . "personal_computer" "Is this a computer used for personal usage ? (true/false)" -}}
+{{- $work_computer := promptBoolOnce . "work_computer" "Is this a computer used for professional usage ? (true/false)" -}}
+{{- $dev_computer := promptBoolOnce . "dev_computer" "Will you develop on this computer? (true/false)" -}}
+{{- $docker := promptBoolOnce . "docker" "Is this machine should have Docker installed? (true/false)" -}}
+
 {{- "" -}}
 
 {{- $osID := .chezmoi.os -}}
@@ -11,44 +11,26 @@
 {{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
-{{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
-{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
-{{-   $ephemeral = true -}}
-{{-   $headless = true -}}
-{{- end -}}
-
-{{/* work around unreliable hostname on darwin */}}
-{{- $hostname := .chezmoi.hostname -}}
-{{- if eq .chezmoi.os "darwin" -}}
-{{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
-{{-   if eq $computerName "FSLEF-MBP-CORP" -}}
-{{-     $hostname = "fslef-corp-mbp" -}}
-{{-     $work = true -}}
-{{-   else if eq $computerName "fslef-mbp-perso" -}}
-{{-     $hostname = "fslef-mbp-perso" -}}
-{{-     $personal = true -}}
-{{-   else -}}
-{{-     $hostname = $computerName -}}
-{{-   end -}}
-{{- end -}}
-
-{{- if eq .chezmoi.os "linux" -}}
-{{-   $ephemeral = true -}}
-{{- end -}}
-
 {{- $email := (rbw "c358ce27-ec3a-4db4-bc04-b09e012d5d52").data.username -}}
 
 [data]
     docker = {{ $docker }}
-    ephemeral = {{ $ephemeral }}
     email = {{ $email | quote }}
-    headless = {{ $headless }}
-    hostname = {{ $hostname | quote }}
-    personal = {{ $personal }}
-    work = {{ $work }}
+    personal_computer = {{ $personal_computer }}
+    work_computer = {{ $work_computer }}
+    dev_computer = {{ $dev_computer }}
     osid = {{ $osID | quote }}
+
+[diff]
+    {{ if lookPath "delta" -}}command = "delta"
+    {{ end -}}
+    exclude = ["scripts"]
+
+{{ if lookPath "code" -}}
+
 [edit]
     command = "code"
     args = ["--wait"]
+
 [git]
     autoPush = true
