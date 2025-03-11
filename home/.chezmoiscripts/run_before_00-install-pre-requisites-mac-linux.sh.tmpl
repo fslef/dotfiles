@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# {{ template "shared_script_utils.bash" . }}
-
 {{ if eq .chezmoi.os "darwin" }}
 
 if [[ ! $(command -v brew) ]]; then
