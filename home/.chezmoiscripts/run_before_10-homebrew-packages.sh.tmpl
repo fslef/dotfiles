@@ -1,6 +1,9 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
+# Display start message in cyan
+echo -e "\033[0;36mStarting package installation\033[0m"
+
 export HOMEBREW_NO_INSTALL_UPGRADE=TRUE
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export HOMEBREW_NO_INSTALL_CLEANUP=1
@@ -34,8 +37,6 @@ cask {{ . | quote }}
 {{ end -}}
 EOF
 
-
-success "Homebrew packages installed"
-
+echo -e "\033[0;32mHomebrew packages installed\033[0m"
 
 {{- end }}
