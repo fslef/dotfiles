@@ -1,8 +1,8 @@
 {{/* boolean feature tags will be prompted once */}}
-{{- $personal_computer := promptBoolOnce . "personal_computer" "Is this a computer used for personal usage ? (true/false)" -}}
-{{- $work_computer := promptBoolOnce . "work_computer" "Is this a computer used for professional usage ? (true/false)" -}}
-{{- $dev_computer := promptBoolOnce . "dev_computer" "Will you develop on this computer? (true/false)" -}}
-{{- $docker := promptBoolOnce . "docker" "Is this machine should have Docker installed? (true/false)" -}}
+{{- $personal_computer := promptBoolOnce . "personal_computer" "Is this a PERSONAL computer ? (true/false)" -}}
+{{- $work_computer := promptBoolOnce . "work_computer" "Is this a PROFESSIONAL computer ? (true/false)" -}}
+{{- $dev_computer := promptBoolOnce . "dev_computer" "Is this a computer used for DEV ? (true/false)" -}}
+{{- $docker := promptBoolOnce . "docker" "Should DOCKER be installed? (true/false)" -}}
 
 {{- "" -}}
 
