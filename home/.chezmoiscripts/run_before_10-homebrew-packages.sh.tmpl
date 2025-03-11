@@ -5,116 +5,35 @@ export HOMEBREW_NO_INSTALL_UPGRADE=TRUE
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
-tap=(
-    {{ range $package := .packages.homebrew.common.tap }}
-    "{{ $package }}"
-    {{ end }}
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range .packages.homebrew.common.formulae -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ if .personal_computer }}
+{{ range .packages.homebrew.personal_computer.formulae -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ if .work_computer }}
+{{ range .packages.homebrew.work_computer.formulae -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ if .dev_computer }}
+{{ range .packages.homebrew.dev_computer.formulae -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ if .docker_computer }}
+{{ range .packages.homebrew.docker_computer.formulae -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ range .packages.darwin.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
 
-    {{ if .personal_computer }}
-    {{ range $package := .packages.homebrew.personal_computer.tap }}
-    "{{ $package }}"
-    {{ end }}
-    {{ end }}
-
-    {{ if .work_computer }}
-    {{ range $package := .packages.homebrew.work_computer.tap }}
-    "{{ $package }}"
-    {{ end }}
-    {{ end }}
-
-    {{ if .dev_computer }}
-    {{ range $package := .packages.homebrew.dev_computer.tap }}
-    "{{ $package }}"
-    {{ end }}
-    {{ end }}
-
-    {{ if .docker_computer }}
-    {{ range $package := .packages.homebrew.docker_computer.tap }}
-    "{{ $package }}"
-    {{ end }}
-    {{ end }}
-
-)
-
-formulae=(
-    {{ range $package := .packages.homebrew.common.formulae }}
-    "{{ $package }}"
-    {{ end }}
-
-    {{ if .personal_computer }}
-    {{ range $package := .packages.homebrew.personal_computer.formulae }}
-    "{{ $package }}"
-    {{ end }}
-    {{ end }}
-
-    {{ if .dev_computer }}
-    {{ range $package := .packages.homebrew.dev_computer.formulae }}
-    "{{ $package }}"
-    {{ end }}
-    {{ end }}
-
-    {{ if .docker_computer }}
-    {{ range $package := .packages.homebrew.docker_computer.formulae }}
-    "{{ $package }}"
-    {{ end }}
-    {{ end }}
-)
-
-casks=(
-    {{ range $package := .packages.homebrew.common.casks }}
-    "{{ $package }}"
-    {{ end }}
-
-    {{ if .personal_computer }}
-    {{ range $package := .packages.homebrew.personal_computer.casks }}
-    "{{ $package }}"
-    {{ end }}
-    {{ end }}
-
-    {{ if .dev_computer }}
-    {{ range $package := .packages.homebrew.dev_computer.casks }}
-    "{{ $package }}"
-    {{ end }}
-    {{ end }}
-
-    {{ if .docker_computer }}
-    {{ range $package := .packages.homebrew.docker_computer.casks }}
-    "{{ $package }}"
-    {{ end }}
-    {{ end }}
-)
-
-currently_installed_taps=($(brew tap --installed))
-currently_installed_formulae=($(brew list --formula -1))
-currently_installed_casks=($(brew list --cask -1))
-
-header "Install Homebrew packages"
-
-brew update
-
-BREW_DIR="$(brew --prefix)/bin/"
-
-for tap in ${tap[@]}; do
-    if ! _inArray_ -i "${tap}" "${currently_installed_taps[@]}"; then
-        brew tap ${tap}
-    fi
-done
-
-for formula in ${formulae[@]}; do
-    if ! _inArray_ -i "${formula}" "${currently_installed_formulae[@]}"; then
-        if [[ ! -e "${BREW_DIR}/${formula}" ]]; then
-            brew install -q --formula ${formula}
-        fi
-
-    fi
-done
-
-for cask in ${casks[@]}; do
-    if ! _inArray_ -i "${cask}" "${currently_installed_casks[@]}"; then
-        brew install -q --cask ${cask}
-    fi
-
-done
 
 success "Homebrew packages installed"
 
