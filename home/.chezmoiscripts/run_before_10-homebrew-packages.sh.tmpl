@@ -13,6 +13,29 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 brew bundle --file=/dev/stdin <<EOF
+{{ range .packages.homebrew.common.tap -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ if .personal_computer }}
+{{ range .packages.homebrew.personal_computer.tap -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ if .work_computer }}
+{{ range .packages.homebrew.work_computer.tap -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ if .dev_computer }}
+{{ range .packages.homebrew.dev_computer.tap -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ if .docker_computer }}
+{{ range .packages.homebrew.docker_computer.tap -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ end -}}
 {{ range .packages.homebrew.common.formulae -}}
 brew {{ . | quote }}
 {{ end -}}
