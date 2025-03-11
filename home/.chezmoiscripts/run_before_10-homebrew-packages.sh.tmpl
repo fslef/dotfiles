@@ -5,7 +5,7 @@ export HOMEBREW_NO_INSTALL_UPGRADE=TRUE
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.homebrew.common.formulae -}}
 brew {{ . | quote }}
 {{ end -}}
