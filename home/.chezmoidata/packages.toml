@@ -86,3 +86,5 @@
         ]
     [packages.mas.dev_computer]
         apps = []
+    [packages.mas.docker_computer]
+        apps = []
