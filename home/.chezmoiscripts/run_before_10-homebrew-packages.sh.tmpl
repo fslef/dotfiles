@@ -62,6 +62,26 @@ brew {{ . | quote }}
 {{ range .packages.homebrew.common.casks -}}
 cask {{ . | quote }}
 {{ end -}}
+{{ if .personal_computer }}
+{{ range .packages.homebrew.personal_computer.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ if .work_computer }}
+{{ range .packages.homebrew.work_computer.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ if .dev_computer }}
+{{ range .packages.homebrew.dev_computer.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ if .docker_computer }}
+{{ range .packages.homebrew.docker_computer.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ end -}}
 EOF
 
 echo
