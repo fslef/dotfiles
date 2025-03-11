@@ -3,9 +3,10 @@
 
 # Display start message in cyan
 echo
-echo -e "\033[0;36m-----------------------------\033[0m"
-echo -e "\033[0;36mSTARTING PACKAGE INSTALLATION\033[0m"
-echo -e "\033[0;36m-----------------------------\033[0m"
+echo -e "\033[0;36m--------------------------------------\033[0m"
+echo -e "\033[0;36mSTARTING HOMEBREW PACKAGE INSTALLATION\033[0m"
+echo -e "\033[0;36m--------------------------------------\033[0m"
+echo
 
 export HOMEBREW_NO_INSTALL_UPGRADE=TRUE
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
@@ -40,6 +41,10 @@ cask {{ . | quote }}
 {{ end -}}
 EOF
 
-echo -e "\033[0;32mHomebrew packages installed\033[0m"
+echo
+echo -e "\033[0;36m------------------------------------------------\033[0m"
+echo -e "\033[0;36mSTARTING HOMEBREW PACKAGE INSTALLATION COMPLETED\033[0m"
+echo -e "\033[0;36m------------------------------------------------\033[0m"
+echo
 
 {{- end }}
