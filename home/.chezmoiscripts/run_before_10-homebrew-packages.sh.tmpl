@@ -29,7 +29,7 @@ brew {{ . | quote }}
 brew {{ . | quote }}
 {{ end -}}
 {{ end -}}
-{{ range .packages.darwin.casks -}}
+{{ range .packages.homebrew.common.casks -}}
 cask {{ . | quote }}
 {{ end -}}
 EOF
