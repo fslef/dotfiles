@@ -1,0 +1,84 @@
+﻿[packages.homebrew]
+    to_remove = ["coreutils", "ripgrep", "cheatsheet", "qmk-toolbox", "raycast", "tower", "parallels"]
+    [packages.homebrew.common]
+        tap = ["mrkai77/cask"]
+        casks = [
+            "appcleaner",
+            "bitwarden",
+            "displaylink",
+            "iterm2",
+            "linearmouse",
+            "loop",
+            "microsoft-edge",
+            "obsidian",
+            "updf"
+        ]
+        formulae = [
+            "chezmoi",
+            "dockutil",
+            "mas",
+            "rbw",
+            "starship",
+            "zsh",
+            "zsh-autosuggestions",
+            "zsh-syntax-highlighting",
+            "zsh-you-should-use"
+        ]
+    [packages.homebrew.personal_computer]
+        tap = []
+        casks = [
+            "brave-browser",
+            "signal",
+            "yubico-authenticator",
+            "yubico-yubikey-manager",
+            "microsoft-auto-update",
+            "microsoft-excel",
+            "microsoft-powerpoint",
+            "microsoft-word",
+            "onedrive",
+            "whatsapp"
+        ]
+        formulae = []
+    [packages.homebrew.work_computer]
+        tap = []
+        casks = [
+            "tor-browser",
+            "unclack",
+            "azure-data-studio"
+        ]
+        formulae = [
+            "",
+            ""
+        ]
+    [packages.homebrew.dev_computer]
+        tap = [
+            "azure/bicep",
+            "hashicorp/tap",
+            "qmk/qmk",
+        ]
+        casks = [
+            "drawio",
+            "font-fira-code",
+            "git-credential-manager",
+            "github",
+            "powershell",
+            "visual-studio-code",
+        ]
+        formulae = [
+            "azure-cli",
+            "bicep",
+            "git",
+            "qmk",
+            "hashicorp/tap/terraform",
+        ]
+[packages.mas]
+    [packages.mas.common]
+        apps = []
+    [packages.mas.personal_compute]
+        apps = []
+    [packages.mas.work_computer]
+        apps = [
+            "1268962404", # Smart JSON Editor
+        ]
+    [packages.mas.dev_computer]
+        apps = []
