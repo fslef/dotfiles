@@ -71,6 +71,10 @@
             "qmk",
             "hashicorp/tap/terraform",
         ]
+    [packages.homebrew.docker_computer]
+        tap = []
+        casks = ["docker"]
+        formulae = []
 [packages.mas]
     [packages.mas.common]
         apps = []
