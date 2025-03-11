@@ -1,4 +1,4 @@
-﻿[packages.homebrew]
+[packages.homebrew]
     to_remove = ["coreutils", "ripgrep", "cheatsheet", "qmk-toolbox", "raycast", "tower", "parallels"]
     [packages.homebrew.common]
         tap = ["mrkai77/cask"]
