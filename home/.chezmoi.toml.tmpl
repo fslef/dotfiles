@@ -22,15 +22,16 @@
     osid = {{ $osID | quote }}
 
 [diff]
-    {{ if lookPath "delta" -}}command = "delta"
+    {{ if lookPath "delta" -}}
+    command = "delta"
     {{ end -}}
     exclude = ["scripts"]
 
 {{ if lookPath "code" -}}
-
 [edit]
     command = "code"
     args = ["--wait"]
+{{ end -}}
 
 [git]
     autoPush = true
