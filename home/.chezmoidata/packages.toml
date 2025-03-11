@@ -74,7 +74,7 @@
 [packages.mas]
     [packages.mas.common]
         apps = []
-    [packages.mas.personal_compute]
+    [packages.mas.personal_computer]
         apps = []
     [packages.mas.work_computer]
         apps = [
