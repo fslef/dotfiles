@@ -12,7 +12,7 @@
 {{- end -}}
 
 # {{- $email := (rbw "c358ce27-ec3a-4db4-bc04-b09e012d5d52").data.username -}}
-{{- $email := .bitwarden.secrets.git_email_address -}}
+{{- $email := .secrets.git_email_address -}}
 
 
 [data]
