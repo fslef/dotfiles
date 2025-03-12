@@ -3,6 +3,8 @@
 .DS_Store
 .chezmoi.toml
 
+**/*.txt
+
 {{ if ne .chezmoi.os "darwin" }}
 .chezmoiscripts/darwin/**
 .config/homebrew

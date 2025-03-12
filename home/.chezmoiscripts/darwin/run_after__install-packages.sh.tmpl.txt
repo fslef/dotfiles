@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+# Update Homebrew first
+echo ""
+echo "--Upgrading Homebrew--"
+brew upgrade
+
+echo ""
+echo "--Syncing Git Repos--"
