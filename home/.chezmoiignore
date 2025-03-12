@@ -11,7 +11,7 @@
 {{ end }}
 
 {{ if ne .chezmoi.os "windows" }}
-.chezmoiscripts/winndows/**
+.chezmoiscripts/windows/**
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
