@@ -3,7 +3,7 @@
     [packages.homebrew.common]
         tap = [
             "mrkai77/cask",
-            "artginzburg" # for sudo-touchid
+            "artginzburg/tap" # for sudo-touchid
             ]
         casks = [
             "appcleaner",
