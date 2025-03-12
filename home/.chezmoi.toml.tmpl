@@ -11,8 +11,6 @@
 {{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
-{{- $email := (rbw "c358ce27-ec3a-4db4-bc04-b09e012d5d52").data.username -}}
-
 [data]
     docker = {{ $docker }}
     email = {{ bitwarden.secrets.git_email_address}}
