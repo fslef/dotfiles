@@ -1,0 +1,35 @@
+# ~/.local/share/chezmoi/home/.chezmoiscripts/run_once_3_chocolatey.ps1
+# ============================================================================
+
+#------------------------------------------------------------------------------
+#                       			Chocolatey
+#------------------------------------------------------------------------------
+
+#Requires -RunAsAdministrator
+
+Write-Output "Configuring Chocolatey Package Manager..."
+# -- Install Chocolatey on the local machine if not already present
+if (-not (Get-Command "choco" -ErrorAction SilentlyContinue)) {
+	Write-Output "Chocolatey not installed, installing chocolatey..."
+	Set-ExecutionPolicy Bypass -Scope Process -Force
+	[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+	Invoke-WebRequest -Uri https://chocolatey.org/install.ps1 -UseBasicParsing | Invoke-Expression
+}
+
+# -- Set up chocolatey configuration and features
+Update-SessionEnvironment
+# Default global confirmation
+choco feature enable --name='allowGlobalConfirmation' --limitoutput
+# Remember install argument for upgrades, usefull for `choco upgrade all`
+choco feature enable --name='useRememberedArgumentsForUpgrades' --limitoutput
+# Move chocolatey cache out of $TEMP for better management
+choco config set --name='cacheLocation' --value='C:\ProgramData\choco-cache' --limitoutput
+# Set higher command Execution timeout (4 hours)
+choco config set --name='commandExecutionTimeoutSeconds' --value='14400' --limitoutput
+# Change default C:\Tools\ Chocolatey tools Location to a custom one if needed
+$ChocolateyToolsLocation = "{{ .choco_tools }}"
+Write-Output "Updating Enviroment Variable ChocolateyToolsLocation: $Env:ChocolateyToolsLocation -> $ChocolateyToolsLocation"
+
+[System.Environment]::SetEnvironmentVariable("ChocolateyToolsLocation", $ChocolateyToolsLocation, [System.EnvironmentVariableTarget]::User)
+Remove-Variable -Name "ChocolateyToolsLocation"
+Write-Output "...Completed configuration of Chocolatey Package Manager"
