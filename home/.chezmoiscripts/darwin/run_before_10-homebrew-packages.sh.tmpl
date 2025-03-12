@@ -8,7 +8,8 @@ echo -e "\033[0;36mSTARTING HOMEBREW PACKAGE INSTALLATION\033[0m"
 echo -e "\033[0;36m--------------------------------------\033[0m"
 echo
 
-export HOMEBREW_NO_INSTALL_UPGRADE=1
+# https://docs.brew.sh/Manpage#environment
+# export HOMEBREW_NO_INSTALL_UPGRADE=1
 export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=/Library/Fonts --no-quarantine"
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 export HOMEBREW_UPGRADE_GREEDY=1
