@@ -1,4 +1,4 @@
-[icons.common]
+[dock.icons.common]
 to_remove = [
     "Launchpad",
     "Safari",
@@ -16,14 +16,14 @@ to_remove = [
     "App Store",
 ]
 
-[icons.personal_computer]
+[dock.icons.personal_computer]
 to_remove = []
 
-[icons.work_computer]
+[dock.icons.work_computer]
 to_remove = ["Photos", "FaceTime"]
 
-[icons.dev_computer]
+[dock.icons.dev_computer]
 to_remove = []
 
-[icons.docker_computer]
+[dock.icons.docker_computer]
 to_remove = []
