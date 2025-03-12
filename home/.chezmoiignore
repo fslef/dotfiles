@@ -10,7 +10,6 @@
 .config/homebrew
 {{ end }}
 
-
 {{ if ne .chezmoi.os "windows" }}
 .chezmoiscripts/winndows/**
 {{ end }}

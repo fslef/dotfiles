@@ -15,7 +15,7 @@
 
 [data]
     docker = {{ $docker }}
-    email = {{ $email | quote }}
+    email = {{ .chezmoi.secrets.git_email_address}}
     personal_computer = {{ $personal_computer }}
     work_computer = {{ $work_computer }}
     dev_computer = {{ $dev_computer }}
