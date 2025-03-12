@@ -1,0 +1,29 @@
+[icons.common]
+to_remove = [
+    "Launchpad",
+    "Safari",
+    "Messages",
+    "Mail",
+    "Maps",
+    "Contacts",
+    "Reminders",
+    "Freeform",
+    "TV",
+    "Music",
+    "Keynote",
+    "Numbers",
+    "Pages",
+    "App Store",
+]
+
+[icons.personal_computer]
+to_remove = []
+
+[icons.work_computer]
+to_remove = ["Photos", "FaceTime"]
+
+[icons.dev_computer]
+to_remove = []
+
+[icons.docker_computer]
+to_remove = []
