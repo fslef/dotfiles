@@ -10,7 +10,7 @@
 
 [data]
     docker = {{ $docker_computer }}
-    email = {{ bitwarden.secrets.git_email_address }}
+    email = {{ (rbw 'c358ce27-ec3a-4db4-bc04-b09e012d5d52').data.username | quote }}
     personal_computer = {{ $personal_computer }}
     work_computer = {{ $work_computer }}
     dev_computer = {{ $dev_computer }}
