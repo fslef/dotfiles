@@ -2,9 +2,7 @@
 {{- $personal_computer := promptBoolOnce . "personal_computer" "Is this a PERSONAL computer ? (true/false)" -}}
 {{- $work_computer := promptBoolOnce . "work_computer" "Is this a PROFESSIONAL computer ? (true/false)" -}}
 {{- $dev_computer := promptBoolOnce . "dev_computer" "Is this a DEVELOPMENT machine?? (true/false)" -}}
-{{- $docker := promptBoolOnce . "docker" "Should DOCKER be installed? (true/false)" -}}
-
-{{- "" -}}
+{{- $docker_computer := promptBoolOnce . "docker" "Should DOCKER be installed? (true/false)" -}}
 
 {{- $osID := .chezmoi.os -}}
 {{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
@@ -17,7 +15,7 @@
     personal_computer = {{ $personal_computer }}
     work_computer = {{ $work_computer }}
     dev_computer = {{ $dev_computer }}
-    docker_computer = {{ $docker }}
+    docker_computer = {{ $docker_computer }}
     os = {{ $osID | quote }}
 
 [diff]
