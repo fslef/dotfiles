@@ -2,3 +2,17 @@
 .vscode/
 .DS_Store
 .chezmoi.toml
+
+{{ if ne .chezmoi.os "darwin" }}
+.chezmoiscripts/darwin/**
+.config/homebrew
+{{ end }}
+
+
+{{ if ne .chezmoi.os "windows" }}
+.chezmoiscripts/winndows/**
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+.chezmoiscripts/linux/**
+{{ end }}
