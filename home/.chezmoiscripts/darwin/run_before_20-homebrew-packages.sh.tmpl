@@ -16,6 +16,11 @@ export HOMEBREW_UPGRADE_GREEDY=1
 export HOMEBREW_UPGRADE_GREEDY_CASKS=1
 export HOMEBREW_NO_ANALYTICS=1
 
+# updating homebrew
+echo
+brew update
+echo
+
 # Shorthand for brew bundle install --upgrade.
 brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.homebrew.common.tap -}}
@@ -88,6 +93,12 @@ cask {{ . | quote }}
 {{ end -}}
 {{ end -}}
 EOF
+
+echo -e "\033[0;36mUpgrading the other packages\033[0m"
+echo -e "\033[0;36m----------------------------\033[0m"
+echo
+
+brew bundle
 
 echo
 echo -e "\033[0;36m---------------------------------------\033[0m"
