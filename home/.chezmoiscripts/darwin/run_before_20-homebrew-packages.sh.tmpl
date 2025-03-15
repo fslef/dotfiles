@@ -17,7 +17,7 @@ export HOMEBREW_UPGRADE_GREEDY_CASKS=1
 export HOMEBREW_NO_ANALYTICS=1
 
 # Shorthand for brew bundle install --upgrade.
-brew bundle install --upgrade --all --debug --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.homebrew.common.tap -}}
 tap {{ . | quote }}
 {{ end -}}
