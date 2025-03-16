@@ -29,11 +29,6 @@ else
     # while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 fi
 
-echo
-echo -e "\033[0;36m---------------------------------\033[0m"
-echo -e "\033[0;36mSTARTING CONFIGURING OSX SETTINGS\033[0m"
-echo -e "\033[0;36m---------------------------------\033[0m"
-echo
 
 # info "If you see errors you may safely ignore them."
 
@@ -64,8 +59,3 @@ defaults write com.apple.finder "FXRemoveOldTrashItems" -bool "true"
 # Terminal & iTerm 2                                                          #
 ###############################################################################
 
-echo
-echo -e "\033[0;36m------------------------------------\033[0m"
-echo -e "\033[0;36mOSX SETTINGS CONFIGURATION COMPLETED\033[0m"
-echo -e "\033[0;36m------------------------------------\033[0m"
-echo
