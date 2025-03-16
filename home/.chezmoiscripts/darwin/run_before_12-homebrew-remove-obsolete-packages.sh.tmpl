@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-echo
-echo -e "\033[0;36mChecking for homebrew packages to remove\033[0m"
-echo -e "\033[0;36m----------------------------------------\033[0m"
-echo
 
 did_remove_package=false
 
@@ -10,6 +6,10 @@ did_remove_package=false
 
     {{ range $package := .packages.homebrew.to_remove }}
     if brew list | grep "{{ $package }}" &> /dev/null; then
+    echo
+    echo -e "\033[0;36mRemoving obsolete Homebrew packages\033[0m"
+    echo -e "\033[0;36m-----------------------------------\033[0m"
+
         did_remove_package=true
         brew uninstall "{{ $package }}"
     fi
@@ -17,9 +17,10 @@ did_remove_package=false
     {{ end }}
 {{ end }}
 
-    echo
-    echo -e "\033[0;36m---------------------------------------\033[0m"
-    echo -e "\033[0;36mHOMEBREW PACKAGE INSTALLATION COMPLETED\033[0m"
-    echo -e "\033[0;36m---------------------------------------\033[0m"
+
+echo
+echo -e "\033[0;36m---------------------------------------\033[0m"
+echo -e "\033[0;36mHOMEBREW PACKAGE INSTALLATION COMPLETED\033[0m"
+echo -e "\033[0;36m---------------------------------------\033[0m"
 
 echo
