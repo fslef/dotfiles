@@ -2,12 +2,16 @@
 
 {{ if and (eq .chezmoi.os "darwin") (lookPath "brew") }}
 
-    echo
-    echo -e "\033[0;36mUpdating installed Homebrew packages\033[0m"
-    echo -e "\033[0;36m------------------------------------\033[0m"
+    outdated=$(brew outdated)
 
-    brew upgrade
+    if [ -n "$outdated" ]; then
+        echo
+        echo -e "\033[0;36mUpgrading outdated Homebrew packages\033[0m"
+        echo -e "\033[0;36m------------------------------------\033[0m"
+        brew upgrade
+    else
+        echo -e "\033[0;36mNo outdated Homebrew packages found\033[0m"
+        echo -e "\033[0;36m-----------------------------------\033[0m"
+    fi
 
 {{ end }}
-
-
