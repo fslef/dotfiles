@@ -19,6 +19,8 @@
 #   4. Store new defaults in file: `defaults read > after`
 #   5. Diff the files: `diff before after`
 
+{{ if eq .chezmoi.os "darwin" }}
+
 echo
 echo -e "\033[0;36m---------------------------------\033[0m"
 echo -e "\033[0;36mSTARTING CONFIGURING OSX SETTINGS\033[0m"
@@ -36,7 +38,7 @@ echo
 ###############################################################################
 
 # Empty bin items after 30 days
-defaults write com.apple.finder "FXRemoveOldTrashItems" -bool "true"
+#defaults write com.apple.finder "FXRemoveOldTrashItems" -bool "true"
 
 ###############################################################################
 # Energy Saving                                                               #
@@ -59,3 +61,5 @@ echo -e "\033[0;36m------------------------------------\033[0m"
 echo -e "\033[0;36mOSX SETTINGS CONFIGURATION COMPLETED\033[0m"
 echo -e "\033[0;36m------------------------------------\033[0m"
 echo
+
+{{ end }}
