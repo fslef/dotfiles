@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+{{ if and (eq .chezmoi.os "darwin") (lookPath "brew") }}
+
+    echo
+    echo -e "\033[0;36mUpdating installed Homebrew packages\033[0m"
+    echo -e "\033[0;36m------------------------------------\033[0m"
+
+    brew upgrade
+
+{{ end }}
+
+
