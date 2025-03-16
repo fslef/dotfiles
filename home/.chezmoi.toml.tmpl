@@ -12,7 +12,7 @@
 {{- end -}}
 
 # {{ $email := (rbwFields "c358ce27-ec3a-4db4-bc04-b09e012d5d52").Data.username }}
-{{ $email := (rbwFields "c358ce27-ec3a-4db4-bc04-b09e012d5d52").data.usename }}
+{{ $email := (rbwFields "c358ce27-ec3a-4db4-bc04-b09e012d5d52").username }}
 
 [data]
     email = {{ $email }}
