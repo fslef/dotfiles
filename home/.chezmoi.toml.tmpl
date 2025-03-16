@@ -12,16 +12,15 @@
 {{- end -}}
 
 {{- $secret := rbw "c358ce27-ec3a-4db4-bc04-b09e012d5d52" -}}
-{{- $email := index (index $secret "data") "username" -}}
-# {{- $email := bitwarden.secrets.git_email_address -}}
+{{- $email := index $secret "data" | index "username" -}}
 
 [data]
-    docker = {{ $docker_computer }}
-    email = {{ $email | quote }}
+    docker = {{ $docker }}
+    email = "{{ $email }}"
     personal_computer = {{ $personal_computer }}
     work_computer = {{ $work_computer }}
     dev_computer = {{ $dev_computer }}
-    docker_computer = {{ $docker_computer }}
+    docker_computer = {{ $docker }}
     os = {{ $osID | quote }}
 
 [diff]
