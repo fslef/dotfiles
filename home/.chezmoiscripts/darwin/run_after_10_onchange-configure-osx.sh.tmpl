@@ -19,7 +19,15 @@
 #   4. Store new defaults in file: `defaults read > after`
 #   5. Diff the files: `diff before after`
 
-{{ if eq .chezmoi.os "darwin" }}
+# Warn that some commands will not be run if the script is not run as root.
+if [[ $EUID -ne 0 ]]; then
+    RUN_AS_ROOT=false
+    printf "Certain commands will not be run without sudo privileges. To run as root, run the same command prepended with 'sudo', for example: $ sudo %s\n\n" "${0}" | fold -s -w 80
+else
+    RUN_AS_ROOT=true
+    # Update existing `sudo` timestamp until `.osx` has finished
+    # while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+fi
 
 echo
 echo -e "\033[0;36m---------------------------------\033[0m"
@@ -61,5 +69,3 @@ echo -e "\033[0;36m------------------------------------\033[0m"
 echo -e "\033[0;36mOSX SETTINGS CONFIGURATION COMPLETED\033[0m"
 echo -e "\033[0;36m------------------------------------\033[0m"
 echo
-
-{{ end }}
