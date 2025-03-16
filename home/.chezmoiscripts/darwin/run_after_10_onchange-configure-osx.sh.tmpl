@@ -1,71 +1,18 @@
+{{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
-# CHECK THE MACOS-DEFAULTS REPOSITORY FOR MORE INFORMATION ON THE DEFAULTS USED IN THIS SCRIPT.
-# https://macos-defaults.com/
+# Grab the hash of the osx-defaults.sh script to run it when changed
+# osx-defaults.sh hash: {{ include "bin/executable_osx-defaults.sh.tmpl" | sha256sum }}
 
-# Mac OS X configuration
-# Heavily customized from Jeff Geerling's Dotfiles. Original notes below:
-# ==============================================================
-#
-# This configuration applies to the latest version of macOS (currently 11.3),
-# and sets up preferences and configurations for all the built-in services and
-# apps. Third-party app config should be done elsewhere.
-#
-# If you want to figure out what default needs changing, do the following:
-#
-#   1. `cd /tmp`
-#   2. Store current defaults in file: `defaults read > before`
-#   3. Make a change to your system.
-#   4. Store new defaults in file: `defaults read > after`
-#   5. Diff the files: `diff before after`
+osx_script={{ .directories.user_bin_dir }}/osx-defaults.sh
+echo
+echo -e "\033[0;36m----------------------------\033[0m"
+echo -e "\033[0;36mRunning OS X defaults script\033[0m"
+echo -e "\033[0;36m----------------------------\033[0m"
+echo
 
-# Warn that some commands will not be run if the script is not run as root.
-if [[ $EUID -ne 0 ]]; then
-    RUN_AS_ROOT=false
-    printf "Certain commands will not be run without sudo privileges. To run as root, run the same command prepended with 'sudo', for example: $ sudo %s\n\n" "${0}" | fold -s -w 80
-else
-    RUN_AS_ROOT=true
-    # Update existing `sudo` timestamp until `.osx` has finished
-    # while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+if [ -f "${osx_script}" ]; then
+    sudo "${osx_script}"
 fi
 
-echo
-echo -e "\033[0;36m---------------------------------\033[0m"
-echo -e "\033[0;36mSTARTING CONFIGURING OSX SETTINGS\033[0m"
-echo -e "\033[0;36m---------------------------------\033[0m"
-echo
-
-# info "If you see errors you may safely ignore them."
-
-###############################################################################
-# General UI/UX                                                               #
-###############################################################################
-
-###############################################################################
-# Finder                                                                      #
-###############################################################################
-
-# Empty bin items after 30 days
-defaults write com.apple.finder "FXRemoveOldTrashItems" -bool "true"
-
-###############################################################################
-# Energy Saving                                                               #
-###############################################################################
-
-###############################################################################
-# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
-###############################################################################
-
-###############################################################################
-# Dock, Dashboard, and hot corners                                            #
-###############################################################################
-
-###############################################################################
-# Terminal & iTerm 2                                                          #
-###############################################################################
-
-echo
-echo -e "\033[0;36m------------------------------------\033[0m"
-echo -e "\033[0;36mOSX SETTINGS CONFIGURATION COMPLETED\033[0m"
-echo -e "\033[0;36m------------------------------------\033[0m"
-echo
+{{- end }}
