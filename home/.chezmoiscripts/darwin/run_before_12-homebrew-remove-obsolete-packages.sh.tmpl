@@ -1,108 +1,25 @@
-{{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
-
-# Display start message in cyan
 echo
-echo -e "\033[0;36m--------------------------------------\033[0m"
-echo -e "\033[0;36mSTARTING HOMEBREW PACKAGE INSTALLATION\033[0m"
-echo -e "\033[0;36m--------------------------------------\033[0m"
+echo -e "\033[0;36mChecking for homebrew packages to remove\033[0m"
+echo -e "\033[0;36m----------------------------------------\033[0m"
 echo
 
-# https://docs.brew.sh/Manpage#environment
-export HOMEBREW_NO_INSTALL_UPGRADE=0
-export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=/Library/Fonts --no-quarantine"
-export HOMEBREW_NO_INSTALL_CLEANUP=0
-export HOMEBREW_UPGRADE_GREEDY=1
-export HOMEBREW_UPGRADE_GREEDY_CASKS=1
-export HOMEBREW_NO_ANALYTICS=1
+did_remove_package=false
 
-# updating homebrew
-brew update
-echo
+{{ if and (eq .chezmoi.os "darwin") (lookPath "brew") }}
 
-# Shorthand for brew bundle install --upgrade.
-brew bundle --file=/dev/stdin <<EOF
-{{ range .packages.homebrew.common.tap -}}
-tap {{ . | quote }}
-{{ end -}}
-{{ if .personal_computer }}
-{{ range .packages.homebrew.personal_computer.tap -}}
-tap {{ . | quote }}
-{{ end -}}
-{{ end -}}
-{{ if .work_computer }}
-{{ range .packages.homebrew.work_computer.tap -}}
-tap {{ . | quote }}
-{{ end -}}
-{{ end -}}
-{{ if .dev_computer }}
-{{ range .packages.homebrew.dev_computer.tap -}}
-tap {{ . | quote }}
-{{ end -}}
-{{ end -}}
-{{ if .docker_computer }}
-{{ range .packages.homebrew.docker_computer.tap -}}
-tap {{ . | quote }}
-{{ end -}}
-{{ end -}}
-{{ range .packages.homebrew.common.formulae -}}
-brew {{ . | quote }}
-{{ end -}}
-{{ if .personal_computer }}
-{{ range .packages.homebrew.personal_computer.formulae -}}
-brew {{ . | quote }}
-{{ end -}}
-{{ end -}}
-{{ if .work_computer }}
-{{ range .packages.homebrew.work_computer.formulae -}}
-brew {{ . | quote }}
-{{ end -}}
-{{ end -}}
-{{ if .dev_computer }}
-{{ range .packages.homebrew.dev_computer.formulae -}}
-brew {{ . | quote }}
-{{ end -}}
-{{ end -}}
-{{ if .docker_computer }}
-{{ range .packages.homebrew.docker_computer.formulae -}}
-brew {{ . | quote }}
-{{ end -}}
-{{ end -}}
-{{ range .packages.homebrew.common.casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{ if .personal_computer }}
-{{ range .packages.homebrew.personal_computer.casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{ end -}}
-{{ if .work_computer }}
-{{ range .packages.homebrew.work_computer.casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{ end -}}
-{{ if .dev_computer }}
-{{ range .packages.homebrew.dev_computer.casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{ end -}}
-{{ if .docker_computer }}
-{{ range .packages.homebrew.docker_computer.casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{ end -}}
-EOF
+    {{ range $package := .packages.homebrew.to_remove }}
+    if brew list | grep "{{ $package }}" &> /dev/null; then
+        did_remove_package=true
+        brew uninstall "{{ $package }}"
+    fi
+
+    {{ end }}
+{{ end }}
+
+    echo
+    echo -e "\033[0;36m---------------------------------------\033[0m"
+    echo -e "\033[0;36mHOMEBREW PACKAGE INSTALLATION COMPLETED\033[0m"
+    echo -e "\033[0;36m---------------------------------------\033[0m"
 
 echo
-echo -e "\033[0;36mUpgrading the other packages\033[0m"
-echo -e "\033[0;36m----------------------------\033[0m"
-
-brew upgrade
-
-echo
-echo -e "\033[0;36m---------------------------------------\033[0m"
-echo -e "\033[0;36mHOMEBREW PACKAGE INSTALLATION COMPLETED\033[0m"
-echo -e "\033[0;36m---------------------------------------\033[0m"
-echo
-
-{{- end }}
