@@ -14,7 +14,7 @@
 {{- $email := index (index (rbw "c358ce27-ec3a-4db4-bc04-b09e012d5d52") "data") "username" -}}
 
 [data]
-    email = "{{ $email }}"
+    email = {{ $email }}
     personal_computer = {{ $personal_computer }}
     work_computer = {{ $work_computer }}
     dev_computer = {{ $dev_computer }}
