@@ -15,12 +15,11 @@
 {{- $email := index $secret "data" | index "username" -}}
 
 [data]
-    docker = {{ $docker }}
     email = "{{ $email }}"
     personal_computer = {{ $personal_computer }}
     work_computer = {{ $work_computer }}
     dev_computer = {{ $dev_computer }}
-    docker_computer = {{ $docker }}
+    docker_computer = {{ $docker_computer }}
     os = {{ $osID | quote }}
 
 [diff]
