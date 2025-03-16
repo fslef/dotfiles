@@ -12,7 +12,8 @@
 {{- end -}}
 
 {{- $secret := rbw "c358ce27-ec3a-4db4-bc04-b09e012d5d52" -}}
-{{- $email := index $secret "data" | index "username" -}}
+{{- $data := index $secret "data" -}}
+{{- $email := index $data "username" -}}
 
 [data]
     email = "{{ $email }}"
