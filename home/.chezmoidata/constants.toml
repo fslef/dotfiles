@@ -1,4 +1,0 @@
-[directories]
-    repos_dir    = "${HOME}/gitrepos"
-    ssh_keys_dir = "${HOME}/.ssh_keys"
-    user_bin_dir = "${HOME}/bin"
