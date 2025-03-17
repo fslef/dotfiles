@@ -1,12 +1,12 @@
 {{ $forkRefreshPeriod := "168h" -}} # One Week
 
 # WORK Repos
-{{ if and .work_computer .dev_computer -}}
+{{ if and (.work_computer) (.dev_computer) -}}
 {{ (rbw "e92a4929-e938-40b9-9ac6-b0a601470ecb").notes }}
 {{ end -}}
 
 # PERSONAL Repos
-{{ if and .personal_computer .dev_computer -}}
+{{ if and (.personal_computer) (.dev_computer) -}}
 {{ (rbw "5a0c64c8-fc70-4bbb-81dd-b0a6014248a5").notes }}
 {{ end -}}
 
