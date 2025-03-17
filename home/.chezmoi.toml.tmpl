@@ -4,17 +4,17 @@
 {{- $dev_computer := promptBoolOnce . "dev_computer" "Is this a DEVELOPMENT machine?? (true/false)" -}}
 {{- $docker_computer := promptBoolOnce . "docker_computer" "Should DOCKER be installed? (true/false)" -}}
 
-{{- "" -}}
+{{- if eq $dev_computer true -}}
+{{- $email := promptStringOnce . "email" "What is the git email address?" -}}
+{{- end -}}
 
 {{- $osID := .chezmoi.os -}}
 {{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
 {{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
-{{ $email := (rbwFields "c358ce27-ec3a-4db4-bc04-b09e012d5d52").data.username.value }}
-
 [data]
-    email = {{ $email }}
+    email = {{ $email | quote }}
     personal_computer = {{ $personal_computer }}
     work_computer = {{ $work_computer }}
     dev_computer = {{ $dev_computer }}
