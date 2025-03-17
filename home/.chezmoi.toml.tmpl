@@ -16,10 +16,10 @@
 
 [data]
     email = {{ $email | quote }}
-    personal_computer = {{ $personal_computer | quote }}
-    work_computer = {{ $work_computer | quote }}
-    dev_computer = {{ $dev_computer | quote }}
-    docker_computer = {{ $docker_computer | quote }}
+    personal_computer = {{ $personal_computer }}
+    work_computer = {{ $work_computer }}
+    dev_computer = {{ $dev_computer }}
+    docker_computer = {{ $docker_computer }}
     os = {{ $osID | quote }}
     xdgConfigDir      = "{{ .chezmoi.homeDir }}/.config"
 
