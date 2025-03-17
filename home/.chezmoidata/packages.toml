@@ -22,7 +22,7 @@
             "mas",
             "rbw",
             "starship",
-            "sudo-touchid",
+            "artginzburg/tap/sudo-touchid",
             "zsh",
             "zsh-autosuggestions",
             "zsh-syntax-highlighting",
