@@ -1,29 +1,19 @@
 [dock.icons.common]
-to_remove = [
-    "Launchpad",
-    "Safari",
-    "Messages",
-    "Mail",
-    "Maps",
-    "Contacts",
-    "Reminders",
-    "Freeform",
-    "TV",
-    "Music",
-    "Keynote",
-    "Numbers",
-    "Pages",
-    "App Store",
+to_add = [
+    "Finder",
+    "Microsoft Edge",
+    "Obsidian",
+    "UPDF"
 ]
 
 [dock.icons.personal_computer]
-to_remove = []
+to_add = []
 
 [dock.icons.work_computer]
-to_remove = ["Photos", "FaceTime"]
+to_add = []
 
 [dock.icons.dev_computer]
-to_remove = []
+to_add = []
 
 [dock.icons.docker_computer]
-to_remove = []
+to_add = []
