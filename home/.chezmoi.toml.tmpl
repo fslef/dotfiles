@@ -12,7 +12,7 @@
 
 # if dev_computer is true, then set the sourcedir repo
 {{- if $dev_computer -}}
-sourceDir = "{{ $repos_dir }}/fslef/dotfiles"
+sourceDir = "{{ .directories.repos_dir }}/fslef/dotfiles"
 {{- end -}}
 
 [data]
