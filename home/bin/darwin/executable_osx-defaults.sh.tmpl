@@ -88,13 +88,14 @@ defaults write -g NSAutomaticTextCompletionEnabled -int 0 # automatic text compl
 defaults write com.apple.dock "spaces-number" -int 3
 
 # Dock configuration
-defaults write com.apple.dock autohide -int 1 # automatic hide dock
+defaults write com.apple.dock "autohide" -bool "true" # hide the Dock
 defaults write com.apple.dock autohide-delay -float 0 # remove the auto hide delay
 defaults write com.apple.dock autohide-time-modifier -float 0 # remove the animation when hiding/showing the Dock
 defaults write com.apple.dock launchanim -int 0 # don’t animate opening applications from the Dock
 defaults write com.apple.dock orientation bottom # set the Dock to the bottom
 defaults write com.apple.dock show-recents -int 0 # don’t show recent applications in Dock
 defaults write -g ApplePressAndHoldEnabled -int 0 # if on, the accents menu is displayed when holding a key
+defaults write com.apple.dock "tilesize" -int "48" # set the Dock icon size to 48 pixels
 
 # Hot corners
 # Possible values:
