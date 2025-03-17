@@ -50,7 +50,7 @@ tap {{ . | quote }}
 {{ end -}}
 {{ end -}}
 {{ range .packages.homebrew.common.formulae -}}
-{{ end -}}
+{{ if ne . "" -}}
 brew {{ . | quote }}
 {{ end -}}
 {{ end -}}
