@@ -28,7 +28,7 @@ tap {{ . | quote }}
 {{ end -}}
 {{ end -}}
 {{ end -}}
-{{ if .data.work_computer }}
+{{ if .work_computer }}
 {{ range .packages.homebrew.work_computer.tap -}}
 {{ if ne . "" -}}
 tap {{ . | quote }}
@@ -61,7 +61,7 @@ brew {{ . | quote }}
 {{ end -}}
 {{ end -}}
 {{ end -}}
-{{ if .data.work_computer }}
+{{ if .work_computer }}
 {{ range .packages.homebrew.work_computer.formulae -}}
 {{ if ne . "" -}}
 brew {{ . | quote }}
@@ -94,7 +94,7 @@ cask {{ . | quote }}
 {{ end -}}
 {{ end -}}
 {{ end -}}
-{{ if .data.work_computer }}
+{{ if .work_computer }}
 {{ range .packages.homebrew.work_computer.casks -}}
 {{ if ne . "" -}}
 cask {{ . | quote }}
