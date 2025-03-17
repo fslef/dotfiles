@@ -4,46 +4,53 @@ set -eufo pipefail
 
 # Display start message in cyan
 echo
-echo -e "\033[0;36m---------------------------\033[0m"
-echo -e "\033[0;36mSTARTING DOCK CONFIGURATION\033[0m"
+echo -e "\033[0;36mStarting dock configuration\033[0m"
 echo -e "\033[0;36m----------------------------\033[0m"
 echo
 
 trap 'killall Dock' EXIT
 
-declare -a remove_labels=(
-{{ range .dock.icons.common.to_remove -}}
-{{ . | quote }}
+# Remove all existing icons from the Dock
+dockutil --remove all --no-restart || true
+
+# Build a list of icons to add from the various platforms
+declare -a add_labels=(
+{{ range .dock.icons.common.to_add -}}
+  {{ if ne . "" -}}
+    {{ . | quote }}
+  {{ end -}}
 {{ end -}}
 {{ if .personal_computer }}
-{{ range .dock.icons.personal_computer.to_remove -}}
-{{ . | quote }}
+  {{ range .dock.icons.personal_computer.to_add -}}
+    {{ if ne . "" -}}
+      {{ . | quote }}
+    {{ end -}}
+  {{ end -}}
 {{ end -}}
-{{ end }}
 {{ if .work_computer }}
-{{ range .dock.icons.work_computer.to_remove -}}
-{{ . | quote }}
+  {{ range .dock.icons.work_computer.to_add -}}
+    {{ if ne . "" -}}
+      {{ . | quote }}
+    {{ end -}}
+  {{ end -}}
 {{ end -}}
-{{ end }}
 {{ if .dev_computer }}
-{{ range .dock.icons.dev_computer.to_remove -}}
-{{ . | quote }}
+  {{ range .dock.icons.dev_computer.to_add -}}
+    {{ if ne . "" -}}
+      {{ . | quote }}
+    {{ end -}}
+  {{ end -}}
 {{ end -}}
-{{ end }}
 {{ if .docker_computer }}
-{{ range .dock.icons.docker_computer.to_remove -}}
-{{ . | quote }}
+  {{ range .dock.icons.docker_computer.to_add -}}
+    {{ if ne . "" -}}
+      {{ . | quote }}
+    {{ end -}}
+  {{ end -}}
 {{ end -}}
-{{ end }}
 )
 
-for label in "${remove_labels[@]}"; do
-	dockutil --no-restart --remove "${label}" || true
+# Add each icon to the Dock
+for label in "${add_labels[@]}"; do
+    dockutil --add "${label}" --no-restart || true
 done
-
-# Display end message in cyan
-echo
-echo -e "\033[0;36m----------------------------\033[0m"
-echo -e "\033[0;36mDOCK CONFIGURATION COMPLETED\033[0m"
-echo -e "\033[0;36m-----------------------------\033[0m"
-echo
