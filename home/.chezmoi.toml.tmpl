@@ -10,6 +10,11 @@
 {{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
+# if dev_computer is true, then set the sourcedir repo
+{{- if $dev_computer -}}
+sourceDir = "{{ $repos_dir }}/fslef/dotfiles"
+{{- end -}}
+
 [data]
     email = {{ $email | quote }}
     personal_computer = {{ $personal_computer }}
@@ -31,5 +36,3 @@
     args = ["--wait"]
 {{ end -}}
 
-[git]
-    autoPush = true
