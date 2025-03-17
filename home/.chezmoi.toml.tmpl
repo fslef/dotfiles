@@ -11,7 +11,8 @@
 
 # if dev_computer is true, then set sourcedir
 {{- if $dev_computer -}}
-sourcedir = "{{ .directories.repos_dir | replaceAllRegex \"\\$\\{HOME\\}\" \"~\" }}/fslef/dotfiles"{{- end -}}
+sourcedir = "{{ .directories.repos_dir | replaceAllRegex `\$\{HOME\}` `~` }}/fslef/dotfiles"
+{{- end -}}
 
 [data]
     email = {{ $email | quote }}
