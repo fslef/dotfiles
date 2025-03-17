@@ -1,19 +1,12 @@
-[dock.icons.common]
-to_add = [
-    "Finder",
-    "Microsoft Edge",
-    "Obsidian",
-    "UPDF"
-]
+[dock.icons.common.to_add]
+    Finder = { name = "Finder", position = 1 }
+    "Microsoft Edge" = { name = "Microsoft Edgeev", after = "Finder" }
+    "Obsidian" = { name = "Obsidian", after = "Microsoft Edge" }
 
-[dock.icons.personal_computer]
-to_add = []
+[dock.icons.personal_computer.to_add]
 
 [dock.icons.work_computer]
-to_add = []
 
 [dock.icons.dev_computer]
-to_add = []
 
 [dock.icons.docker_computer]
-to_add = []

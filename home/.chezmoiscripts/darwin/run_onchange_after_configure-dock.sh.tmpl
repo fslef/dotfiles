@@ -2,7 +2,7 @@
 
 set -eufo pipefail
 
-# Display start message in cyan
+# Affiche le message de démarrage en cyan
 echo
 echo -e "\033[0;36mStarting dock configuration\033[0m"
 echo -e "\033[0;36m----------------------------\033[0m"
@@ -10,47 +10,60 @@ echo
 
 trap 'killall Dock' EXIT
 
-# Remove all existing icons from the Dock
+# Supprime toutes les icônes existantes du Dock
 dockutil --remove all --no-restart || true
 
-# Build a list of icons to add from the various platforms
-declare -a add_labels=(
-{{ range .dock.icons.common.to_add -}}
-  {{ if ne . "" -}}
-    {{ . | quote }}
-  {{ end -}}
-{{ end -}}
-{{ if .personal_computer }}
-  {{ range .dock.icons.personal_computer.to_add -}}
-    {{ if ne . "" -}}
-      {{ . | quote }}
-    {{ end -}}
-  {{ end -}}
-{{ end -}}
-{{ if .work_computer }}
-  {{ range .dock.icons.work_computer.to_add -}}
-    {{ if ne . "" -}}
-      {{ . | quote }}
-    {{ end -}}
-  {{ end -}}
-{{ end -}}
-{{ if .dev_computer }}
-  {{ range .dock.icons.dev_computer.to_add -}}
-    {{ if ne . "" -}}
-      {{ . | quote }}
-    {{ end -}}
-  {{ end -}}
-{{ end -}}
-{{ if .docker_computer }}
-  {{ range .dock.icons.docker_computer.to_add -}}
-    {{ if ne . "" -}}
-      {{ . | quote }}
-    {{ end -}}
-  {{ end -}}
-{{ end -}}
-)
+# Construction d'une seule liste regroupant toutes les icônes.
+# Chaque élément est une chaîne de caractères au format "name|position|after|before"
+icon_list=()
 
-# Add each icon to the Dock
-for label in "${add_labels[@]}"; do
-    dockutil --add "${label}" --no-restart || true
+# Section commune avec objet contenant éventuellement position, after ou before
+{{ range $key, $props := .dock.icons.common.to_add -}}
+icon_list+=( "{{ $props.name }}|{{ if $props.position }}{{ $props.position }}{{ end }}|{{ if $props.after }}{{ $props.after }}{{ end }}|{{ if $props.before }}{{ $props.before }}{{ end }}" )
+{{ end }}
+
+# Sections spécifiques qui peuvent être vides.
+{{ if .dock.icons.personal_computer.to_add }}
+{{ range .dock.icons.personal_computer.to_add -}}
+icon_list+=( "{{ . }}|||" )
+{{ end -}}
+{{ end }}
+
+{{ if .dock.icons.work_computer.to_add }}
+{{ range .dock.icons.work_computer.to_add -}}
+icon_list+=( "{{ . }}|||" )
+{{ end -}}
+{{ end }}
+
+{{ if .dock.icons.dev_computer.to_add }}
+{{ range .dock.icons.dev_computer.to_add -}}
+icon_list+=( "{{ . }}|||" )
+{{ end -}}
+{{ end }}
+
+{{ if .dock.icons.docker_computer.to_add }}
+{{ range .dock.icons.docker_computer.to_add -}}
+icon_list+=( "{{ . }}|||" )
+{{ end -}}
+{{ end }}
+
+# Traitement de la liste d'icônes pour exécuter la commande adaptée
+for item in "${icon_list[@]}"; do
+    # Extraction des champs séparés par le caractère "|"
+    IFS="|" read -r name pos after before <<< "$item"
+
+    cmd='dockutil --add "'"$name"'"'
+    if [ -n "$pos" ]; then
+        cmd+=" --position $pos"
+    fi
+    if [ -n "$after" ]; then
+        cmd+=' --after "'"$after"'"'
+    fi
+    if [ -n "$before" ]; then
+        cmd+=' --before "'"$before"'"'
+    fi
+    cmd+=" --no-restart"
+
+    echo "Executing: $cmd"
+    eval "$cmd" || true
 done
