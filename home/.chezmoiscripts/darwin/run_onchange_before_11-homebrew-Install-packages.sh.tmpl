@@ -17,7 +17,9 @@ echo
 # Shorthand for brew bundle install --upgrade.
 brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.homebrew.common.tap -}}
+ {{ if ne . "" -}}
 tap {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ if .personal_computer }}
 {{ range .packages.homebrew.personal_computer.tap -}}
