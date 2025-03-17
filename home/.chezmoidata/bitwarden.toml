@@ -1,2 +1,2 @@
 [bitwarden.secrets]
-    git_email_address = "{{ index (index (rbw \"c358ce27-ec3a-4db4-bc04-b09e012d5d52\") \"data\") \"username\" }}"
+    git_email_address = "TBC"
