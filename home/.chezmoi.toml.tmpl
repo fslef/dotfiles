@@ -4,7 +4,7 @@
 {{- $dev_computer := promptBoolOnce . "dev_computer" "Is this a DEVELOPMENT machine?? (true/false)" -}}
 {{- $docker_computer := promptBoolOnce . "docker_computer" "Should DOCKER be installed? (true/false)" -}}
 
-{{- if eq $dev_computer true -}}
+{{ if .dev_computer }}
 {{- $email := promptStringOnce . "email" "What is the git email address?" -}}
 {{- end -}}
 
