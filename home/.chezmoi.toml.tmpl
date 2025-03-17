@@ -11,7 +11,7 @@
 
 # if dev_computer is true, then set sourcedir
 {{- if $dev_computer -}}
-sourcedir = "{{ .directories.repos_dir | replaceAllRegex "\\${HOME}" "~" }}/fslef/dotfiles"
+secrets_dir = "{{ .directories.repos_dir | replaceAllRegex "\\${HOME}" "~" }}/ansible-vault-secrets/secrets"
 {{- end -}}
 
 [data]
