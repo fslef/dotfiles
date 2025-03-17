@@ -70,9 +70,9 @@ killall Finder # to apply finder settings now
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
-# Set a faster keyboard repeat rate
-defaults write -g InitialKeyRepeat -int 15
-defaults write -g KeyRepeat -int 2
+# Set a fast keyboard repeat rate, and make it happen more quickly.
+defaults write NSGlobalDomain InitialKeyRepeat -int 12
+defaults write NSGlobalDomain KeyRepeat -int 1
 
 # Disable autocorrect and key substitutions
 defaults write -g NSAutomaticCapitalizationEnabled -int 0 # automatic key capitalization
