@@ -17,74 +17,102 @@ echo
 # Shorthand for brew bundle install --upgrade.
 brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.homebrew.common.tap -}}
- {{ if ne . "" -}}
+{{ if ne . "" -}}
 tap {{ . | quote }}
 {{ end -}}
 {{ end -}}
 {{ if .personal_computer }}
 {{ range .packages.homebrew.personal_computer.tap -}}
+{{ if ne . "" -}}
 tap {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ if .work_computer }}
 {{ range .packages.homebrew.work_computer.tap -}}
+{{ if ne . "" -}}
 tap {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ if .dev_computer }}
 {{ range .packages.homebrew.dev_computer.tap -}}
+{{ if ne . "" -}}
 tap {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ if .docker_computer }}
 {{ range .packages.homebrew.docker_computer.tap -}}
+{{ if ne . "" -}}
 tap {{ . | quote }}
 {{ end -}}
 {{ end -}}
+{{ end -}}
 {{ range .packages.homebrew.common.formulae -}}
+{{ end -}}
 brew {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ if .personal_computer }}
 {{ range .packages.homebrew.personal_computer.formulae -}}
+{{ if ne . "" -}}
 brew {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ if .work_computer }}
 {{ range .packages.homebrew.work_computer.formulae -}}
+{{ if ne . "" -}}
 brew {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ if .dev_computer }}
 {{ range .packages.homebrew.dev_computer.formulae -}}
+{{ if ne . "" -}}
 brew {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ if .docker_computer }}
 {{ range .packages.homebrew.docker_computer.formulae -}}
+{{ if ne . "" -}}
 brew {{ . | quote }}
 {{ end -}}
 {{ end -}}
+{{ end -}}
 {{ range .packages.homebrew.common.casks -}}
+{{ if ne . "" -}}
 cask {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ if .personal_computer }}
 {{ range .packages.homebrew.personal_computer.casks -}}
+{{ if ne . "" -}}
 cask {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ if .work_computer }}
 {{ range .packages.homebrew.work_computer.casks -}}
+{{ if ne . "" -}}
 cask {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ if .dev_computer }}
 {{ range .packages.homebrew.dev_computer.casks -}}
+{{ if ne . "" -}}
 cask {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ if .docker_computer }}
 {{ range .packages.homebrew.docker_computer.casks -}}
+{{ if ne . "" -}}
 cask {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
 EOF
