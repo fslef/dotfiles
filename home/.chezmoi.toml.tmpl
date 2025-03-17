@@ -3,10 +3,7 @@
 {{- $work_computer := promptBoolOnce . "work_computer" "Is this a PROFESSIONAL computer ? (true/false)" -}}
 {{- $dev_computer := promptBoolOnce . "dev_computer" "Is this a DEVELOPMENT machine?? (true/false)" -}}
 {{- $docker_computer := promptBoolOnce . "docker_computer" "Should DOCKER be installed? (true/false)" -}}
-
-{{ if .dev_computer }}
 {{- $email := promptStringOnce . "email" "What is the git email address?" -}}
-{{- end -}}
 
 {{- $osID := .chezmoi.os -}}
 {{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
