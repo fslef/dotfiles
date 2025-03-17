@@ -1,9 +1,8 @@
 [packages.homebrew]
-    to_remove = ["coreutils", "ripgrep", "cheatsheet", "qmk-toolbox", "raycast", "tower", "parallels"]
+    to_remove = ["coreutils", "ripgrep", "cheatsheet", "qmk-toolbox", "raycast", "tower", "parallels", "artginzburg/tap/sudo-touchid"]
     [packages.homebrew.common]
         tap = [
-            "mrkai77/cask",
-            "artginzburg/tap" # for sudo-touchid
+            "mrkai77/cask"
             ]
         casks = [
             "appcleaner",
@@ -22,7 +21,6 @@
             "mas",
             "rbw",
             "starship",
-            "artginzburg/tap/sudo-touchid",
             "zsh",
             "zsh-autosuggestions",
             "zsh-syntax-highlighting",
