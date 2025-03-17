@@ -22,7 +22,7 @@
     dev_computer = {{ $dev_computer }}
     docker_computer = {{ $docker_computer }}
     os = {{ $osID | quote }}
-
+    xdgConfigDir      = "{{ .chezmoi.homeDir }}/.config"
 
 [diff]
     {{ if lookPath "delta" -}}
