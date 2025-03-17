@@ -10,10 +10,10 @@
 {{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
-# if dev_computer is true, then set the sourcedir repo
-{{- if $dev_computer -}}
-sourceDir = "{{ .directories.repo_dir }}/fslef/dotfiles"
-{{- end -}}
+# # if dev_computer is true, then set the sourcedir repo
+# {{- if $dev_computer -}}
+# sourceDir = "{{ .directories.repo_dir }}/fslef/dotfiles"
+# {{- end -}}
 
 [data]
     email = {{ $email | quote }}
@@ -22,6 +22,7 @@ sourceDir = "{{ .directories.repo_dir }}/fslef/dotfiles"
     dev_computer = {{ $dev_computer }}
     docker_computer = {{ $docker_computer }}
     os = {{ $osID | quote }}
+    xdgConfigDir      = "{{ .chezmoi.homeDir }}/.config"
 
 [diff]
     {{ if lookPath "delta" -}}
