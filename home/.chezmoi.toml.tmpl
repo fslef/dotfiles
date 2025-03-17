@@ -9,11 +9,6 @@
 {{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
-# # if dev_computer is true, then set sourcedir
-# {{- if $dev_computer -}}
-# secrets_dir = "~/gitrepos/fslef/dotfiles"
-# {{- end -}}
-
 [data]
     email = {{ $email | quote }}
     personal_computer = {{ $personal_computer }}
