@@ -1,0 +1,13 @@
+﻿# Prepend with a `/` to specify a specific path relative to $HOME.
+
+# obsolete configuration
+/.config/amethyst
+/.config/bugwarrior
+/.config/fish
+/.config/karabiner
+/.config/nvim
+/.config/op
+/.config/raycast
+/.config/skhd
+/.config/starship
+/.config/yabai
