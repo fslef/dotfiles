@@ -1,0 +1,41 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+
+apps=(
+    {{ range $package := .packages.mas.common.apps }}
+    "{{ $package }}"
+    {{ end }}
+
+    {{ if .personal_computer }}
+    {{ range $package := .packages.mas.personal_computer.apps }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+
+    {{ if .work_computer }}
+    {{ range $package := .packages.mas.work_computer.apps }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+
+    {{ if .dev_computer }}
+    {{ range $package := .packages.mas.dev_computer.apps }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+)
+
+if [[ $(command -v mas) ]]; then
+    echo
+    echo -e "\033[0;36mInstalling Applications from mas\033[0m"
+    echo -e "\033[0;36m--------------------------------\033[0m"
+
+    for app in "${apps[@]}"; do
+        if mas list | awk '{print $1}' | grep -E "^${app}$" &>/dev/null; then
+            continue
+        fi
+        mas install ${app}
+    done
+fi
+
+{{- end }}
