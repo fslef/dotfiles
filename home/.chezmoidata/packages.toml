@@ -79,12 +79,14 @@
         formulae = []
 [packages.mas]
     [packages.mas.common]
-        apps = []
+        apps = [
+            "441258766" # Magnet
+        ]
     [packages.mas.personal_computer]
         apps = []
     [packages.mas.work_computer]
         apps = [
-            "1268962404", # Smart JSON Editor
+            "1268962404" # Smart JSON Editor
         ]
     [packages.mas.dev_computer]
         apps = []
