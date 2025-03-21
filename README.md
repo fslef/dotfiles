@@ -12,10 +12,10 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FSLEF
 
 ## Key Features
 
-- A personalized environment tailored to personal or work use, optimized for development and Docker workflows.
-- Seamless package management with automated updates.
-- Simplified application configuration.
-- Consistent terminal aliases across multiple platforms and shells.
+- **Customized Environment**: Tailored for both personal and professional use, optimized for development and Docker workflows.
+- **Automated Package Management**: Enjoy hassle-free installations and updates.
+- **Streamlined Application Configuration**: Simplifies setup to deliver a consistent experience.
+- **Universal Terminal Aliases**: Ensures a uniform command experience across all platforms and shells.
 
 ## Supported configuration
 
@@ -34,6 +34,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FSLEF
 ### Package managers
 
 All packages are installed with [Homebrew](https://brew.sh/)  and [[WIP] Chocolatey](https://chocolatey.org/) ⊞
+
 Package list can be fould here : [Packages.toml](./home/.chezmoidata/packages.toml)
 
 
