@@ -12,7 +12,7 @@ Universal command set and colourful shell configurations for Bash, Zsh and Power
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FSLEF
 ```
 
-## Project goals ⚽
+## Project goals
 
 - Environment is personalized based on whether the machine is for personal or work use and tailored to its intended role (development and/or Docker).
 - Automatic package management and updates.
@@ -35,5 +35,5 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FSLEF
 
 ### 📦 Package managers
 
--   [Homebrew](https://brew.sh/) <b title="macOS"></b>: [`~/.Brewfile`](./dot_Brewfile)
--   [Chocolatey](https://chocolatey.org/) <b title="Windows">⊞</b>
+All packages are installed with [Homebrew](https://brew.sh/) <b title="macOS"></b> and [Chocolatey](https://chocolatey.org/) <b title="Windows">⊞</b>
+Package list can be fould here : [Packages.toml](./home/.chezmoidata/packages.toml)
