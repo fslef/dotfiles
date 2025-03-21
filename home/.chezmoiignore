@@ -14,6 +14,11 @@
 .chezmoiscripts/windows/**
 {{ end }}
 
+{{ if eq .chezmoi.os "windows" }}
+.chezmoiscripts/dot_bashrc
+.chezmoiscripts/dot_zshrc
+{{ end }}
+
 {{ if ne .chezmoi.os "linux" }}
 .chezmoiscripts/linux/**
 {{ end }}
