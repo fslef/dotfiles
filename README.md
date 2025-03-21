@@ -23,7 +23,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FSLEF
 
 ### Shells
 
--   [Bash](https://www.gnu.org/software/bash/) <sub><sup><b title="Linux">🐧</b></sup></sub><b title="macOS"></b>: [`~/.bashrc`](./dot_bashrc)
+-   [Bash](https://www.gnu.org/software/bash/) 󰻀 <sub><sup><b title="Linux">🐧</b></sup></sub><b title="macOS"></b>: [`~/.bashrc`](./dot_bashrc)
 -   [Z shell](http://zsh.sourceforge.net/) <sub><sup><b title="Linux">🐧</b></sup></sub><b title="macOS"></b>: [`~/.zshrc`](./dot_zshrc) _<sup>enhanced with [**Oh-My-Zsh**](https://ohmyz.sh/)</sup>_
 -   [[WIP] PowerShell 5.1+](https://github.com/PowerShell/PowerShell) <sub><sup><b title="Linux">🐧</b></sup></sub><b title="macOS"></b><b title="Windows">⊞</b>: [`~/.config/powershell/`](./dot_config/powershell/) _<sup>enhanced with [**Oh-My-Posh**](https://github.com/JanDeDobbeleer/oh-my-posh), [[WIP] **Terminal Icons**](https://github.com/devblackops/Terminal-Icons)</sup>_
 
