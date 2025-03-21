@@ -1,6 +1,7 @@
 # My Dotfiles
 
-This repository houses cross-platform dotfiles managed with [chezmoi](https://www.chezmoi.io/) 🏠.
+> [!INFO]
+> This repository houses cross-platform dotfiles managed with [chezmoi](https://www.chezmoi.io/) 🏠.
 
 
 ## Setup a new machine
