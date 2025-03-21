@@ -1,4 +1,4 @@
-# My dotfiles
+# My dotfiles[^1]
 
 Cross-platform, cross-shell dotfiles powered by [chezmoi](https://www.chezmoi.io/) 🏠
 
