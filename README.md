@@ -23,8 +23,8 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FSLEF
 
 ### Shells
 
-- [Bash](https://www.gnu.org/software/bash/) 🐧 : [`~/.bashrc`](./dot_bashrc)
-- [Z shell](http://zsh.sourceforge.net/) 🐧 : [`~/.zshrc`](./dot_zshrc) _<sup>enhanced with [**Oh-My-Zsh**](https://ohmyz.sh/)</sup>_
+- [Bash](https://www.gnu.org/software/bash/) 🐧 : [`~/.bashrc`](./home/dot_bashrc)
+- [Z shell](http://zsh.sourceforge.net/) 🐧 : [`~/.zshrc`](./home/dot_zshrc) _<sup>enhanced with [**Oh-My-Zsh**](https://ohmyz.sh/)</sup>_
 - [[WIP] PowerShell 5.1+](https://github.com/PowerShell/PowerShell) 🐧⊞ : [`~/.config/powershell/`](./dot_config/powershell/) _<sup>enhanced with [**Oh-My-Posh**](https://github.com/JanDeDobbeleer/oh-my-posh), [[WIP] **Terminal Icons**](https://github.com/devblackops/Terminal-Icons)</sup>_
 
 ### Terminals
@@ -40,3 +40,4 @@ All packages are installed with [Homebrew](https://brew.sh/)  and [[WIP] Choc
 Package list can be fould here : [Packages.toml](./home/.chezmoidata/packages.toml)
 
 
+[^1]: Inspired by
