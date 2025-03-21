@@ -1,7 +1,7 @@
 # My Dotfiles
 
 > [!NOTE]
-> This repository houses cross-platform dotfiles managed with [chezmoi](https://www.chezmoi.io/) 🏠.
+> **This repository houses cross-platform dotfiles managed with [chezmoi](https://www.chezmoi.io/) 🏠.**
 
 
 ## Setup a new machine
