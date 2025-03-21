@@ -40,4 +40,6 @@ All packages are installed with [Homebrew](https://brew.sh/)  and [[WIP] Choc
 Package list can be fould here : [Packages.toml](./home/.chezmoidata/packages.toml)
 
 
+---
+
 [^1]: Inspired by
