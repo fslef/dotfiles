@@ -1,6 +1,6 @@
 # My Dotfiles
 
-> [!INFO]
+> [!NOTE]
 > This repository houses cross-platform dotfiles managed with [chezmoi](https://www.chezmoi.io/) 🏠.
 
 
