@@ -4,9 +4,8 @@
 > **This repository houses cross-platform dotfiles managed with [chezmoi](https://www.chezmoi.io/) 🏠.**
 
 
-### Setup a new machine
+### Setup a new machine (all os)
 
-#### MacOs / Linux / Windows
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FSLEF
 ```
