@@ -23,17 +23,20 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FSLEF
 
 ### Shells
 
--   [Bash](https://www.gnu.org/software/bash/) 🐧 : [`~/.bashrc`](./dot_bashrc)
--   [Z shell](http://zsh.sourceforge.net/) 🐧 : [`~/.zshrc`](./dot_zshrc) _<sup>enhanced with [**Oh-My-Zsh**](https://ohmyz.sh/)</sup>_
--   [[WIP] PowerShell 5.1+](https://github.com/PowerShell/PowerShell) 🐧⊞ : [`~/.config/powershell/`](./dot_config/powershell/) _<sup>enhanced with [**Oh-My-Posh**](https://github.com/JanDeDobbeleer/oh-my-posh), [[WIP] **Terminal Icons**](https://github.com/devblackops/Terminal-Icons)</sup>_
+- [Bash](https://www.gnu.org/software/bash/) 🐧 : [`~/.bashrc`](./dot_bashrc)
+- [Z shell](http://zsh.sourceforge.net/) 🐧 : [`~/.zshrc`](./dot_zshrc) _<sup>enhanced with [**Oh-My-Zsh**](https://ohmyz.sh/)</sup>_
+- [[WIP] PowerShell 5.1+](https://github.com/PowerShell/PowerShell) 🐧⊞ : [`~/.config/powershell/`](./dot_config/powershell/) _<sup>enhanced with [**Oh-My-Posh**](https://github.com/JanDeDobbeleer/oh-my-posh), [[WIP] **Terminal Icons**](https://github.com/devblackops/Terminal-Icons)</sup>_
 
-### 💻 Terminals
+### Terminals
 
--   [iTerm2](https://iterm2.com/) : [`~/.config/iterm/`](./dot_config/iterm)
--   [macOS Terminal](https://support.apple.com/en-ca/guide/terminal/welcome/mac) 
--   [[WIP] Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701) ⊞: [`~/.config/windows_terminal/`](./dot_config/windows_terminal)
+- [iTerm2](https://iterm2.com/) : [`~/.config/iterm/`](./dot_config/iterm)
+- [macOS Terminal](https://support.apple.com/en-ca/guide/terminal/welcome/mac) 
+- [[WIP] Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701) ⊞: [`~/.config/windows_terminal/`](./dot_config/windows_terminal)
 
-### 📦 Package managers
+### Package managers
 
-All packages are installed with [Homebrew](https://brew.sh/)  and [Chocolatey](https://chocolatey.org/) ⊞
+All packages are installed with [Homebrew](https://brew.sh/)  and [[WIP] Chocolatey](https://chocolatey.org/) ⊞
+
 Package list can be fould here : [Packages.toml](./home/.chezmoidata/packages.toml)
+
+
