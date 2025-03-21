@@ -40,4 +40,4 @@ Package list can be fould here : [Packages.toml](./home/.chezmoidata/packages.to
 
 ---
 
-Inspired by [twpayne](https://github.com/twpayne/dotfiles) [natelandau](https://github.com/natelandau/dotfiles) [renemarc](https://github.com/renemarc/dotfiles)
+Inspired by: [twpayne](https://github.com/twpayne/dotfiles) / [natelandau](https://github.com/natelandau/dotfiles) / [renemarc](https://github.com/renemarc/dotfiles)
