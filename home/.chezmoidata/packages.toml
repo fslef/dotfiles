@@ -1,5 +1,5 @@
 [packages.homebrew]
-    to_remove = ["coreutils", "ripgrep", "cheatsheet", "qmk-toolbox", "raycast", "tower", "parallels"]
+    to_remove = ["coreutils", "ripgrep", "cheatsheet", "qmk-toolbox", "raycast", "tower", "parallels", "snagit"]
     [packages.homebrew.common]
         tap = [
             "mrkai77/cask"
@@ -14,6 +14,7 @@
             "microsoft-edge",
             "msty",
             "obsidian",
+            "shottr",
             "updf"
         ]
         formulae = [
