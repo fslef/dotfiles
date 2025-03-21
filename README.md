@@ -1,8 +1,6 @@
-# My dotfiles[^1]
+# My Dotfiles
 
-Cross-platform, cross-shell dotfiles powered by [chezmoi](https://www.chezmoi.io/) 🏠
-
-Universal command set and colourful shell configurations for Bash, Zsh and Powershell, compatible with macOS, Windows and (partially) Linux, all managed easily using [chezmoi](https://github.com/twpayne/chezmoi).
+This repository houses cross-platform dotfiles managed with [chezmoi](https://www.chezmoi.io/) 🏠.
 
 
 ## Setup a new machine
@@ -12,12 +10,12 @@ Universal command set and colourful shell configurations for Bash, Zsh and Power
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FSLEF
 ```
 
-## Project goals
+## Key Features
 
-- Environment is personalized based on whether the machine is for personal or work use and tailored to its intended role (development and/or Docker).
-- Automatic package management and updates.
-- Application configuration.
-- Cross-platform and cross-shell terminal aliases.
+- A personalized environment tailored to personal or work use, optimized for development and Docker workflows.
+- Seamless package management with automated updates.
+- Simplified application configuration.
+- Consistent terminal aliases across multiple platforms and shells.
 
 ## Supported configuration
 
@@ -42,4 +40,4 @@ Package list can be fould here : [Packages.toml](./home/.chezmoidata/packages.to
 
 ---
 
-[^1]: Inspired by
+Inspired by [twpayne](https://github.com/twpayne/dotfiles) [natelandau](https://github.com/natelandau/dotfiles) [renemarc](https://github.com/renemarc/dotfiles)
