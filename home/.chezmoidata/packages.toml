@@ -1,5 +1,5 @@
 [packages.homebrew]
-    to_remove = ["coreutils", "ripgrep", "cheatsheet", "qmk-toolbox", "raycast", "tower", "parallels", "snagit"]
+    to_remove = ["coreutils", "ripgrep", "cheatsheet", "qmk-toolbox", "raycast", "tower", "parallels", "snagit", "pre-commit"]
     [packages.homebrew.common]
         tap = [
             "mrkai77/cask"
@@ -74,7 +74,6 @@
             "azure-cli",
             "bicep",
             "git",
-            "pre-commit",
             "qmk",
             "hashicorp/tap/terraform",
         ]
