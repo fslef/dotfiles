@@ -1,0 +1,43 @@
+---
+description: General rules for the dotfiles project
+globs: ["*"]
+alwaysApply: true
+---
+
+# Project Rules
+
+## Project Structure
+- All configuration files must be placed in the `home/` directory
+- Platform-specific configuration files must be in appropriate subdirectories
+- Templates must use the `.tmpl` extension
+- Data files must be in `.chezmoidata/`
+
+## File Naming Conventions
+- Configuration files must start with `dot_` or `private_dot_`
+- Platform-specific configuration files must be clearly identified
+- Script files must have appropriate extensions (.sh, .ps1)
+
+## Documentation Requirements
+- Each configuration file must have a comment header explaining its purpose
+- Important changes must be documented in README.md
+- Dependencies and prerequisites must be clearly listed
+
+## Security Guidelines
+- Sensitive information must be stored in private files (prefix `private_`)
+- Passwords and tokens must never be committed
+- Use environment variables for sensitive data
+
+## Cross-Platform Compatibility
+- Ensure compatibility across supported platforms (macOS, Linux, Windows)
+- Test configurations on all supported platforms
+- Document platform-specific behavior differences
+
+## Maintenance
+- Use Renovate for automatic dependency updates
+- Maintain an up-to-date package list in `packages.toml`
+- Document major changes in README.md
+
+## Code Quality
+- Follow language-specific coding conventions
+- Use appropriate linting tools
+- Maintain test coverage for complex scripts
