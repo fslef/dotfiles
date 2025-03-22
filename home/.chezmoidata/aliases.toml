@@ -1,0 +1,59 @@
+[aliases]
+# Common aliases available in all environments
+[aliases.common]
+g = "git"
+gst = "git status"
+gco = "git checkout"
+gci = "git commit"
+gbr = "git branch"
+glog = "git log --oneline --graph --decorate"
+gdiff = "git diff"
+gpush = "git push"
+gpull = "git pull"
+d = "docker"
+dc = "docker-compose"
+dps = "docker ps"
+dex = "docker exec"
+drm = "docker rm"
+drmi = "docker rmi"
+dlogs = "docker logs"
+.. = "cd .."
+... = "cd ../.."
+.... = "cd ../../.."
+ll = "ls -la"
+la = "ls -A"
+l = "ls -CF"
+h = "history"
+j = "jobs"
+c = "clear"
+
+# Personal Computer specific aliases
+[aliases.personal_computer]
+signal = "open -a Signal"
+brave = "open -a Brave\\ Browser"
+pgst = "git status --short"
+
+# Work Computer specific aliases
+[aliases.work_computer]
+jira = "open https://jira.company.com"
+confluence = "open https://confluence.company.com"
+azure = "open https://portal.azure.com"
+wgst = "git status --short"
+
+# Development Computer specific aliases
+[aliases.dev_computer]
+k = "kubectl"
+tf = "terraform"
+aws = "aws"
+az = "az"
+bicep = "bicep"
+dgst = "git status --short"
+
+# Docker Computer specific aliases
+[aliases.docker_computer]
+dclean = "docker system prune -a"
+dstop = "docker stop $(docker ps -aq)"
+dstart = "docker start $(docker ps -aq)"
+dbuild = "docker-compose build"
+dtest = "docker-compose run --rm test"
+dprod = "docker-compose -f docker-compose.prod.yml"
