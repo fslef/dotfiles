@@ -16,8 +16,13 @@ if ! command -v git >/dev/null 2>&1; then
     exit 0
 fi
 
-# Get the dotfiles directory
-DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+# Get the dotfiles directory from chezmoi's environment
+if [ -z "$CHEZMOI_SOURCE_DIR" ]; then
+    echo "Error: CHEZMOI_SOURCE_DIR is not set"
+    exit 1
+fi
+
+DOTFILES_DIR="$CHEZMOI_SOURCE_DIR"
 
 # Check if we're in a git repository, if not initialize one
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
