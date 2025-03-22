@@ -1,5 +1,8 @@
-# Import aliases from TOML configuration
+# Import aliases from Chezmoi data
 . $HOME/.config/powershell/import-aliases.ps1
 
+# Initialize starship prompt
 Invoke-Expression (&starship init powershell)
+
+# Set default location
 Set-Location $HOME/gitrepos
