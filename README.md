@@ -18,8 +18,10 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FSLEF
 - **Universal Terminal Aliases**: Ensures a uniform command experience across all platforms and shells.
 - **Security First**: Pre-commit hooks prevent accidental commit of secrets and sensitive data.
 
+## Development Setup
+
 <details>
-<summary>🔧 Development Setup - Click to expand for detailed instructions</summary>
+<summary>Click to expand for detailed instructions</summary>
 
 ### Pre-commit Hooks
 
