@@ -60,6 +60,7 @@
             "qmk/qmk",
         ]
         casks = [
+            "cursor",
             "drawio",
             "font-fira-code",
             "font-monaspace",
