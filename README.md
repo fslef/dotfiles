@@ -16,6 +16,48 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FSLEF
 - **Automated Package Management**: Enjoy hassle-free installations and updates.
 - **Streamlined Application Configuration**: Simplifies setup to deliver a consistent experience.
 - **Universal Terminal Aliases**: Ensures a uniform command experience across all platforms and shells.
+- **Security First**: Pre-commit hooks prevent accidental commit of secrets and sensitive data.
+
+<details>
+<summary>🔧 Development Setup - Click to expand for detailed instructions</summary>
+
+### Pre-commit Hooks
+
+This repository uses pre-commit hooks to ensure code quality and security. To set up:
+
+1. Install pre-commit:
+   ```bash
+   # macOS
+   brew install pre-commit
+
+   # Windows
+   choco install pre-commit
+   ```
+
+2. Install the git hooks:
+   ```bash
+   pre-commit install
+   ```
+
+3. Run against all files (first time):
+   ```bash
+   pre-commit run --all-files
+   ```
+
+The hooks include:
+- Secret scanning using detect-secrets
+- Shell script linting with shellcheck
+- PowerShell script analysis with PSScriptAnalyzer
+
+### Secret Scanning
+
+The repository uses [detect-secrets](https://github.com/Yelp/detect-secrets) to prevent accidental commit of secrets. The baseline file (`.secrets.baseline`) contains known false positives and whitelisted patterns.
+
+To update the baseline after adding new false positives:
+```bash
+detect-secrets scan > .secrets.baseline
+```
+</details>
 
 ## Supported configuration
 
