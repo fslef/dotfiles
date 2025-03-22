@@ -25,20 +25,17 @@ h = "history"
 j = "jobs"
 c = "clear"
 
-# Personal Computer specific aliases
 [aliases.personal_computer]
 signal = "open -a Signal"
 brave = "open -a Brave\\ Browser"
 pgst = "git status --short"
 
-# Work Computer specific aliases
 [aliases.work_computer]
 jira = "open https://jira.company.com"
 confluence = "open https://confluence.company.com"
 azure = "open https://portal.azure.com"
 wgst = "git status --short"
 
-# Development Computer specific aliases
 [aliases.dev_computer]
 k = "kubectl"
 tf = "terraform"
@@ -47,7 +44,6 @@ az = "az"
 bicep = "bicep"
 dgst = "git status --short"
 
-# Docker Computer specific aliases
 [aliases.docker_computer]
 dclean = "docker system prune -a"
 dstop = "docker stop $(docker ps -aq)"
