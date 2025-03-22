@@ -22,20 +22,36 @@ if [ -z "$CHEZMOI_SOURCE_DIR" ]; then
     exit 1
 fi
 
-# Get the actual dotfiles repository directory (parent of chezmoi source)
-DOTFILES_DIR="$(cd "$CHEZMOI_SOURCE_DIR/../.." && pwd)"
+# Get the actual dotfiles repository directory
+DOTFILES_DIR="/Users/francois/gitrepos/fslef/dotfiles"
+
+echo "Current directory before cd: $(pwd)"
+echo "Changing to dotfiles directory: $DOTFILES_DIR"
+cd "$DOTFILES_DIR"
+echo "Current directory after cd: $(pwd)"
+echo "Directory contents:"
+ls -la
+
+# Check if pre-commit config exists
+if [ ! -f ".pre-commit-config.yaml" ]; then
+    echo "Error: .pre-commit-config.yaml not found in $DOTFILES_DIR"
+    echo "Current directory contents:"
+    ls -la
+    exit 1
+fi
 
 # Check if we're in a git repository, if not initialize one
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     echo "Initializing git repository in $DOTFILES_DIR"
-    cd "$DOTFILES_DIR"
     git init
 fi
 
 # Install git hooks
+echo "Installing pre-commit hooks..."
 pre-commit install
 
 # Run pre-commit against all files
+echo "Running pre-commit against all files..."
 pre-commit run --all-files
 
 echo "Pre-commit setup completed successfully!"
