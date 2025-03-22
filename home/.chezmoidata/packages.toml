@@ -22,7 +22,6 @@
             "chezmoi",
             "dockutil",
             "mas",
-            "pre-commit",
             "rbw",
             "starship",
             "zsh",
@@ -75,6 +74,7 @@
             "azure-cli",
             "bicep",
             "git",
+            "pre-commit",
             "qmk",
             "hashicorp/tap/terraform",
         ]
