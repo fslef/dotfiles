@@ -7,6 +7,7 @@
         casks = [
             "appcleaner",
             "bitwarden",
+            "chatgpt",
             "displaylink",
             "iterm2",
             "linearmouse",
