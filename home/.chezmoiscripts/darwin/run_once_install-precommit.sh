@@ -22,7 +22,8 @@ if [ -z "$CHEZMOI_SOURCE_DIR" ]; then
     exit 1
 fi
 
-DOTFILES_DIR="$CHEZMOI_SOURCE_DIR"
+# Get the actual dotfiles repository directory (parent of chezmoi source)
+DOTFILES_DIR="$(cd "$CHEZMOI_SOURCE_DIR/../.." && pwd)"
 
 # Check if we're in a git repository, if not initialize one
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
