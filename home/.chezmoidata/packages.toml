@@ -22,6 +22,7 @@
             "chezmoi",
             "dockutil",
             "mas",
+            "pre-commit",
             "rbw",
             "starship",
             "zsh",
