@@ -1,4 +1,3 @@
-# Common aliases available in all environments
 [aliases.common]
 g = "git"
 gst = "git status"
