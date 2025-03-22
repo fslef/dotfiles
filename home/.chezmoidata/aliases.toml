@@ -2,6 +2,7 @@
 # Common aliases available in all environments
 [aliases.common]
 g = "git"
+cmu = "chezmoi update"
 
 [aliases.personal_computer]
 signal = "open -a Signal"
