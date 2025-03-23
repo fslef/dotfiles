@@ -4,17 +4,21 @@
 g = "git"
 cmu = "chezmoi update"
 
+# Personal computer aliases - for home/personal use
 [aliases.personal_computer]
 signal = "open -a Signal"
 brave = "open -a Brave\\ Browser"
 
+# Work computer aliases - for work-related tasks
 [aliases.work_computer]
 azure = "open https://portal.azure.com"
 wgst = "git status --short"
 
+# Development computer aliases - for development tools
 [aliases.dev_computer]
 tf = "terraform"
 
+# Docker computer aliases - for container management
 [aliases.docker_computer]
 dclean = "docker system prune -a"
 dstop = "docker stop $(docker ps -aq)"
