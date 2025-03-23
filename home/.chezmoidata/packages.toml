@@ -69,6 +69,7 @@
             "github",
             "powershell",
             "visual-studio-code",
+            "visual-studio-code@insiders"
         ]
         formulae = [
             "azure-cli",
