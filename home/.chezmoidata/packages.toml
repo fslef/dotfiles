@@ -88,7 +88,9 @@
             "441258766" # Magnet
         ]
     [packages.mas.personal_computer]
-        apps = []
+        apps = [
+            "1303222628" # Paprika receipe manager
+        ]
     [packages.mas.work_computer]
         apps = [
             "1268962404" # Smart JSON Editor
