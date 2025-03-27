@@ -1,4 +1,4 @@
-﻿#!/bin/zsh
+#!/bin/zsh
 
 # Function to load aliases from Chezmoi data
 load_aliases() {
@@ -19,34 +19,34 @@ load_aliases() {
     }
 
     # Load common aliases
-    {{ range $key, $value := .aliases.common }}
+    {{- range $key, $value := .aliases.common }}
     set_shell_command "{{ $key }}" "{{ $value }}"
-    {{ end }}
+    {{- end }}
 
     # Load environment-specific aliases
-    {{ if .personal_computer }}
-    {{ range $key, $value := .aliases.personal_computer }}
+    {{- if .personal_computer }}
+    {{- range $key, $value := .aliases.personal_computer }}
     set_shell_command "{{ $key }}" "{{ $value }}"
-    {{ end }}
-    {{ end }}
+    {{- end }}
+    {{- end }}
 
-    {{ if .work_computer }}
-    {{ range $key, $value := .aliases.work_computer }}
+    {{- if .work_computer }}
+    {{- range $key, $value := .aliases.work_computer }}
     set_shell_command "{{ $key }}" "{{ $value }}"
-    {{ end }}
-    {{ end }}
+    {{- end }}
+    {{- end }}
 
-    {{ if .dev_computer }}
-    {{ range $key, $value := .aliases.dev_computer }}
+    {{- if .dev_computer }}
+    {{- range $key, $value := .aliases.dev_computer }}
     set_shell_command "{{ $key }}" "{{ $value }}"
-    {{ end }}
-    {{ end }}
+    {{- end }}
+    {{- end }}
 
-    {{ if .docker_computer }}
-    {{ range $key, $value := .aliases.docker_computer }}
+    {{- if .docker_computer }}
+    {{- range $key, $value := .aliases.docker_computer }}
     set_shell_command "{{ $key }}" "{{ $value }}"
-    {{ end }}
-    {{ end }}
+    {{- end }}
+    {{- end }}
 
     echo "Aliases loaded successfully"
 }
