@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# Function to load aliases from Chezmoi data
+# Load aliases from Chezmoi data
 load_aliases() {
     echo "Loading aliases from Chezmoi data..."
 
@@ -19,34 +19,34 @@ load_aliases() {
     }
 
     # Load common aliases
-    {{- range $key, $value := .aliases.common }}
-    set_shell_command "{{ $key }}" "{{ $value }}"
-    {{- end }}
+    for key in ${(k)aliases[common]}; do
+        set_shell_command "$key" "$aliases[common][$key]"
+    done
 
     # Load environment-specific aliases
-    {{- if .personal_computer }}
-    {{- range $key, $value := .aliases.personal_computer }}
-    set_shell_command "{{ $key }}" "{{ $value }}"
-    {{- end }}
-    {{- end }}
+    if [[ -n "$personal_computer" ]]; then
+        for key in ${(k)aliases[personal_computer]}; do
+            set_shell_command "$key" "$aliases[personal_computer][$key]"
+        done
+    fi
 
-    {{- if .work_computer }}
-    {{- range $key, $value := .aliases.work_computer }}
-    set_shell_command "{{ $key }}" "{{ $value }}"
-    {{- end }}
-    {{- end }}
+    if [[ -n "$work_computer" ]]; then
+        for key in ${(k)aliases[work_computer]}; do
+            set_shell_command "$key" "$aliases[work_computer][$key]"
+        done
+    fi
 
-    {{- if .dev_computer }}
-    {{- range $key, $value := .aliases.dev_computer }}
-    set_shell_command "{{ $key }}" "{{ $value }}"
-    {{- end }}
-    {{- end }}
+    if [[ -n "$dev_computer" ]]; then
+        for key in ${(k)aliases[dev_computer]}; do
+            set_shell_command "$key" "$aliases[dev_computer][$key]"
+        done
+    fi
 
-    {{- if .docker_computer }}
-    {{- range $key, $value := .aliases.docker_computer }}
-    set_shell_command "{{ $key }}" "{{ $value }}"
-    {{- end }}
-    {{- end }}
+    if [[ -n "$docker_computer" ]]; then
+        for key in ${(k)aliases[docker_computer]}; do
+            set_shell_command "$key" "$aliases[docker_computer][$key]"
+        done
+    fi
 
     echo "Aliases loaded successfully"
 }
