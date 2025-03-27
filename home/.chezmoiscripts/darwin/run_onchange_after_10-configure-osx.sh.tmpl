@@ -2,9 +2,9 @@
 #!/usr/bin/env bash
 
 # Grab the hash of the osx-defaults.sh script to run it when changed
-# osx-defaults.sh hash: {{ include "bin/darwin/executable_osx-defaults.sh.tmpl" | sha256sum }}
+# osx-defaults.sh hash: {{ include "bin/platform/darwin/executable_osx-defaults.sh.tmpl" | sha256sum }}
 
-osx_script={{ .directories.user_bin_dir }}/darwin/osx-defaults.sh
+osx_script={{ .directories.user_bin_dir }}/platform/darwin/osx-defaults.sh
 echo
 echo -e "\033[0;36m----------------------------\033[0m"
 echo -e "\033[0;36mRunning OS X defaults script\033[0m"
