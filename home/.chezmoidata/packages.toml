@@ -75,6 +75,7 @@
             "azure-cli",
             "bicep",
             "git",
+            "ollama",
             "qmk",
             "hashicorp/tap/terraform",
         ]
