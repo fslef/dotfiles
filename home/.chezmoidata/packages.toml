@@ -1,5 +1,5 @@
 [packages.homebrew]
-    to_remove = ["coreutils", "ripgrep", "cheatsheet", "qmk-toolbox", "raycast", "tower", "parallels", "snagit", "pre-commit", "cursor"]
+    to_remove = ["pre-commit", "cursor"]
     [packages.homebrew.common]
         tap = [
             "mrkai77/cask"
@@ -61,6 +61,7 @@
             "qmk/qmk",
         ]
         casks = [
+            "bruno",
             "drawio",
             "font-fira-code",
             "font-monaspace",
