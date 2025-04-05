@@ -1,5 +1,5 @@
 [packages.homebrew]
-    to_remove = ["pre-commit", "cursor"]
+    to_remove = ["pre-commit", "cursor", "chatgpt"]
     [packages.homebrew.common]
         tap = [
             "mrkai77/cask"
@@ -7,7 +7,7 @@
         casks = [
             "appcleaner",
             "bitwarden",
-            "chatgpt",
+            "claude",
             "displaylink",
             "iterm2",
             "linearmouse",
