@@ -1,4 +1,30 @@
-alias g=git
+# ZSH Aliases
+# Common aliases (always loaded)
+alias g="git"
+alias cmu="chezmoi update"
 alias clab="cd ~/gitrepos/fslef/contosolab/"
 alias cepac="cd ~/gitrepos/fslef/contosoepac/"
-alias cmu="chezmoi update"
+
+{{ if .personal_computer -}}
+# Personal computer aliases
+alias signal="open -a Signal"
+alias brave="open -a Brave\\ Browser"
+{{ end -}}
+
+{{ if .work_computer -}}
+# Work computer aliases
+alias azure="open https://portal.azure.com"
+alias wgst="git status --short"
+{{ end -}}
+
+{{ if .dev_computer -}}
+# Development computer aliases
+alias tf="terraform"
+{{ end -}}
+
+{{ if .docker_computer -}}
+# Docker computer aliases
+alias dclean="docker system prune -a"
+alias dstop="docker stop \$(docker ps -aq)"
+alias dstart="docker start \$(docker ps -aq)"
+{{ end -}}

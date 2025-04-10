@@ -19,6 +19,13 @@ export EDITOR=$HOME/.local/bin/nvim
 export EDITOR=code
 {{ end -}}
 {{- if eq .chezmoi.os "darwin" }}
+# Set Homebrew prefix
+if [[ -d "/opt/homebrew" ]]; then
+  export HOMEBREW_PREFIX="/opt/homebrew"
+elif [[ -d "/usr/local" ]]; then
+  export HOMEBREW_PREFIX="/usr/local"
+fi
+
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export CYBERSHELL_CONFIG=~/gitrepos/cs/cybershell/Environment-NoSync/CyberShellSettings.jsonc
 {{- end }}
@@ -26,6 +33,20 @@ export CYBERSHELL_CONFIG=~/gitrepos/cs/cybershell/Environment-NoSync/CyberShellS
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/config
+
+# Set computer type environment variables
+{{ if .personal_computer -}}
+export PERSONAL_COMPUTER=true
+{{ end -}}
+{{ if .work_computer -}}
+export WORK_COMPUTER=true
+{{ end -}}
+{{ if .dev_computer -}}
+export DEV_COMPUTER=true
+{{ end -}}
+{{ if .docker_computer -}}
+export DOCKER_COMPUTER=true
+{{ end -}}
 
 # Initialize starship prompt
 eval "$(starship init zsh)"
@@ -48,7 +69,7 @@ setopt histignorespace
 setopt rm_star_silent
 
 # Configure aliases
-source ~/bin/aliases/load-aliases.sh
+source $HOME/bin/aliases/load-aliases.sh
 
 # Configure direnv
 {{- if lookPath "direnv" }}
