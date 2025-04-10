@@ -11,16 +11,13 @@ load_aliases() {
 
         # Check if the alias or function already exists
         if alias "$name" &>/dev/null || declare -f "$name" &>/dev/null; then
-            echo "Warning: $name already exists. Skipping."
             return
         fi
 
         if [[ "$command" =~ " " ]]; then
             eval "${name}() { $command; }"
-            echo "Set function: $name = $command"
         else
             alias "$name=$command"
-            echo "Set alias: $name = $command"
         fi
     }
 

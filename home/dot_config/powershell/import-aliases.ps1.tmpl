@@ -13,10 +13,8 @@ function Import-Aliases {
             # If the command contains spaces, create a function instead of an alias
             if ($Command -match '\s') {
                 Set-Item -Path "Function:$Name" -Value "& $Command" -Force -ErrorAction Stop
-                Write-Host "Set function: $Name = $Command"
             } else {
                 Set-Alias -Name $Name -Value $Command -Scope Global -Force -ErrorAction Stop
-                Write-Host "Set alias: $Name = $Command"
             }
         }
         catch {
