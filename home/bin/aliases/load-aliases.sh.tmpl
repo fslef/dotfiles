@@ -9,6 +9,12 @@ load_aliases() {
         local name="$1"
         local command="$2"
 
+        # Check if the alias or function already exists
+        if alias "$name" &>/dev/null || declare -f "$name" &>/dev/null; then
+            echo "Warning: $name already exists. Skipping."
+            return
+        fi
+
         if [[ "$command" =~ " " ]]; then
             eval "${name}() { $command; }"
             echo "Set function: $name = $command"
@@ -17,6 +23,12 @@ load_aliases() {
             echo "Set alias: $name = $command"
         fi
     }
+
+    # Check if aliases data exists
+    if [[ -z "{{ .aliases }}" ]]; then
+        echo "Warning: No aliases found in Chezmoi data."
+        return
+    fi
 
     # Load common aliases
     {{ range $key, $value := .aliases.common }}
