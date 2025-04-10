@@ -11,7 +11,7 @@ brave = "open -a Brave\\ Browser"
 
 # Work computer aliases - for work-related tasks
 [aliases.work_computer]
-azure = "open https://portal.azure.com"
+azure = "open https://preview.portal.azure.com"
 wgst = "git status --short"
 
 # Development computer aliases - for development tools

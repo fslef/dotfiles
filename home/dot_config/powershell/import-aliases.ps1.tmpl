@@ -1,25 +1,26 @@
-# Function to load aliases from Chezmoi data
-function Import-Aliases {
+# Move the Set-ShellCommand function outside of Import-Aliases
+function Set-ShellCommand {
+    param (
+        [string]$Name,
+        [string]$Command
+    )
 
-    # Function to create an alias or function based on the command
-    function Set-ShellCommand {
-        param (
-            [string]$Name,
-            [string]$Command
-        )
-
-        try {
-            # If the command contains spaces, create a function instead of an alias
-            if ($Command -match '\s') {
-                Set-Item -Path "Function:$Name" -Value { Invoke-Expression "$Command" } -Force -ErrorAction Stop
-            } else {
-                Set-Alias -Name $Name -Value $Command -Scope Global -Force -ErrorAction Stop
-            }
-        }
-        catch {
-            Write-Warning "Failed to set command '$Name': $_"
+    try {
+        # If the command contains spaces, create a function instead of an alias
+        if ($Command -match '\s') {
+            Set-Item -Path "Function:$Name" -Value { Invoke-Expression "$Command" } -Force -ErrorAction Stop
+        } else {
+            Set-Alias -Name $Name -Value $Command -Scope Global -Force -ErrorAction Stop
         }
     }
+    catch {
+        Write-Warning "Failed to set command '$Name': $_"
+    }
+}
+
+# Function to load aliases from Chezmoi data
+function Import-Aliases {
+    Write-Host "Loading aliases from Chezmoi data..."
 
     try {
         # Load common aliases
