@@ -1,6 +1,5 @@
 # Function to load aliases from Chezmoi data
 function Import-Aliases {
-    Write-Host "Loading aliases from Chezmoi data..."
 
     # Function to create an alias or function based on the command
     function Set-ShellCommand {
@@ -12,7 +11,7 @@ function Import-Aliases {
         try {
             # If the command contains spaces, create a function instead of an alias
             if ($Command -match '\s') {
-                Set-Item -Path "Function:$Name" -Value "& $Command" -Force -ErrorAction Stop
+                Set-Item -Path "Function:$Name" -Value { Invoke-Expression "$Command" } -Force -ErrorAction Stop
             } else {
                 Set-Alias -Name $Name -Value $Command -Scope Global -Force -ErrorAction Stop
             }
