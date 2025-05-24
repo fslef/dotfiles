@@ -33,6 +33,7 @@
     [packages.homebrew.personal_computer]
         tap = []
         casks = [
+            "autodesk-fusion",
             "brave-browser",
             "signal",
             "yubico-authenticator",
