@@ -1,19 +1,37 @@
 {{- if eq .chezmoi.os "darwin" -}}
 {
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.9.5",
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0",
   "schemes" : [
     {
       "if" : {
         "device" : {
           "productName" : "Razer Lancehead Wireless",
           "productID" : "0x70",
-          "category" : "mouse",
-          "vendorID" : "0x1532"
+          "vendorID" : "0x1532",
+          "category" : "mouse"
         }
       },
       "scrolling" : {
         "reverse" : {
           "vertical" : true
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "productName" : "Razer Mouse Dock Pro",
+          "category" : "mouse",
+          "vendorID" : "0x1532",
+          "productID" : "0xa4"
+        }
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : true
+        },
+        "acceleration" : {
+          "vertical" : 1
         }
       }
     }
