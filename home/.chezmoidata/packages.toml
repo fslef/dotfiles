@@ -1,12 +1,11 @@
 [packages.homebrew]
-    to_remove = ["pre-commit", "cursor", "claude", "unnaturalscrollwheels"]
+    to_remove = ["pre-commit", "cursor", "claude", "unnaturalscrollwheels", "bitwarden"]
     [packages.homebrew.common]
         tap = [
             "mrkai77/cask"
             ]
         casks = [
             "appcleaner",
-            "bitwarden",
             "chatgpt",
             "displaylink",
             "iterm2",
@@ -88,7 +87,8 @@
 [packages.mas]
     [packages.mas.common]
         apps = [
-            "441258766" # Magnet
+            "441258766", # Magnet
+            "1352778147" # Bitwarden
         ]
     [packages.mas.personal_computer]
         apps = [
