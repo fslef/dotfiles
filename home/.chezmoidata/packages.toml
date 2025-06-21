@@ -1,5 +1,5 @@
 [packages.homebrew]
-    to_remove = ["pre-commit", "cursor", "claude", "unnaturalscrollwheels"]
+    to_remove = ["pre-commit", "cursor", "claude", "unnaturalscrollwheels", "gpg-suite"]
     [packages.homebrew.common]
         tap = [
             "mrkai77/cask"
@@ -67,7 +67,6 @@
             "font-monaspace",
             "git-credential-manager",
             "github",
-            "gpg-suite", # for Github signing
             "msty",
             "powershell",
             "visual-studio-code",
