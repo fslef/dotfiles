@@ -1,5 +1,5 @@
 [packages.homebrew]
-    to_remove = ["pre-commit", "cursor", "claude", "unnaturalscrollwheels", "gpg-suite"]
+    to_remove = ["gitversion"]
     [packages.homebrew.common]
         tap = [
             "mrkai77/cask"
@@ -76,7 +76,6 @@
             "azure-cli",
             "bicep",
             "git",
-            "gitversion",
             "ollama",
             "qmk",
             "hashicorp/tap/terraform",
