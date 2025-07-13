@@ -33,6 +33,7 @@
         casks = [
             "autodesk-fusion",
             "brave-browser",
+            "calibre",
             "signal",
             "yubico-authenticator",
             "microsoft-auto-update",
