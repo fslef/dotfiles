@@ -13,8 +13,9 @@
 
 [credential]
 {{- if eq .chezmoi.os "darwin" }}
-    helper = /usr/local/bin/git-credential-manager
     useHttpPath = true
+	credentialStore = keychain
+	helper = /usr/local/bin/git-credential-manager
 {{- end }}
 
 [credential "https://dev.azure.com"]
