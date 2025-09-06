@@ -94,7 +94,7 @@
     [packages.mas.personal_computer]
         apps = [
             "1303222628", # Paprika receipe manager
-            "382775642" # Brother Iprint&scan
+            "1193539993" # Brother Iprint&scan
         ]
     [packages.mas.work_computer]
         apps = [
