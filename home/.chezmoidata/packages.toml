@@ -11,6 +11,7 @@
             "iterm2",
             "linearmouse",
             "loop",
+            "logitune",
             "microsoft-edge",
             "msty",
             "obsidian",
@@ -89,8 +90,7 @@
     [packages.mas.common]
         apps = [
             "441258766", # Magnet
-            "1352778147", # Bitwarden
-            "1456293789", # Logitech Logi Tune
+            "1352778147" # Bitwarden
         ]
     [packages.mas.personal_computer]
         apps = [
