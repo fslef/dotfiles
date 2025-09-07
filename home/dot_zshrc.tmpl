@@ -26,6 +26,7 @@ elif [[ -d "/usr/local" ]]; then
   export HOMEBREW_PREFIX="/usr/local"
 fi
 
+export SSH_AUTH_SOCK=~/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export CYBERSHELL_CONFIG=~/gitrepos/cs/cybershell/Environment-NoSync/CyberShellSettings.jsonc
 {{- end }}
