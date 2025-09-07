@@ -89,7 +89,8 @@
     [packages.mas.common]
         apps = [
             "441258766", # Magnet
-            "1352778147" # Bitwarden
+            "1352778147", # Bitwarden
+            "1456293789", # Logitech Logi Tune
         ]
     [packages.mas.personal_computer]
         apps = [
