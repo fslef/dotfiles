@@ -1,5 +1,5 @@
 [packages.homebrew]
-    to_remove = ["gitversion"]
+    to_remove = []
     [packages.homebrew.common]
         tap = [
             "mrkai77/cask"
