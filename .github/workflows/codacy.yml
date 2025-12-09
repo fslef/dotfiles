@@ -62,14 +62,30 @@ jobs:
           python3 << 'EOF'
           import json
           import sys
+          import os
           
-          # Read the original SARIF file
-          with open('results.sarif', 'r') as f:
-              sarif = json.load(f)
+          # Check if results.sarif exists
+          if not os.path.exists('results.sarif'):
+              print("Error: results.sarif file not found")
+              sys.exit(1)
+          
+          try:
+              # Read the original SARIF file
+              with open('results.sarif', 'r') as f:
+                  sarif = json.load(f)
+          except json.JSONDecodeError as e:
+              print(f"Error: Invalid JSON in results.sarif: {e}")
+              sys.exit(1)
+          except Exception as e:
+              print(f"Error reading results.sarif: {e}")
+              sys.exit(1)
           
           # Check if there are multiple runs
           if 'runs' not in sarif or len(sarif['runs']) == 0:
               print("No runs found in SARIF file")
+              print("single_run=true")
+              with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                  f.write("single_run=true\n")
               sys.exit(0)
           
           run_count = len(sarif['runs'])
@@ -78,7 +94,8 @@ jobs:
           # If there's only one run, no need to split
           if run_count == 1:
               print("Only one run found, no splitting needed")
-              print("single_run=true")
+              with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                  f.write("single_run=true\n")
               sys.exit(0)
           
           # Split into individual files
@@ -86,15 +103,19 @@ jobs:
               output_file = f'results-{i}.sarif'
               single_run_sarif = {
                   'version': sarif['version'],
-                  '$schema': sarif.get('$schema', ''),
                   'runs': [run]
               }
+              # Include $schema if it exists in the original
+              if '$schema' in sarif:
+                  single_run_sarif['$schema'] = sarif['$schema']
+              
               with open(output_file, 'w') as f:
                   json.dump(single_run_sarif, f, indent=2)
               print(f"Created {output_file}")
           
           print(f"Successfully split {run_count} runs into individual files")
-          print("single_run=false")
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write("single_run=false\n")
           EOF
 
       # Upload SARIF results file (handles single run case)
@@ -102,8 +123,7 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
-        # Only run if no split files were created
-        if: ${{ !hashFiles('results-*.sarif') }}
+        if: steps.split-sarif.outputs.single_run == 'true'
 
       # Upload split SARIF results files (handles multiple runs case)
       # Each file is uploaded separately with a unique category to avoid conflicts
@@ -179,8 +199,10 @@ jobs:
 
       # Warn if there are more than 10 runs (would require manual workflow update)
       - name: Check for additional runs
+        if: steps.split-sarif.outputs.single_run == 'false'
         run: |
-          if ls results-1[0-9].sarif 1> /dev/null 2>&1; then
+          # Check for files beyond results-9.sarif
+          if ls results-[1-9][0-9]*.sarif 2>/dev/null | grep -qv 'results-[0-9]\.sarif'; then
             echo "::warning::More than 10 SARIF runs detected. Please update the workflow to handle additional runs."
             ls results-*.sarif
           fi
