@@ -54,8 +54,133 @@ jobs:
           # This will handover control about PR rejection to the GitHub side
           max-allowed-issues: 2147483647
 
-      # Upload the SARIF file generated in the previous step
+      # Split the SARIF file into individual runs to comply with new GitHub requirements
+      # https://github.blog/changelog/2025-07-21-code-scanning-will-stop-combining-multiple-sarif-runs-uploaded-in-the-same-sarif-file/
+      - name: Split SARIF file into individual runs
+        id: split-sarif
+        run: |
+          python3 << 'EOF'
+          import json
+          import sys
+          
+          # Read the original SARIF file
+          with open('results.sarif', 'r') as f:
+              sarif = json.load(f)
+          
+          # Check if there are multiple runs
+          if 'runs' not in sarif or len(sarif['runs']) == 0:
+              print("No runs found in SARIF file")
+              sys.exit(0)
+          
+          run_count = len(sarif['runs'])
+          print(f"Found {run_count} run(s) in SARIF file")
+          
+          # If there's only one run, no need to split
+          if run_count == 1:
+              print("Only one run found, no splitting needed")
+              print("single_run=true")
+              sys.exit(0)
+          
+          # Split into individual files
+          for i, run in enumerate(sarif['runs']):
+              output_file = f'results-{i}.sarif'
+              single_run_sarif = {
+                  'version': sarif['version'],
+                  '$schema': sarif.get('$schema', ''),
+                  'runs': [run]
+              }
+              with open(output_file, 'w') as f:
+                  json.dump(single_run_sarif, f, indent=2)
+              print(f"Created {output_file}")
+          
+          print(f"Successfully split {run_count} runs into individual files")
+          print("single_run=false")
+          EOF
+
+      # Upload SARIF results file (handles single run case)
       - name: Upload SARIF results file
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
+        # Only run if no split files were created
+        if: ${{ !hashFiles('results-*.sarif') }}
+
+      # Upload split SARIF results files (handles multiple runs case)
+      # Each file is uploaded separately with a unique category to avoid conflicts
+      - name: Upload SARIF results file - Run 0
+        if: hashFiles('results-0.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results-0.sarif
+          category: codacy-run-0
+
+      - name: Upload SARIF results file - Run 1
+        if: hashFiles('results-1.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results-1.sarif
+          category: codacy-run-1
+
+      - name: Upload SARIF results file - Run 2
+        if: hashFiles('results-2.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results-2.sarif
+          category: codacy-run-2
+
+      - name: Upload SARIF results file - Run 3
+        if: hashFiles('results-3.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results-3.sarif
+          category: codacy-run-3
+
+      - name: Upload SARIF results file - Run 4
+        if: hashFiles('results-4.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results-4.sarif
+          category: codacy-run-4
+
+      - name: Upload SARIF results file - Run 5
+        if: hashFiles('results-5.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results-5.sarif
+          category: codacy-run-5
+
+      - name: Upload SARIF results file - Run 6
+        if: hashFiles('results-6.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results-6.sarif
+          category: codacy-run-6
+
+      - name: Upload SARIF results file - Run 7
+        if: hashFiles('results-7.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results-7.sarif
+          category: codacy-run-7
+
+      - name: Upload SARIF results file - Run 8
+        if: hashFiles('results-8.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results-8.sarif
+          category: codacy-run-8
+
+      - name: Upload SARIF results file - Run 9
+        if: hashFiles('results-9.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results-9.sarif
+          category: codacy-run-9
+
+      # Warn if there are more than 10 runs (would require manual workflow update)
+      - name: Check for additional runs
+        run: |
+          if ls results-1[0-9].sarif 1> /dev/null 2>&1; then
+            echo "::warning::More than 10 SARIF runs detected. Please update the workflow to handle additional runs."
+            ls results-*.sarif
+          fi
