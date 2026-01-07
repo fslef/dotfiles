@@ -1,5 +1,7 @@
 [packages.homebrew]
-    to_remove = []
+    to_remove = [
+        "msty"
+    ]
     [packages.homebrew.common]
         tap = [
             "mrkai77/cask"
@@ -11,9 +13,6 @@
             "iterm2",
             "linearmouse",
             "loop",
-            "logitune",
-            "microsoft-edge",
-            "msty",
             "obsidian",
             "shottr",
             "updf"
@@ -48,6 +47,8 @@
     [packages.homebrew.work_computer]
         tap = []
         casks = [
+            "microsoft-edge",
+            "logitune",
             "tor-browser",
             "unclack",
             "azure-data-studio"
@@ -69,10 +70,8 @@
             "font-monaspace",
             "git-credential-manager",
             "github",
-            "msty",
             "powershell",
             "visual-studio-code",
-            "visual-studio-code@insiders"
         ]
         formulae = [
             "azure-cli",
