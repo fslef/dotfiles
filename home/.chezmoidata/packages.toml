@@ -1,6 +1,7 @@
 [packages.homebrew]
     to_remove = [
-        "msty"
+        "msty",
+        "brave-browser",
     ]
     [packages.homebrew.common]
         tap = [
