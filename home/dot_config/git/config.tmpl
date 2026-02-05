@@ -12,17 +12,15 @@
     defaultBranch = main
 
 [credential]
-{{- if eq .chezmoi.os "darwin" }}
     useHttpPath = true
+    azreposCredentialType = oauth
+{{- if eq .chezmoi.os "darwin" }}
 	credentialStore = keychain
-	helper = /usr/local/bin/git-credential-manager
+	helper = /usr/local/share/gcm-core/git-credential-manager
 {{- end }}
 
-[credential "https://dev.azure.com"]
-    useHttpPath = true
-
-[credential "https://github.com"]
-    useHttpPath = true
+### Git Credentials Stores
+{{- (rbw "3d0f735a-7e08-4d3b-814c-b3e80103d643").notes -}}
 
 [gpg]
     program = pg
