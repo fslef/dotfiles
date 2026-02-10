@@ -2,26 +2,24 @@
     to_remove = [
         "msty",
         "brave-browser",
+        "librewolf",
+        "loop",
+        "tor-browser"
     ]
     [packages.homebrew.common]
-        tap = [
-            "mrkai77/cask"
-            ]
+        tap = []
         casks = [
             "appcleaner",
             "chatgpt",
             "displaylink",
             "iterm2",
-            "librewolf",
             "linearmouse",
-            "loop",
             "obsidian",
             "shottr",
             "updf"
         ]
         formulae = [
             "chezmoi",
-            "dockutil",
             "mas",
             "rbw",
             "starship",
@@ -41,7 +39,7 @@
             "microsoft-excel",
             "microsoft-powerpoint",
             "microsoft-word",
-            "onedrive",
+            "synology-drive"
             "whatsapp"
         ]
         formulae = []
@@ -50,14 +48,10 @@
         casks = [
             "microsoft-edge",
             "logitune",
-            "tor-browser",
             "unclack",
             "azure-data-studio"
         ]
-        formulae = [
-            "",
-            ""
-        ]
+        formulae = []
     [packages.homebrew.dev_computer]
         tap = [
             "azure/bicep",
@@ -84,8 +78,11 @@
         ]
     [packages.homebrew.docker_computer]
         tap = []
-        casks = ["docker"]
-        formulae = []
+        casks = []
+        formulae = [
+            "docker",
+            "dockutil",
+        ]
 [packages.mas]
     [packages.mas.common]
         apps = [
