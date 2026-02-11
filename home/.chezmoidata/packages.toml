@@ -39,7 +39,7 @@
             "microsoft-excel",
             "microsoft-powerpoint",
             "microsoft-word",
-            "synology-drive"
+            "synology-drive",
             "whatsapp"
         ]
         formulae = []
