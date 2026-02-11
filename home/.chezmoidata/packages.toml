@@ -4,7 +4,6 @@
         "brave-browser",
         "librewolf",
         "loop",
-        "tor-browser"
     ]
     [packages.homebrew.common]
         tap = []
