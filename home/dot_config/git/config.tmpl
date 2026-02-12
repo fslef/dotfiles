@@ -50,5 +50,5 @@
 
 # Git user Path Definition (load per folder user profile)
 {{- if .bitwarden.notes.git_user_path_definition -}}
-{{- (rbw .bitwarden.notes.git_user_path_definition).notes -}}
+{{- (bw .bitwarden.notes.git_user_path_definition).notes -}}
 {{- end -}}
