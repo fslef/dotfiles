@@ -48,6 +48,6 @@
 [safe]
   directory = *
 
-{{ if .bitwarden.notes.git_user_path_definition }}
+{{- if .bitwarden.notes.git_user_path_definition -}}
 {{ (bitwarden "item" .bitwarden.notes.git_user_path_definition).notes }}
 {{ end }}
