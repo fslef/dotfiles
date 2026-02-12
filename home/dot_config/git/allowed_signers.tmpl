@@ -1,5 +1,5 @@
 {{- /* Git SSH allowed signers for signature verification */ -}}
-{{- /* Bitwarden item: devops_a (ssh key with publicKey field) */ -}}
+{{- /* Bitwarden item: devops_a (ssh key item type 5) */ -}}
 {{ if .dev_computer -}}
-{{ (bitwarden "item" .bitwarden.secrets.git_email_address).login.username }} {{- (bitwarden "item" .bitwarden.ssh.devops_a).privateKey -}}
+23463958+fslef@users.noreply.github.com {{ (bitwarden "item" .bitwarden.ssh.devops_a).sshKey.publicKey }}
 {{ end -}}
