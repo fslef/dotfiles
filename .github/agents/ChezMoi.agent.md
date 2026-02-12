@@ -46,6 +46,12 @@ You create template files in the ChezMoi source directory that will be rendered 
 ### Template Syntax
 - **Basic**: `{{ .variable }}` - renders with spaces/newlines preserved
 - **Trim whitespace**: `{{- .variable -}}` - removes surrounding whitespace
+- **CRITICAL whitespace control**:
+  - `{{-` trims whitespace/newlines **before** the tag
+  - `-}}` trims whitespace/newlines **after** the tag
+  - `{{ if` (no dash) preserves blank lines before the block
+  - Use `{{ if ... }}` when you want content on a new line with spacing
+  - Use `{{- if ... -}}` when content should inline with no gaps
 - **Conditionals**:
   ```
   {{- if .condition -}}
@@ -58,6 +64,17 @@ You create template files in the ChezMoi source directory that will be rendered 
   {{ . }}
   {{- end }}
   ```
+
+**Example - Preserving section spacing**:
+```ini
+[safe]
+  directory = *
+
+{{ if .bitwarden.notes.git_user -}}
+{{ (bitwarden "item" .bitwarden.notes.git_user).notes }}
+{{- end }}
+```
+This renders with a blank line between sections. Using `{{- if` would collapse it.
 
 ### ChezMoi Source File Naming
 The source file name determines the target file path and attributes:
@@ -201,16 +218,30 @@ token: {{ (bitwardenFields "item" "pqr678").personal_token.value }}
    - Solution: Use `{{- -}}` to trim whitespace
    - Example: `{{- .value -}}` instead of `{{ .value }}`
 
-2. **Wrong Bitwarden field name**:
+2. **Missing blank lines between sections**:
+   - Problem: Content from template block appears on same line as previous content
+   - Solution: Use `{{ if` (no dash) to preserve newlines before the block
+   - Example:
+     ```ini
+     [section]
+       key = value
+     
+     {{ if .condition -}}
+     {{ .content }}
+     {{- end }}
+     ```
+   - Wrong: `{{- if` removes the blank line above it
+
+3. **Wrong Bitwarden field name**:
    - Problem: Field doesn't exist on item
    - Solution: Check item structure first (user runs: `bw get item <ID> | jq`)
    - Use exact field names from Bitwarden
 
-3. **Missing OS conditional**:
+4. **Missing OS conditional**:
    - Problem: Hardcoded paths don't work cross-platform
    - Solution: Use `{{ .chezmoi.os }}` and `{{ .chezmoi.homeDir }}`
 
-4. **Template syntax errors**:
+5. **Template syntax errors**:
    - Problem: Invalid Go template syntax
    - Solution: Test incrementally, use proper `{{- if }}...{{- end }}` closure
 
