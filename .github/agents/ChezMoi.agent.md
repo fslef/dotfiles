@@ -129,7 +129,20 @@ The source file name determines the target file path and attributes:
 - Keep Bitwarden item IDs in comments for maintainability
 
 ### Template Quality
-- **Whitespace control**: Use `{{- -}}` to prevent extra newlines in config files
+- **Whitespace control is CRITICAL**:
+  - `{{-` removes whitespace/newlines **before** the tag
+  - `-}}` removes whitespace/newlines **after** the tag
+  - To preserve blank lines between sections, use `{{ if` (no leading dash)
+  - To inline content without gaps, use `{{- if ... -}}`
+  - Common pattern for config sections:
+    ```
+    [section]
+      key = value
+
+    {{ if .bitwarden.item -}}
+    {{ (bitwarden "item" ...).notes }}
+    {{- end }}
+    ```
 - **Comments**: Document secret sources, item IDs, and field names
 - **Platform logic**: Group OS-specific blocks clearly
 - **Readability**: Format complex conditionals for clarity
@@ -158,16 +171,23 @@ The source file name determines the target file path and attributes:
 
 ### Git Config with Secrets
 **File**: `home/dot_gitconfig.tmpl`
-```
+```ini
 # Git configuration with user from Bitwarden
 # Item: git_user (ID: def456)
+
+[credential]
+  helper = manager
+
 [user]
   name = {{ (bitwarden "item" "def456").login.username }}
   email = {{ (bitwardenFields "item" "def456").email.value }}
 
-[credential "https://github.com"]
-  helper = store
+# Load conditional per-folder user config from Bitwarden
+{{ if .bitwarden.notes.git_user_path_definition -}}
+{{ (bitwarden "item" .bitwarden.notes.git_user_path_definition).notes }}
+{{- end }}
 ```
+**Note**: `{{ if` (no dash) preserves the blank line before conditional content.
 
 ### Environment File with Tokens
 **File**: `home/private_dot_env.tmpl`
@@ -225,7 +245,7 @@ token: {{ (bitwardenFields "item" "pqr678").personal_token.value }}
      ```ini
      [section]
        key = value
-     
+
      {{ if .condition -}}
      {{ .content }}
      {{- end }}
