@@ -2,15 +2,15 @@
 
 # WORK Repos
 {{ if and (.work_computer) (.dev_computer) -}}
-{{- (rbw .bitwarden.notes.work_repos).notes -}}
+{{- (bitwarden "item" .bitwarden.notes.work_repos).notes -}}
 {{ end -}}
 
 # PERSONAL Repos
 {{ if and (.personal_computer) (.dev_computer) -}}
-{{- (rbw .bitwarden.notes.personal_repos).notes -}}
+{{- (bitwarden "item" .bitwarden.notes.personal_repos).notes -}}
 {{ end -}}
 
 # SHARED Repos
 {{ if .dev_computer -}}
-{{- (rbw .bitwarden.notes.shared_repos).notes -}}
+{{- (bitwarden "item" .bitwarden.notes.shared_repos).notes -}}
 {{ end -}}
