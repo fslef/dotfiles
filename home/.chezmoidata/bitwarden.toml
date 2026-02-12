@@ -2,7 +2,7 @@
 # bw list items --search <TEXT> --pretty
 
 [bitwarden.secrets]
-git_email_address = "TBC"
+git_email_address = "c358ce27-ec3a-4db4-bc04-b09e012d5d52"
 
 [bitwarden.notes]
 work_repos = "e92a4929-e938-40b9-9ac6-b0a601470ecb"
