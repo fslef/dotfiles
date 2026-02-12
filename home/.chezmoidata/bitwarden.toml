@@ -1,2 +1,11 @@
+# Retrieve a Bitwarden item's raw content (single command):
+#   rbw get --raw "<item name>"
+
 [bitwarden.secrets]
 git_email_address = "TBC"
+
+[bitwarden.notes]
+work_repos = "e92a4929-e938-40b9-9ac6-b0a601470ecb"
+personal_repos = "5a0c64c8-fc70-4bbb-81dd-b0a6014248a5"
+shared_repos = "f3311005-ef5c-409f-8a5e-b0a601473b0f"
+git_user_path_definition = "fa1e09de-c98e-422a-8c55-b3ef001dd22b"
