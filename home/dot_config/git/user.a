@@ -1,0 +1,1 @@
+{{- (rbw .bitwarden.notes.git_user_a).notes -}}
