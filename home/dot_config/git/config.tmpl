@@ -46,10 +46,6 @@
 [safe]
   directory = *
 
-{{- if .bitwarden.notes.git_config_include_rules -}}
-{{ output "rbw" "get" "--raw" .bitwarden.notes.git_config_include_rules }}
-{{- else }}
-
 # Git user Path Definition (load per folder user profile)
 {{- if .bitwarden.notes.git_user_path_definition -}}
 {{- (rbw .bitwarden.notes.git_user_path_definition).notes -}}
