@@ -19,9 +19,9 @@
             "updf"
         ]
         formulae = [
+            "bitwarden-cli",
             "chezmoi",
             "mas",
-            "rbw",
             "starship",
             "zsh",
             "zsh-autosuggestions",

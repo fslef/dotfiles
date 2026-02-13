@@ -35,6 +35,15 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/config
 
+# Initialize Bitwarden CLI session (required for ChezMoi templates)
+# If BW_SESSION is not set, generate a new session token
+if [[ -z "$BW_SESSION" ]] && command -v bw &> /dev/null; then
+  # Check if we can unlock without prompting (requires password to be cached)
+  if bw status &>/dev/null && [[ $(bw status | jq -r '.authenticated') == "true" ]]; then
+    export BW_SESSION="$(bw unlock --raw 2>/dev/null || true)"
+  fi
+fi
+
 # Set computer type environment variables
 {{ if .personal_computer -}}
 export PERSONAL_COMPUTER=true

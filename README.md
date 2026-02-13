@@ -47,6 +47,44 @@ All packages are installed with [Homebrew](https://brew.sh/)  and [[WIP] Chocola
 
 Package list can be fould here : [Packages.toml](./home/.chezmoidata/packages.toml)
 
+## Bitwarden CLI Setup
+
+This repository uses the [Bitwarden CLI](https://bitwarden.com/help/cli/) (`bw`) to manage secrets in your dotfiles templates. The CLI is automatically installed during initial setup, but you'll need to authenticate.
+
+### First-Time Setup
+
+1. **Login to Bitwarden**:
+   ```bash
+   bw login your-email@example.com
+   ```
+   This will prompt you for your master password and generate a session token.
+
+2. **Generate and Export Session Token**:
+   ```bash
+   export BW_SESSION="$(bw unlock --raw)"
+   ```
+   This command unlocks your vault and exports the session token, which allows ChezMoi templates to access your secrets without additional prompts.
+
+3. **Verification**:
+   ```bash
+   chezmoi apply --dry-run
+   ```
+   This will show you what changes will be made without actually applying them. If your Bitwarden connection is working, you'll see rendered secrets from your vault.
+
+### Environment Setup
+
+- **Automatic Session**: The `.zshrc` template includes logic to automatically set `BW_SESSION` if you have an authenticated Bitwarden session.
+- **Manual Setup**: If you prefer manual control, you can set `BW_SESSION` in your shell profile or use a secure environment variable storage solution.
+- **Session Security**: Treat `BW_SESSION` like a password. Consider storing it in your system keychain rather than in plain text in shell configs.
+
+### Usage in Templates
+
+Secrets in templates are accessed via ChezMoi's Bitwarden template functions. Examples:
+- `{{ (bitwarden "item" "ITEM_ID").login.username }}`  - Get login username
+- `{{ (bitwardenFields "item" "ITEM_ID").fieldName.value }}` - Get custom field
+- `{{ (bitwardenAttachment "filename" "ITEM_ID") }}` - Get file attachment (e.g., SSH keys)
+
+See [.github/agents/ChezMoi.agent.md](./.github/agents/ChezMoi.agent.md) for detailed template examples.
 
 ---
 

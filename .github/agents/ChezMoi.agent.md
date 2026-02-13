@@ -271,7 +271,7 @@ token: {{ (bitwardenFields "item" "pqr678").personal_token.value }}
    - `bitwarden`: Get full item data
    - `bitwardenFields`: Get custom fields
    - `bitwardenAttachment`: Get file attachments
-   - Do NOT use `rbw` (alternative client)
+   - Only use official Bitwarden CLI (`bw`), NOT alternative clients like `rbw`
 
 2. **Comment your secrets**:
    ```
