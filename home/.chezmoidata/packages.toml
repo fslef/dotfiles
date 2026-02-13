@@ -70,7 +70,7 @@
             "azure-cli",
             "git",
             "ollama",
-            "qmk"
+            "qmk/qmk/qmk"
         ]
     [packages.homebrew.docker_computer]
         tap = []
