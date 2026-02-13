@@ -1,0 +1,3 @@
+{{ if and (.work_computer) (.dev_computer) -}}
+{{- (bitwarden "item" .bitwarden.notes.git_user_d).notes -}}
+{{ end -}}
