@@ -1,21 +1,26 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
+set -e
 
 # https://docs.brew.sh/Manpage#environment
-export HOMEBREW_NO_INSTALL_UPGRADE=1
 export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=/Library/Fonts --no-quarantine"
-export HOMEBREW_NO_INSTALL_CLEANUP=1
 export HOMEBREW_UPGRADE_GREEDY=1
 export HOMEBREW_UPGRADE_GREEDY_CASKS=1
 export HOMEBREW_NO_ANALYTICS=1
 
 echo
-echo -e "\033[0;36mInstalling Hombrew packages\033[0m"
-echo -e "\033[0;36m---------------------------\033[0m"
+echo -e "\033[0;36mHomebrew: Update, Install & Cleanup\033[0m"
+echo -e "\033[0;36m====================================\033[0m"
 echo
 
-# Shorthand for brew bundle install --upgrade.
-brew bundle --file=/dev/stdin <<EOF
+# Update Homebrew first, then install packages with upgrade and cleanup
+# See: https://docs.brew.sh/Manpage#bundle-subcommand
+brew update
+brew bundle install \
+  --file=/dev/stdin \
+  --upgrade \
+  --cleanup \
+  <<EOF
 {{ range .packages.homebrew.common.tap -}}
 {{ if ne . "" -}}
 tap {{ . | quote }}
@@ -116,5 +121,15 @@ cask {{ . | quote }}
 {{ end -}}
 {{ end -}}
 EOF
+
+echo
+echo -e "\033[0;36mAudit: Direct dependencies (unmanaged packages)\033[0m"
+echo -e "\033[0;36m----------------------------------------------\033[0m"
+echo
+brew leaves
+
+echo
+echo -e "\033[0;32m✓ Homebrew updated, installed and cleaned\033[0m"
+echo
 
 {{- end }}
