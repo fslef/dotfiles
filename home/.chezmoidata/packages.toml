@@ -54,8 +54,6 @@
         formulae = []
     [packages.homebrew.dev_computer]
         tap = [
-            "azure/bicep",
-            "hashicorp/tap",
             "qmk/qmk",
         ]
         casks = [
@@ -70,11 +68,9 @@
         ]
         formulae = [
             "azure-cli",
-            "bicep",
             "git",
             "ollama",
-            "qmk",
-            "hashicorp/tap/terraform",
+            "qmk"
         ]
     [packages.homebrew.docker_computer]
         tap = []
