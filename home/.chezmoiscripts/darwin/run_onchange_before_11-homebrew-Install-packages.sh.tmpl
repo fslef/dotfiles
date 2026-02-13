@@ -1,6 +1,5 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
-set -e
 
 # https://docs.brew.sh/Manpage#environment
 export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=/Library/Fonts --no-quarantine"
@@ -15,6 +14,7 @@ echo
 
 # Update Homebrew first, then install packages with upgrade and cleanup
 # See: https://docs.brew.sh/Manpage#bundle-subcommand
+# Not using 'set -e' to allow script to continue even if some cask downloads fail
 brew update
 brew bundle install \
   --file=/dev/stdin \
@@ -121,6 +121,18 @@ cask {{ . | quote }}
 {{ end -}}
 {{ end -}}
 EOF
+BREW_BUNDLE_EXIT_CODE=$?
+
+if [ $BREW_BUNDLE_EXIT_CODE -eq 0 ]; then
+  echo
+  echo -e "\033[0;32m✓ All packages installed successfully\033[0m"
+  echo
+else
+  echo
+  echo -e "\033[0;33m⚠ Some packages failed to install (likely due to download issues)\033[0m"
+  echo -e "\033[0;33m  Run 'chezmoi apply' again later to retry failed packages\033[0m"
+  echo
+fi
 
 echo
 echo -e "\033[0;36mAudit: Direct dependencies (unmanaged packages)\033[0m"
