@@ -15,6 +15,7 @@
             "linearmouse",
             "obsidian",
             "shottr",
+            "unifi-identity-endpoint",
             "updf"
         ]
         formulae = [
