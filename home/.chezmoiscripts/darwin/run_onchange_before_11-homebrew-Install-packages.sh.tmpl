@@ -125,12 +125,12 @@ cask {{ . | quote }}
 EOF
 then
   echo
-  echo -e "\033[0;32m✓ All packages installed successfully\033[0m"
+  echo -e "\033[0;33m⚠ Some packages failed to install (likely due to download issues)\033[0m"
+  echo -e "\033[0;33m  You can retry installing failed packages later with: brew bundle install\033[0m"
   echo
 else
   echo
-  echo -e "\033[0;33m⚠ Some packages failed to install (likely due to download issues)\033[0m"
-  echo -e "\033[0;33m  You can retry installing failed packages later with: brew bundle install\033[0m"
+  echo -e "\033[0;32m✓ All packages installed successfully\033[0m"
   echo
 fi
 
