@@ -13,12 +13,14 @@ echo -e "\033[0;36mHomebrew: Update, Install & Cleanup\033[0m"
 echo -e "\033[0;36m====================================\033[0m"
 echo
 
-# Update Homebrew first, then install packages with upgrade and cleanup
+# Update Homebrew first, then install packages with cleanup
 # See: https://docs.brew.sh/Manpage#bundle-subcommand
+# Note: --upgrade flag removed as upgrades are handled separately by run_before_14 script
+# Using --no-upgrade to only install missing packages, preventing download failures on upgrade attempts
 brew update
 brew bundle install \
   --file=/dev/stdin \
-  --upgrade \
+  --no-upgrade \
   --cleanup \
   <<EOF
 {{ range .packages.homebrew.common.tap -}}
