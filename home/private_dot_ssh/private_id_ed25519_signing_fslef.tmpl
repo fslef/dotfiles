@@ -1,0 +1,4 @@
+{{- /* SSH signing private key from Bitwarden item: devops_user_a */ -}}
+{{ if .dev_computer -}}
+{{- (bitwarden "item" .bitwarden.ssh.devops_user_a).sshKey.privateKey -}}
+{{ end -}}
