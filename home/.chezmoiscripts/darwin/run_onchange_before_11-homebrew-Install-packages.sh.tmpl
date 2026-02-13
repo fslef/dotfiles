@@ -18,7 +18,7 @@ echo
 # Using --no-upgrade to only install missing packages, preventing download failures on upgrade attempts
 # Not using 'set -e' to allow script to continue even if some cask downloads fail
 brew update
-if ! brew bundle install \
+brew bundle install \
   --file=/dev/stdin \
   --no-upgrade \
   --cleanup \
@@ -123,14 +123,16 @@ cask {{ . | quote }}
 {{ end -}}
 {{ end -}}
 EOF
-then
+BREW_BUNDLE_EXIT_CODE=$?
+
+if [ $BREW_BUNDLE_EXIT_CODE -eq 0 ]; then
   echo
-  echo -e "\033[0;33m⚠ Some packages failed to install (likely due to download issues)\033[0m"
-  echo -e "\033[0;33m  You can retry installing failed packages later with: brew bundle install\033[0m"
+  echo -e "\033[0;32m✓ All packages installed successfully\033[0m"
   echo
 else
   echo
-  echo -e "\033[0;32m✓ All packages installed successfully\033[0m"
+  echo -e "\033[0;33m⚠ Some packages failed to install (likely due to download issues)\033[0m"
+  echo -e "\033[0;33m  Run 'chezmoi apply' again later to retry failed packages\033[0m"
   echo
 fi
 
