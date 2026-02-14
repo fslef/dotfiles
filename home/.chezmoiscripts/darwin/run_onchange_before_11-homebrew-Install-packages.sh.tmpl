@@ -12,13 +12,14 @@ echo -e "\033[0;36mHomebrew: Update, Install & Cleanup\033[0m"
 echo -e "\033[0;36m====================================\033[0m"
 echo
 
-# Update Homebrew first, then install packages with upgrade and cleanup
+# Update Homebrew first, then install packages without upgrade and with cleanup
 # See: https://docs.brew.sh/Manpage#bundle-subcommand
 # Not using 'set -e' to allow script to continue even if some cask downloads fail
+# Using --no-upgrade to prevent download failures when cask URLs are temporarily unavailable
 brew update
 brew bundle install \
   --file=/dev/stdin \
-  --upgrade \
+  --no-upgrade \
   --cleanup \
   <<EOF
 {{ range .packages.homebrew.common.tap -}}
