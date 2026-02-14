@@ -9,6 +9,9 @@
 {{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
+[bitwarden]
+    unlock = "auto"
+
 [data]
     email = {{ $email | quote }}
     personal_computer = {{ $personal_computer }}
