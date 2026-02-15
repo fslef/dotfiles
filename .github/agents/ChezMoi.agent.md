@@ -35,7 +35,12 @@ You are an expert in **creating and optimizing ChezMoi templates** for dotfile m
 - Template naming determines attributes: `config.tmpl` → `config` (rendered), `executable_script.sh.tmpl` → mode 0755
 - Modifiers: `private_` (0600), `executable_` (0755), `dot_` (hidden), `symlink_` (symlink)
 - Combine modifiers: `private_executable_dot_script.sh.tmpl` is valid
-- Store all Bitwarden item IDs in `.chezmoidata/bitwarden.toml` under sections like `[bitwarden.ssh]`, `[bitwarden.notes]`
+
+### Data File Organization
+- Store all data in `.chezmoidata/*.toml` files - ChezMoi automatically loads them
+- Organize by purpose: `bitwarden.toml` (secrets), `packages.toml` (install lists), `aliases.toml` (shell aliases), `constants.toml` (paths/settings)
+- Access via dot notation: `.bitwarden.ssh.key_name`, `.packages.homebrew.common.formulae`, `.aliases.common.g`, `.paths.repos_dir`
+- **Best practice**: Keep Bitwarden item IDs separate in `bitwarden.toml` under sections `[bitwarden.ssh]`, `[bitwarden.notes]`, `[bitwarden.secrets]`
 
 ### ChezMoi Scripts
 - Scripts are shell commands executed during `chezmoi apply`, placed in `.chezmoiscripts/` directory
@@ -77,23 +82,50 @@ You are an expert in **creating and optimizing ChezMoi templates** for dotfile m
 - **Multi-line blocks**: Use `{{ if ... }} content {{- end }}` to preserve spacing below block
 
 ### Variable Indirection Pattern (Recommended)
-**Store IDs in data, reference in templates:**
+**Store data in `.chezmoidata/` TOML files, reference in templates:**
+
+ChezMoi loads all `.chezmoidata/*.toml` files and makes them accessible via dot notation:
+
 ```toml
-# .chezmoidata/bitwarden.toml
+# .chezmoidata/bitwarden.toml - Secret item IDs
 [bitwarden.ssh]
 devops_user_a = "ACTUAL-UUID"
 
 [bitwarden.notes]
 git_user_a = "ACTUAL-UUID"
+work_repos = "ACTUAL-UUID"
+
+# .chezmoidata/packages.toml - Package lists
+[packages.homebrew.common]
+formulae = ["chezmoi", "starship", "zsh"]
+casks = ["iterm2", "obsidian"]
+
+[packages.homebrew.dev_computer]
+formulae = ["terraform", "kubectl"]
+
+# .chezmoidata/aliases.toml - Shell aliases
+[aliases.common]
+g = "git"
+cmu = "chezmoi update"
+
+[aliases.dev_computer]
+tf = "terraform"
+
+# .chezmoidata/constants.toml - Paths and settings
+[paths]
+repos_dir = "${HOME}/gitrepos"
+ssh_keys_dir = "${HOME}/.ssh_keys"
 ```
 
-Template:
+**Access in templates:**
 ```template
 {{ (bitwarden "item" .bitwarden.ssh.devops_user_a).sshKey.publicKey }}
-{{ (bitwarden "item" .bitwarden.notes.git_user_a).notes }}
+{{ range .packages.homebrew.common.formulae }}brew install {{ . }}{{ end }}
+{{ .aliases.common.g }}
+{{ .paths.repos_dir }}
 ```
 
-**Benefits**: IDs stay out of templates, centralized secret management, easier updates
+**Benefits**: Centralized data management, clean separation (secrets/packages/config), easy updates
 
 ### Cross-Platform Patterns
 Use `.chezmoi.os` and `.chezmoi.arch` to handle platform differences:
@@ -184,6 +216,28 @@ apply-config < {{ joinPath .chezmoi.sourceDir "config.toml" | quote }}
 {{- else if eq .chezmoi.os "linux" -}}
   sudo apt-get update
   sudo apt-get install -y build-essential
+{{- end }}
+```
+
+**Install packages from data file**:
+```bash
+#!/bin/bash
+# run_onchange_install-packages.sh.tmpl
+{{ if eq .chezmoi.os "darwin" -}}
+brew bundle install --no-upgrade --cleanup --file=/dev/stdin <<EOF
+{{ range .packages.homebrew.common.formulae -}}
+{{ if ne . "" -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ if .dev_computer -}}
+{{ range .packages.homebrew.dev_computer.formulae -}}
+{{ if ne . "" -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ end -}}
+EOF
 {{- end }}
 ```
 
