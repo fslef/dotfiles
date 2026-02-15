@@ -1,0 +1,101 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# https://github.com/mathiasbynens/dotfiles/blob/main/.macos
+
+# Disable the sound effects on boot
+sudo nvram StartupMute=%01
+
+# Set language and text formats
+defaults write -g AppleLanguages -array "en" "us"
+defaults write -g AppleLocale -string "en_GB@currency=EUR"
+defaults write -g AppleMeasurementUnits -string "Centimeters"
+defaults write -g AppleMetricUnits -int 1
+
+# Set dark / light mode
+defaults write -g AppleInterfaceStyle Dark
+
+# Set a faster keyboard repeat rate
+defaults write -g InitialKeyRepeat -int 15
+defaults write -g KeyRepeat -int 2
+
+# disable keyboard spotlight search shortcut (cmd + space). Will be replaced by Raycast
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "<dict><key>enabled</key><false/></dict>"
+
+# Set the number of Spaces (desktops) to 7
+defaults write com.apple.dock "spaces-number" -int 7
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 118 "<dict><key>enabled</key><true/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>65535</integer><integer>18</integer><integer>1</integer></array></dict></dict>"
+
+# Disable autocorrect and key substitutions
+defaults write -g NSAutomaticCapitalizationEnabled -int 0
+defaults write -g NSAutomaticPeriodSubstitutionEnabled -int 0
+defaults write -g NSAutomaticQuoteSubstitutionEnabled -int 0
+defaults write -g NSAutomaticTextCompletionEnabled -int 0
+
+# Dock configuration
+defaults write com.apple.dock autohide -int 1
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0
+defaults write com.apple.dock launchanim -int 0
+defaults write com.apple.dock orientation bottom
+defaults write com.apple.dock show-recents -int 0
+defaults write -g ApplePressAndHoldEnabled -int 0
+
+# Expand save panel by default
+defaults write -g NSNavPanelExpandedStateForSaveMode -int 1
+defaults write -g NSNavPanelExpandedStateForSaveMode2 -int 1
+
+# Expand print panel by default
+defaults write -g PMPrintingExpandedStateForPrint -int 1
+defaults write -g PMPrintingExpandedStateForPrint2 -int 1
+
+# Disable the “Are you sure you want to open this application?” dialog
+defaults write com.apple.LaunchServices LSQuarantine -int 0
+
+# Hot corners
+defaults write com.apple.dock wvous-tl-corner -int 0
+defaults write com.apple.dock wvous-tl-modifier -int 0
+defaults write com.apple.dock wvous-tr-corner -int 0
+defaults write com.apple.dock wvous-tr-modifier -int 0
+defaults write com.apple.dock wvous-bl-corner -int 0
+defaults write com.apple.dock wvous-bl-modifier -int 0
+defaults write com.apple.dock wvous-br-corner -int 0
+defaults write com.apple.dock wvous-br-modifier -int 0
+
+# Finder settings
+defaults write com.apple.finder AppleShowAllFiles -int 1
+defaults write -g AppleShowAllExtensions -int 1
+defaults write com.apple.springing.enabled -int 1
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -int 1
+defaults write com.apple.desktopservices DSDontWriteUSBStores -int 1
+defaults write com.apple.springing.delay -float 0
+defaults write com.apple.finder _FXShowPosixPathInTitle -int 1
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+defaults write com.apple.finder _FXSortFoldersFirst -int 1
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+defaults write com.apple.finder FXRemoveOldTrashItems -int 1
+defaults write com.apple.finder FXEnableExtensionChangeWarning -int 0
+killall Finder >/dev/null 2>&1 || true
+
+# Top Menu Bar
+defaults write com.apple.menuextra.clock FlashDateSeparators -int 0
+defaults write com.apple.menuextra.clock IsAnalog -int 0
+defaults write com.apple.menuextra.clock ShowAMPM -int 0
+defaults write com.apple.menuextra.clock ShowDate -int 0
+defaults write com.apple.menuextra.clock ShowDayOfWeek -int 0
+defaults write com.apple.menuextra.clock ShowSeconds -int 0
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
+# Disable Resume system-wide
+defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -int 0
+
+# Disable Notification Center and remove the menu bar icon (may not work on newer macOS)
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2>/dev/null || true
+
+# Siri
+defaults write com.apple.Siri StatusMenuVisible -int 0
+defaults write com.apple.Siri VoiceTriggerUserEnabled -int 0
+
+{{- end }}
