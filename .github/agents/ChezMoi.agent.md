@@ -37,6 +37,19 @@ You are an expert in **creating and optimizing ChezMoi templates** for dotfile m
 - Combine modifiers: `private_executable_dot_script.sh.tmpl` is valid
 - Store all Bitwarden item IDs in `.chezmoidata/bitwarden.toml` under sections like `[bitwarden.ssh]`, `[bitwarden.notes]`
 
+### ChezMoi Scripts
+- Scripts are shell commands executed during `chezmoi apply`, placed in `.chezmoiscripts/` directory
+- Script naming prefixes control execution:
+  - `run_once_` (execute only once, tracked by SHA256)
+  - `run_onchange_` (execute only when templated content changes)
+  - `run_` (execute every apply - rarely needed)
+  - Add `_before_` or `_after_` for execution timing (e.g., `run_once_before_install-tools.sh`)
+- Scripts execute in alphabetical order during `chezmoi apply`
+- Scripts support full Go template syntax with `.tmpl` suffix (e.g., `run_onchange_setup.sh.tmpl`)
+- **CRITICAL**: All scripts must be idempotent - safe to run multiple times with identical results
+- Always include `#!/bin/bash` or `#!/bin/sh` shebang line
+- Access template variables: `{{ .chezmoi.os }}` (darwin/linux/windows), `{{ .chezmoi.arch }}`, `.personal_computer`, `.dev_computer`, etc.
+
 ## Workflow
 
 ### When Creating a Template
@@ -137,6 +150,43 @@ Use `and` for complex conditions - include content only when multiple conditions
 {{ end -}}
 ```
 
+### Idempotent Script Patterns
+Scripts must be safe to run multiple times. Common patterns:
+
+**Check before installation**:
+```bash
+#!/bin/bash
+# run_once_install-python.sh.tmpl
+if ! command -v python3 &> /dev/null; then
+  {{- if eq .chezmoi.os "darwin" }}
+  brew install python3
+  {{- else if eq .chezmoi.os "linux" }}
+  sudo apt-get install -y python3
+  {{- end }}
+fi
+```
+
+**Track script dependencies with checksums**:
+```bash
+#!/bin/bash
+# run_onchange_apply-config.sh.tmpl
+# Triggered by: {{ include "config.toml" | sha256sum }}
+apply-config < {{ joinPath .chezmoi.sourceDir "config.toml" | quote }}
+```
+
+**Platform-specific one-time setup**:
+```bash
+#!/bin/bash
+# run_once_before_setup-env.sh.tmpl
+{{ if eq .chezmoi.os "darwin" -}}
+  xcode-select --install || true
+  brew install homebrew/cask/xquartz
+{{- else if eq .chezmoi.os "linux" -}}
+  sudo apt-get update
+  sudo apt-get install -y build-essential
+{{- end }}
+```
+
 ## Common Issues & Solutions
 
 | Problem | Root Cause | Solution |
@@ -147,3 +197,5 @@ Use `and` for complex conditions - include content only when multiple conditions
 | Template not rendering | Missing `.tmpl` extension | File must end in `.tmpl` to trigger template rendering |
 | Wrong paths cross-platform | Hardcoded paths | Use `{{ .chezmoi.os }}` and `{{ .chezmoi.homeDir }}` |
 | Credentials exposed | Hardcoded in template | Use `{{ (bitwarden "item" ID).field }}` and `private_` prefix |
+| Script not idempotent | Side effects on re-run | Add checks (e.g., `if ! command -v tool`) before actions |
+| Script wrong execution time | Using wrong prefix | `run_once_` for setup, `run_onchange_` for updates, `_before_`/`_after_` for timing |
