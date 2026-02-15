@@ -3,20 +3,13 @@
 # Load aliases from ChezMoi data.
 # This file is intended to be sourced by interactive shells.
 load_aliases() {
-    # Skip if an alias/function with this name already exists.
-    alias_or_function_exists() {
-        alias "$1" >/dev/null 2>&1 && return 0
-        typeset -f "$1" >/dev/null 2>&1 && return 0
-        return 1
-    }
-
     set_alias() {
         name="$1"
         value="$2"
 
-        if alias_or_function_exists "$name"; then
-            return 0
-        fi
+        # Always (re)define to ensure consistent behavior across shells.
+        unalias "$name" >/dev/null 2>&1 || true
+        unset -f "$name" >/dev/null 2>&1 || true
 
         # Single quotes prevent expansion (e.g., $(...) ) at load time.
         # Values come from templates, already safely quoted.
