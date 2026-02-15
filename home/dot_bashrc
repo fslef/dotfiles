@@ -1,3 +1,3 @@
 alias ll="gls -lAhF --group-directories-first --color=always -a"
 eval "$(starship init bash)"
-source ~/bin/load-aliases
+source "$HOME/bin/aliases/load-aliases.sh"

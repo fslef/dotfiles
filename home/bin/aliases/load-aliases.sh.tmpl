@@ -1,63 +1,63 @@
-#!/bin/zsh
+#!/usr/bin/env sh
 
-# Load aliases from Chezmoi data
+# Load aliases from ChezMoi data.
+# This file is intended to be sourced by interactive shells.
 load_aliases() {
-
-    # Function to create an alias or function based on the command
-    set_shell_command() {
-        local name="$1"
-        local command="$2"
-
-        # Check if the alias or function already exists
-        if alias "$name" &>/dev/null || declare -f "$name" &>/dev/null; then
-            return
-        fi
-
-        if [[ "$command" =~ " " ]]; then
-            eval "${name}() { $command; }"
-        else
-            alias "$name=$command"
-        fi
+    # Skip if an alias/function with this name already exists.
+    alias_or_function_exists() {
+        alias "$1" >/dev/null 2>&1 && return 0
+        typeset -f "$1" >/dev/null 2>&1 && return 0
+        return 1
     }
 
-    # Check if aliases data exists
-    if [[ -z "{{ .aliases }}" ]]; then
-        echo "Warning: No aliases found in Chezmoi data."
-        return
-    fi
+    set_alias() {
+        name="$1"
+        value="$2"
 
-    # Load common aliases
-    {{ range $key, $value := .aliases.common }}
-    set_shell_command "{{ $key }}" "{{ $value }}"
-    {{ end }}
+        if alias_or_function_exists "$name"; then
+            return 0
+        fi
 
-    # Load environment-specific aliases
-    {{ if .personal_computer }}
-    {{ range $key, $value := .aliases.personal_computer }}
-    set_shell_command "{{ $key }}" "{{ $value }}"
-    {{ end }}
-    {{ end }}
+        # Single quotes prevent expansion (e.g., $(...) ) at load time.
+        # Values come from templates, already safely quoted.
+        eval "alias ${name}='${value}'"
+    }
 
-    {{ if .work_computer }}
-    {{ range $key, $value := .aliases.work_computer }}
-    set_shell_command "{{ $key }}" "{{ $value }}"
-    {{ end }}
-    {{ end }}
+    {{- /* Common aliases */ -}}
+    {{- range $key, $value := .aliases.common }}
+    {{- $escaped := replace $value "'" "'\\''" -}}
+    set_alias "{{ $key }}" "{{ $escaped }}"
+    {{- end }}
 
-    {{ if .dev_computer }}
-    {{ range $key, $value := .aliases.dev_computer }}
-    set_shell_command "{{ $key }}" "{{ $value }}"
-    {{ end }}
-    {{ end }}
+    {{- /* Environment-specific aliases */ -}}
+    {{- if .personal_computer }}
+    {{- range $key, $value := .aliases.personal_computer }}
+    {{- $escaped := replace $value "'" "'\\''" -}}
+    set_alias "{{ $key }}" "{{ $escaped }}"
+    {{- end }}
+    {{- end }}
 
-    {{ if .docker_computer }}
-    {{ range $key, $value := .aliases.docker_computer }}
-    set_shell_command "{{ $key }}" "{{ $value }}"
-    {{ end }}
-    {{ end }}
+    {{- if .work_computer }}
+    {{- range $key, $value := .aliases.work_computer }}
+    {{- $escaped := replace $value "'" "'\\''" -}}
+    set_alias "{{ $key }}" "{{ $escaped }}"
+    {{- end }}
+    {{- end }}
 
-    echo "Aliases loaded successfully"
+    {{- if .dev_computer }}
+    {{- range $key, $value := .aliases.dev_computer }}
+    {{- $escaped := replace $value "'" "'\\''" -}}
+    set_alias "{{ $key }}" "{{ $escaped }}"
+    {{- end }}
+    {{- end }}
+
+    {{- if .docker_computer }}
+    {{- range $key, $value := .aliases.docker_computer }}
+    {{- $escaped := replace $value "'" "'\\''" -}}
+    set_alias "{{ $key }}" "{{ $escaped }}"
+    {{- end }}
+    {{- end }}
 }
 
-# Load aliases immediately
 load_aliases
+unset -f load_aliases >/dev/null 2>&1 || true

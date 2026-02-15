@@ -6,10 +6,34 @@ function Set-ShellCommand {
     )
 
     try {
-        # If the command contains spaces, create a function instead of an alias
+        # Set-Alias only supports a single command name.
+        # For multi-token commands, create a function that runs the stored command and
+        # appends any extra arguments the user passes.
         if ($Command -match '\s') {
-            Set-Item -Path "Function:$Name" -Value { Invoke-Expression "$Command" } -Force -ErrorAction Stop
-        } else {
+            $escapedCommand = $Command -replace "'", "''"
+
+            $functionBody = @"
+param(
+    [Parameter(ValueFromRemainingArguments=`$true)]
+    [string[]]`$Args
+)
+
+`$cmd = '$escapedCommand'
+if (`$Args.Count -gt 0) {
+    try {
+        `$quotedArgs = `$Args | ForEach-Object { [System.Management.Automation.Language.CodeGeneration]::QuoteArgument(`$_) }
+        `$cmd = `$cmd + ' ' + (`$quotedArgs -join ' ')
+    } catch {
+        `$cmd = `$cmd + ' ' + (`$Args -join ' ')
+    }
+}
+
+Invoke-Expression `$cmd
+"@
+
+            Set-Item -Path "Function:$Name" -Value ([scriptblock]::Create($functionBody)) -Force -ErrorAction Stop
+        }
+        else {
             Set-Alias -Name $Name -Value $Command -Scope Global -Force -ErrorAction Stop
         }
     }
@@ -20,8 +44,6 @@ function Set-ShellCommand {
 
 # Function to load aliases from Chezmoi data
 function Import-Aliases {
-    Write-Host "Loading aliases from Chezmoi data..."
-
     try {
         # Load common aliases
         {{ range $key, $value := .aliases.common }}
@@ -53,7 +75,6 @@ function Import-Aliases {
         {{ end }}
         {{ end }}
 
-        Write-Host "Aliases loaded successfully"
     }
     catch {
         Write-Error "Failed to load aliases: $_"

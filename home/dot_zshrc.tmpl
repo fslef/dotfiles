@@ -81,7 +81,9 @@ setopt rm_star_silent
 # Configure aliases
 source $HOME/bin/aliases/load-aliases.sh
 # Source additional aliases
-source $HOME/.zshrc_aliases
+if [[ -f "$HOME/.zshrc_aliases" ]]; then
+  source "$HOME/.zshrc_aliases"
+fi
 
 # Configure direnv
 {{- if lookPath "direnv" }}
