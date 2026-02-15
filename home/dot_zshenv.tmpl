@@ -10,38 +10,38 @@ fi
 # Ensure core aliases are available in interactive shells even if .zshrc is not read
 # (e.g., non-standard ZDOTDIR/RCS settings).
 if [[ -o interactive ]]; then
-  {{- /* Common aliases */ -}}
-  {{- range $key, $value := .aliases.common }}
-  {{- $escaped := replace $value "'" "'\\''" -}}
+  {{/* Common aliases */}}
+  {{ range $key, $value := .aliases.common }}
+  {{ $escaped := replace $value "'" "'\\''" }}
   alias {{ $key }}='{{ $escaped }}'
-  {{- end }}
+  {{ end }}
 
-  {{- /* Environment-specific aliases */ -}}
-  {{- if .personal_computer }}
-  {{- range $key, $value := .aliases.personal_computer }}
-  {{- $escaped := replace $value "'" "'\\''" -}}
+  {{/* Environment-specific aliases */}}
+  {{ if .personal_computer }}
+  {{ range $key, $value := .aliases.personal_computer }}
+  {{ $escaped := replace $value "'" "'\\''" }}
   alias {{ $key }}='{{ $escaped }}'
-  {{- end }}
-  {{- end }}
+  {{ end }}
+  {{ end }}
 
-  {{- if .work_computer }}
-  {{- range $key, $value := .aliases.work_computer }}
-  {{- $escaped := replace $value "'" "'\\''" -}}
+  {{ if .work_computer }}
+  {{ range $key, $value := .aliases.work_computer }}
+  {{ $escaped := replace $value "'" "'\\''" }}
   alias {{ $key }}='{{ $escaped }}'
-  {{- end }}
-  {{- end }}
+  {{ end }}
+  {{ end }}
 
-  {{- if .dev_computer }}
-  {{- range $key, $value := .aliases.dev_computer }}
-  {{- $escaped := replace $value "'" "'\\''" -}}
+  {{ if .dev_computer }}
+  {{ range $key, $value := .aliases.dev_computer }}
+  {{ $escaped := replace $value "'" "'\\''" }}
   alias {{ $key }}='{{ $escaped }}'
-  {{- end }}
-  {{- end }}
+  {{ end }}
+  {{ end }}
 
-  {{- if .docker_computer }}
-  {{- range $key, $value := .aliases.docker_computer }}
-  {{- $escaped := replace $value "'" "'\\''" -}}
+  {{ if .docker_computer }}
+  {{ range $key, $value := .aliases.docker_computer }}
+  {{ $escaped := replace $value "'" "'\\''" }}
   alias {{ $key }}='{{ $escaped }}'
-  {{- end }}
-  {{- end }}
+  {{ end }}
+  {{ end }}
 fi
