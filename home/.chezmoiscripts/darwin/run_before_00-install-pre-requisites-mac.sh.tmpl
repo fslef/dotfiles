@@ -2,13 +2,41 @@
 
 {{ if eq .chezmoi.os "darwin" }}
 
-if [[ ! $(command -v brew) ]]; then
-    header "🍺  Installing Homebrew"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+set -euo pipefail
+
+log_header() {
+    echo
+    echo -e "\033[0;36m$1\033[0m"
+    echo -e "\033[0;36m$(printf '%*s' "${#1}" '' | tr ' ' '-')\033[0m"
+    echo
+}
+
+ensure_brew_shellenv() {
+    if command -v brew >/dev/null 2>&1; then
+        return 0
+    fi
+
+    if [[ -x /opt/homebrew/bin/brew ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ -x /usr/local/bin/brew ]]; then
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
+}
+
+if ! command -v brew >/dev/null 2>&1; then
+    log_header "Installing Homebrew"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-if [[ ! $(command -v bw) ]]; then
-    header "🔐  Installing Bitwarden CLI"
+ensure_brew_shellenv
+
+if ! command -v brew >/dev/null 2>&1; then
+    echo "Homebrew not found on PATH after install; skipping brew installs." >&2
+    exit 0
+fi
+
+if ! command -v bw >/dev/null 2>&1; then
+    log_header "Installing Bitwarden CLI"
     brew install bitwarden-cli
 fi
 

@@ -1,10 +1,12 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 # Grab the hash of the osx-defaults.sh script to run it when changed
 # osx-defaults.sh hash: {{ include "bin/platform/darwin/executable_osx-defaults.sh.tmpl" | sha256sum }}
 
-osx_script={{ .directories.user_bin_dir }}/platform/darwin/osx-defaults.sh
+osx_script="{{ .directories.user_bin_dir }}/platform/darwin/osx-defaults.sh"
 echo
 echo -e "\033[0;36m----------------------------\033[0m"
 echo -e "\033[0;36mRunning OS X defaults script\033[0m"
@@ -13,6 +15,8 @@ echo
 
 if [ -f "${osx_script}" ]; then
     sudo "${osx_script}"
+else
+    echo "OS X defaults script not found: ${osx_script}" >&2
 fi
 
 {{- end }}

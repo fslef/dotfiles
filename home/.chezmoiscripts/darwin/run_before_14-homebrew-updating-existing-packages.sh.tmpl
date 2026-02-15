@@ -1,17 +1,29 @@
 #!/usr/bin/env bash
 
-{{ if and (eq .chezmoi.os "darwin") (lookPath "brew") }}
+set -euo pipefail
 
-    outdated=$(brew outdated)
+{{ if eq .chezmoi.os "darwin" }}
 
-    if [ -n "$outdated" ]; then
-        echo
-        echo -e "\033[0;36mUpgrading outdated Homebrew packages\033[0m"
-        echo -e "\033[0;36m------------------------------------\033[0m"
-        brew upgrade
-    else
-        echo No outdated Homebrew packages found
-        echo
+if ! command -v brew >/dev/null 2>&1; then
+    if [[ -x /opt/homebrew/bin/brew ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ -x /usr/local/bin/brew ]]; then
+        eval "$(/usr/local/bin/brew shellenv)"
     fi
+fi
+
+if ! command -v brew >/dev/null 2>&1; then
+    exit 0
+fi
+
+if [[ -n "$(brew outdated --quiet || true)" ]]; then
+    echo
+    echo -e "\033[0;36mUpgrading outdated Homebrew packages\033[0m"
+    echo -e "\033[0;36m------------------------------------\033[0m"
+    brew upgrade
+else
+    echo "No outdated Homebrew packages found"
+    echo
+fi
 
 {{ end }}

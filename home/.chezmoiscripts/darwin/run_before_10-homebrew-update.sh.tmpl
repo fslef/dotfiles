@@ -1,9 +1,24 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
+set -euo pipefail
+
+if ! command -v brew >/dev/null 2>&1; then
+	if [[ -x /opt/homebrew/bin/brew ]]; then
+		eval "$(/opt/homebrew/bin/brew shellenv)"
+	elif [[ -x /usr/local/bin/brew ]]; then
+		eval "$(/usr/local/bin/brew shellenv)"
+	fi
+fi
+
+if ! command -v brew >/dev/null 2>&1; then
+	echo "Homebrew not installed; skipping brew update." >&2
+	exit 0
+fi
+
 # Display start message in cyan
 echo
-echo -e "\033[0;36mUpdating Hombrew core app\033[0m"
+echo -e "\033[0;36mUpdating Homebrew core app\033[0m"
 echo -e "\033[0;36m-------------------------\033[0m"
 echo
 

@@ -1,11 +1,13 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 
 # Grab current setting
-current=$(defaults read com.googlecode.iterm2 PrefsCustomFolder 2>/dev/null)
+current="$(defaults read com.googlecode.iterm2 PrefsCustomFolder 2>/dev/null || true)"
 
-if [[ -z "${current}" ]] || [[ ${current} != "{{ .xdgConfigDir }}/applications/iterm2" ]]; then
+if [[ -z "${current}" ]] || [[ "${current}" != "{{ .xdgConfigDir }}/applications/iterm2" ]]; then
 
     # Specify the preferences directory
     defaults write com.googlecode.iterm2 PrefsCustomFolder -string "{{ .xdgConfigDir }}/applications/iterm2"

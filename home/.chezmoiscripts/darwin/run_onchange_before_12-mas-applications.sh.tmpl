@@ -1,6 +1,8 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 apps=(
     {{ range $package := .packages.mas.common.apps }}
     "{{ $package }}"
@@ -25,16 +27,18 @@ apps=(
     {{ end }}
 )
 
-if [[ $(command -v mas) ]]; then
+if command -v mas >/dev/null 2>&1; then
     echo
     echo -e "\033[0;36mInstalling Applications from mas\033[0m"
     echo -e "\033[0;36m--------------------------------\033[0m"
 
+    installed_ids="$(mas list | awk '{print $1}')"
+
     for app in "${apps[@]}"; do
-        if mas list | awk '{print $1}' | grep -E "^${app}$" &>/dev/null; then
+        if grep -Fxq "${app}" <<<"${installed_ids}"; then
             continue
         fi
-        mas install ${app}
+        mas install "${app}"
     done
 fi
 
