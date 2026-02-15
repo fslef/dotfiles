@@ -1,0 +1,11 @@
+# ChezMoi-managed Zsh env (ZDOTDIR variant)
+# If your environment sets ZDOTDIR="$HOME/.config/zsh", zsh reads this file instead of ~/.zshenv.
+
+if [[ -n "${_CHEZMOI_ZSHENV_SOURCED:-}" ]]; then
+  return
+fi
+export _CHEZMOI_ZSHENV_SOURCED=1
+
+if [[ -f "$HOME/.zshenv" ]]; then
+  source "$HOME/.zshenv"
+fi

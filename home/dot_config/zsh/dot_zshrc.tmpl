@@ -1,0 +1,11 @@
+# ChezMoi-managed Zsh config (ZDOTDIR variant)
+# If your environment sets ZDOTDIR="$HOME/.config/zsh", zsh reads this file instead of ~/.zshrc.
+
+if [[ -n "${_CHEZMOI_ZSHRC_SOURCED:-}" ]]; then
+  return
+fi
+export _CHEZMOI_ZSHRC_SOURCED=1
+
+if [[ -f "$HOME/.zshrc" ]]; then
+  source "$HOME/.zshrc"
+fi

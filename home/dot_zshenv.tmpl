@@ -1,0 +1,8 @@
+# ChezMoi-managed .zshenv
+# Keep this file minimal: it runs for every zsh invocation.
+
+# In case an environment sets ZDOTDIR, prefer $HOME so ~/.zshrc is discoverable.
+# (If ZDOTDIR is already set, do not override it here.)
+if [[ -z "${ZDOTDIR:-}" ]]; then
+  export ZDOTDIR="$HOME"
+fi
