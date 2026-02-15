@@ -1,17 +1,5 @@
 alias ll="gls -lAhF --group-directories-first --color=always -a"
 eval "$(starship init bash)"
-if [ -f "$HOME/bin/aliases/load-aliases.sh" ]; then
-	# ChezMoi-managed alias loader
-	. "$HOME/bin/aliases/load-aliases.sh"
-elif [ -f "$HOME/.local/bin/load-aliases" ]; then
-	# Legacy alias loader created by .chezmoiscripts/run_once_install-aliases.sh
-	. "$HOME/.local/bin/load-aliases"
-	if command -v load_aliases >/dev/null 2>&1; then
-		load_aliases
-	fi
-elif [ -f "$HOME/bin/load-aliases" ]; then
-	. "$HOME/bin/load-aliases"
-	if command -v load_aliases >/dev/null 2>&1; then
-		load_aliases
-	fi
+if [ -f "$HOME/.config/shell/aliases.sh" ]; then
+	. "$HOME/.config/shell/aliases.sh"
 fi

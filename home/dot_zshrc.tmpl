@@ -79,18 +79,8 @@ setopt histignorespace
 setopt rm_star_silent
 
 # Configure aliases
-if [[ -f "$HOME/bin/aliases/load-aliases.sh" ]]; then
-  source "$HOME/bin/aliases/load-aliases.sh"
-elif [[ -f "$HOME/.local/bin/load-aliases" ]]; then
-  source "$HOME/.local/bin/load-aliases"
-  if typeset -f load_aliases >/dev/null 2>&1; then
-    load_aliases
-  fi
-elif [[ -f "$HOME/bin/load-aliases" ]]; then
-  source "$HOME/bin/load-aliases"
-  if typeset -f load_aliases >/dev/null 2>&1; then
-    load_aliases
-  fi
+if [[ -f "$HOME/.config/shell/aliases.sh" ]]; then
+  source "$HOME/.config/shell/aliases.sh"
 fi
 # Source additional aliases
 if [[ -f "$HOME/.zshrc_aliases" ]]; then
