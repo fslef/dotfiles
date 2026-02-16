@@ -1,0 +1,7 @@
+# Ensure both CurrentUserCurrentHost and CurrentUserAllHosts load the same config.
+# On macOS/Linux, many hosts load this file by default.
+
+$allHostsProfile = Join-Path $HOME ".config/powershell/profile.ps1"
+if (Test-Path $allHostsProfile) {
+    . $allHostsProfile
+}

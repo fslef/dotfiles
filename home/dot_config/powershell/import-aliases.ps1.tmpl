@@ -31,7 +31,7 @@ if (`$Args.Count -gt 0) {
 Invoke-Expression `$cmd
 "@
 
-            Set-Item -Path "Function:$Name" -Value ([scriptblock]::Create($functionBody)) -Force -ErrorAction Stop
+            Set-Item -Path "Function:global:$Name" -Value ([scriptblock]::Create($functionBody)) -Force -ErrorAction Stop
         }
         else {
             Set-Alias -Name $Name -Value $Command -Scope Global -Force -ErrorAction Stop
