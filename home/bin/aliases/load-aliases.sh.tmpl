@@ -18,35 +18,35 @@ load_aliases() {
 
     {{- /* Common aliases */ -}}
     {{- range $key, $value := .aliases.common }}
-    {{- $escaped := replace $value "'" "'\\''" -}}
+    {{- $escaped := replace "'" "'\\''" $value -}}
     set_alias "{{ $key }}" "{{ $escaped }}"
     {{- end }}
 
     {{- /* Environment-specific aliases */ -}}
     {{- if .personal_computer }}
     {{- range $key, $value := .aliases.personal_computer }}
-    {{- $escaped := replace $value "'" "'\\''" -}}
+    {{- $escaped := replace "'" "'\\''" $value -}}
     set_alias "{{ $key }}" "{{ $escaped }}"
     {{- end }}
     {{- end }}
 
     {{- if .work_computer }}
     {{- range $key, $value := .aliases.work_computer }}
-    {{- $escaped := replace $value "'" "'\\''" -}}
+    {{- $escaped := replace "'" "'\\''" $value -}}
     set_alias "{{ $key }}" "{{ $escaped }}"
     {{- end }}
     {{- end }}
 
     {{- if .dev_computer }}
     {{- range $key, $value := .aliases.dev_computer }}
-    {{- $escaped := replace $value "'" "'\\''" -}}
+    {{- $escaped := replace "'" "'\\''" $value -}}
     set_alias "{{ $key }}" "{{ $escaped }}"
     {{- end }}
     {{- end }}
 
     {{- if .docker_computer }}
     {{- range $key, $value := .aliases.docker_computer }}
-    {{- $escaped := replace $value "'" "'\\''" -}}
+    {{- $escaped := replace "'" "'\\''" $value -}}
     set_alias "{{ $key }}" "{{ $escaped }}"
     {{- end }}
     {{- end }}
