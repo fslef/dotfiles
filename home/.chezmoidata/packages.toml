@@ -58,6 +58,7 @@
         ]
         casks = [
             "bruno",
+            "copilot-cli",
             "drawio",
             "font-fira-code",
             "font-monaspace",
