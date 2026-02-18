@@ -1,7 +1,7 @@
 ---
 description: "Generate an implementation plan for new features or refactoring existing code."
 name: "Planning mode instructions"
-tools: ['read/readFile', 'edit/createDirectory', 'edit/createFile', 'edit/createJupyterNotebook', 'edit/editFiles', 'edit/editNotebook', 'search/changes', 'search/codebase', 'search/fileSearch', 'search/listDirectory', 'search/searchResults', 'search/textSearch', 'search/usages', 'web/fetch', 'web/githubRepo']
+tools: ["codebase", "fetch", "findTestFiles", "githubRepo", "search", "usages"]
 ---
 
 # Planning mode instructions
