@@ -1,91 +1,104 @@
-# My Dotfiles
+# Dotfiles
+
+Cross-platform dotfiles managed with [chezmoi](https://www.chezmoi.io/). The repo focuses on a consistent shell + Git setup, repeatable package installs, and secret-backed templates via Bitwarden.
 
 > [!NOTE]
-> **This repository houses cross-platform dotfiles managed with [chezmoi](https://www.chezmoi.io/) 🏠.**
+> This repo is designed to be applied with `chezmoi`. Most files under `home/` are templates (`*.tmpl`) and will be rendered into your `$HOME`.
 
-### Setup a new machine (all os)
+## Getting started
+
+### Bootstrap (macOS/Linux/Windows)
 
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FSLEF
 ```
 
-## Key Features
+During init, chezmoi prompts for machine flags (personal/work/dev/docker) and a Git email (see [home/.chezmoi.toml.tmpl](home/.chezmoi.toml.tmpl)).
 
-- **Customized Environment**: Tailored for both personal and professional use, optimized for development and Docker workflows.
-- **Automated Package Management**: Enjoy hassle-free installations and updates.
-- **Streamlined Application Configuration**: Simplifies setup to deliver a consistent experience.
-- **Universal Terminal Aliases**: Ensures a uniform command experience across all platforms and shells.
+### Common commands
 
-## Development Setup
+```bash
+# Preview changes
+chezmoi diff
 
-<details>
-<summary>Click to expand for detailed instructions</summary>
+# Apply changes
+chezmoi apply
 
-### Shell Configuration
+# Pull latest + re-apply
+chezmoi update
+```
 
-The repository includes configuration for multiple shells to ensure a consistent experience across platforms.
+> [!TIP]
+> Prefer `chezmoi diff` before `chezmoi apply` when you changed templates or secret values.
 
-</details>
-
-## Supported configuration
+## What's included
 
 ### Shells
 
-- [Bash](https://www.gnu.org/software/bash/) 🐧 : [`~/.bashrc`](./home/dot_bashrc)
-- [Z shell](http://zsh.sourceforge.net/) 🐧 : [`~/.zshrc`](./home/dot_zshrc.tmpl) _<sup>enhanced with [**Oh-My-Zsh**](https://ohmyz.sh/)</sup>_
-- [[WIP] PowerShell 5.1+](https://github.com/PowerShell/PowerShell) 🐧⊞ : [`~/.config/powershell/`](./home/private_dot_config/powershell/) _<sup>enhanced with [**Oh-My-Posh**](https://github.com/JanDeDobbeleer/oh-my-posh), [[WIP] **Terminal Icons**](https://github.com/devblackops/Terminal-Icons)</sup>_
+- Bash: [home/dot_bashrc](home/dot_bashrc)
+- Zsh: [home/dot_zshrc.tmpl](home/dot_zshrc.tmpl)
+- XDG-style Zsh entrypoints: [home/dot_config/zsh](home/dot_config/zsh) (these map to `~/.config/zsh/` via chezmoi's `dot_` attribute, and simply source the main `~/.zshenv` and `~/.zshrc` when you use `ZDOTDIR`)
 
-### Terminals
+### Git
 
-- [iTerm2](https://iterm2.com/) : [`~/.config/iterm/`](./dot_config/iterm)
-- [macOS Terminal](https://support.apple.com/en-ca/guide/terminal/welcome/mac)
-- [[WIP] Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701) ⊞: [`~/.config/windows_terminal/`](./dot_config/windows_terminal)
+- Global config template: [home/dot_config/git/config.tmpl](home/dot_config/git/config.tmpl)
+- Global ignore: [home/dot_config/git/ignore_global](home/dot_config/git/ignore_global)
+- Allowed signers (SSH signing): [home/dot_config/git/allowed_signers.tmpl](home/dot_config/git/allowed_signers.tmpl)
 
-### Package managers
+### Prompt
 
-All packages are installed with [Homebrew](https://brew.sh/)  and [[WIP] Chocolatey](https://chocolatey.org/) ⊞
+- Starship config: [home/dot_config/starship/starship.toml.tmpl](home/dot_config/starship/starship.toml.tmpl)
 
-Package list can be fould here : [Packages.toml](./home/.chezmoidata/packages.toml)
+### Aliases
 
-## Bitwarden CLI Setup
+Aliases are defined in TOML and rendered into a shell script:
 
-This repository uses the [Bitwarden CLI](https://bitwarden.com/help/cli/) (`bw`) to manage secrets in your dotfiles templates. The CLI is automatically installed during initial setup, but you'll need to authenticate.
+- Source of truth: [home/.chezmoidata/aliases.toml](home/.chezmoidata/aliases.toml)
+- Rendered aliases script: [home/dot_config/shell/aliases.sh.tmpl](home/dot_config/shell/aliases.sh.tmpl)
+- Cross-shell alias loader: [home/bin/aliases/load-aliases.sh.tmpl](home/bin/aliases/load-aliases.sh.tmpl)
 
-### First-Time Setup
+### Packages (macOS)
 
-1. **Login to Bitwarden**:
-   ```bash
-   bw login your-email@example.com
-   ```
-   This will prompt you for your master password and generate a session token.
+Package lists are centralized in:
 
-2. **Generate and Export Session Token**:
-   ```bash
-   export BW_SESSION="$(bw unlock --raw)"
-   ```
-   This command unlocks your vault and exports the session token, which allows ChezMoi templates to access your secrets without additional prompts.
+- [home/.chezmoidata/packages.toml](home/.chezmoidata/packages.toml)
 
-3. **Verification**:
-   ```bash
-   chezmoi apply --dry-run
-   ```
-   This will show you what changes will be made without actually applying them. If your Bitwarden connection is working, you'll see rendered secrets from your vault.
+This includes Homebrew formulae/casks and Mac App Store apps (via `mas`), with lists split by machine type (common/personal/work/dev/docker).
 
-### Environment Setup
+### macOS defaults
 
-- **Automatic Session**: The `.zshrc` template includes logic to automatically set `BW_SESSION` if you have an authenticated Bitwarden session.
-- **Manual Setup**: If you prefer manual control, you can set `BW_SESSION` in your shell profile or use a secure environment variable storage solution.
-- **Session Security**: Treat `BW_SESSION` like a password. Consider storing it in your system keychain rather than in plain text in shell configs.
+- Defaults script template: [home/bin/platform/darwin/executable_osx-defaults.sh.tmpl](home/bin/platform/darwin/executable_osx-defaults.sh.tmpl)
 
-### Usage in Templates
+### App configs (macOS)
 
-Secrets in templates are accessed via ChezMoi's Bitwarden template functions. Examples:
-- `{{ (bitwarden "item" "ITEM_ID").login.username }}`  - Get login username
-- `{{ (bitwardenFields "item" "ITEM_ID").fieldName.value }}` - Get custom field
-- `{{ (bitwardenAttachment "filename" "ITEM_ID") }}` - Get file attachment (e.g., SSH keys)
+- iTerm2 assets (plist + profiles): [home/.assets/iterm2](home/.assets/iterm2)
+- iTerm2 symlink template: [home/dot_config/applications/symlink_iterm2.tmpl](home/dot_config/applications/symlink_iterm2.tmpl)
+- LinearMouse config: [home/dot_config/linearmouse/linearmouse.json.tmpl](home/dot_config/linearmouse/linearmouse.json.tmpl)
 
-See [.github/agents/ChezMoi.agent.md](./.github/agents/ChezMoi.agent.md) for detailed template examples.
+## Secrets (Bitwarden)
 
----
+Templates can pull secrets from Bitwarden via chezmoi's Bitwarden integration.
+
+- Bitwarden item IDs live in: [home/.chezmoidata/bitwarden.toml](home/.chezmoidata/bitwarden.toml)
+
+### Login
+
+```bash
+bw login <your-email>
+
+# If prompted when applying templates, unlock your vault:
+bw unlock
+```
+
+## External repos
+
+This repo can also fetch additional repositories via chezmoi externals, with the list coming from Bitwarden notes:
+
+- Externals template: [home/.chezmoiexternal.toml.tmpl](home/.chezmoiexternal.toml.tmpl)
+
+## Notes
+
+- Templates under `home/` use standard chezmoi naming conventions (`dot_`, `private_`, `executable_`, `symlink_`).
+- See the helper agent doc for deeper template patterns: [.github/agents/ChezMoi.agent.md](.github/agents/ChezMoi.agent.md)
 
 Inspired by: [twpayne](https://github.com/twpayne/dotfiles) / [natelandau](https://github.com/natelandau/dotfiles) / [renemarc](https://github.com/renemarc/dotfiles)
