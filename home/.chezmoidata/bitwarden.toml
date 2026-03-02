@@ -13,6 +13,7 @@ git_user_a = "79316371-106f-4b8f-8e69-b3ef001e63d1"
 git_user_b = "2a53a43c-ca9f-40ee-9bae-b3f000f0685c"
 git_user_c = "f497c000-f2c1-4cd9-9003-b3f000f20d1b"
 git_user_d = "320e65b5-ad3b-46bf-aed6-b3f0002378cd"
+git_user_e = "504805e5-4257-4528-8c90-b401009e7298"
 
 [bitwarden.ssh]
 devops_user_a = "5b50fc2c-23f6-4c82-8aa5-b3ef00ff173d"
