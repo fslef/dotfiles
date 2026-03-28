@@ -12,6 +12,14 @@ Host fslef.github.com
   User git
   IdentityFile ~/.ssh/id_gh_fslef
 
+{{- if .personal_computer }}
+
+Host homeassistant
+  HostName 10.0.137.25
+  User root
+  IdentityFile ~/.ssh/id_ed25519_homeassistant
+{{- end }}
+
 Host *.visualstudio.com
   IdentitiesOnly yes
   HostkeyAlgorithms +ssh-rsa

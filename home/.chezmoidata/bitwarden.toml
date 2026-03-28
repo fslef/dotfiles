@@ -17,3 +17,4 @@ git_user_e = "504805e5-4257-4528-8c90-b401009e7298"
 
 [bitwarden.ssh]
 devops_user_a = "5b50fc2c-23f6-4c82-8aa5-b3ef00ff173d"
+homeassistant = "6d54544c-72fb-4b76-99d3-b41b0059aa2a"

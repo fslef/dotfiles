@@ -1,0 +1,4 @@
+{{- /* SSH private key for Home Assistant from Bitwarden item: homeassistant */ -}}
+{{ if .personal_computer -}}
+{{- (bitwarden "item" .bitwarden.ssh.homeassistant).sshKey.privateKey -}}
+{{ end -}}
