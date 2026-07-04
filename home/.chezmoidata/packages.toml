@@ -34,7 +34,8 @@
         casks = [
             "autodesk-fusion",
             "calibre",
-            "flutter",
+            "flutter", # required for flutter
+            "cocoapods",
             "signal",
             "yubico-authenticator",
             "microsoft-auto-update",
