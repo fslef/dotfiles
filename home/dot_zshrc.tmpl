@@ -100,6 +100,10 @@ fi
 # Navigating to Git HomeFolder
 {{ if .personal_computer }}
 cd /Users/francois/gitrepos/
+# Make Flutter available on personal machines only.
+if [[ -d "$HOMEBREW_PREFIX/share/flutter/bin" ]]; then
+  export PATH="$HOMEBREW_PREFIX/share/flutter/bin:$PATH"
+fi
 {{ else -}}
 cd /Users/francoislefebvre/gitrepos/
 {{ end -}}
