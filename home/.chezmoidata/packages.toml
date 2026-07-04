@@ -34,6 +34,7 @@
         casks = [
             "autodesk-fusion",
             "calibre",
+            "flutter",
             "signal",
             "yubico-authenticator",
             "microsoft-auto-update",
