@@ -25,6 +25,8 @@ Ask yourself: "Am I about to use `cat`, `echo`, `printf`, `tee`, or `>>`/`>` to 
 
 If YES → **DO NOT EXECUTE.** Use file editing tools instead.
 
+This restriction governs commands executed by Copilot to edit workspace files. It does not forbid heredoc syntax stored inside a tracked shell script when the heredoc is required by that script at runtime. Create or modify that script with the file editing tools.
+
 ## Forbidden Patterns
 
 ```bash
@@ -64,7 +66,7 @@ Instead of terminal commands for file content:
 
 - ANY file creation with content
 - ANY file modification with content
-- ANY heredoc syntax (`<<`)
+- Heredoc commands executed by Copilot to create or modify files
 - ANY multi-line string redirection
 
 ## Enforcement

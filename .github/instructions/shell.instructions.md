@@ -1,6 +1,6 @@
 ---
-description: 'Shell scripting best practices and conventions for bash, sh, zsh, and other shells'
-applyTo: '**/*.sh'
+description: 'Shell scripting best practices for shell scripts and chezmoi shell templates'
+applyTo: '**/*.sh, **/*.sh.tmpl'
 ---
 
 # Shell Scripting Guidelines
@@ -22,7 +22,8 @@ Instructions for writing clean, safe, and maintainable shell scripts for bash, s
 
 ## Error Handling & Safety
 
-- Always enable `set -euo pipefail` to fail fast on errors, catch unset variables, and surface pipeline failures
+- For Bash automation, enable `set -euo pipefail` by default. Document deliberate exceptions when a script must collect or recover from individual command failures.
+- For POSIX `sh`, use `set -eu` and check pipeline failures explicitly because `pipefail` is not portable.
 - Validate all required parameters before execution
 - Provide clear error messages with context
 - Use `trap` to clean up temporary resources or handle unexpected exits when the script terminates
@@ -31,7 +32,7 @@ Instructions for writing clean, safe, and maintainable shell scripts for bash, s
 
 ## Script Structure
 
-- Start with a clear shebang: `#!/bin/bash` unless specified otherwise
+- Match the shebang to the syntax: prefer `#!/usr/bin/env bash` for Bash features and `#!/bin/sh` only for POSIX-compatible scripts
 - Include a header comment explaining the script's purpose
 - Define default values for all variables at the top
 - Use functions for reusable code blocks
@@ -97,13 +98,13 @@ main() {
         echo "Error: failed to create temporary directory" >&2
         exit 1
     fi
-    
+
     echo "============================================================================"
     echo "Script Execution Started"
     echo "============================================================================"
-    
+
     # Main logic here
-    
+
     echo "============================================================================"
     echo "Script Execution Completed"
     echo "============================================================================"

@@ -16,9 +16,9 @@ Instructions for creating effective and maintainable custom agent files that pro
 - Purpose: Define specialized agents with tailored expertise, tools, and instructions for specific tasks
 - Official documentation: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents
 
-## Required Frontmatter
+## Recommended Frontmatter
 
-Every agent file must include YAML frontmatter with the following fields:
+Every agent file should include a clear `description`. Add optional fields only when they intentionally change agent behavior:
 
 ```yaml
 ---
@@ -27,7 +27,8 @@ name: 'Agent Display Name'
 tools: ['read', 'edit', 'search']
 model: 'Claude Sonnet 4.5'
 target: 'vscode'
-infer: true
+user-invocable: true
+disable-model-invocation: false
 ---
 ```
 
@@ -61,10 +62,15 @@ infer: true
 - If omitted, agent is available in both environments
 - Use when agent has environment-specific features
 
-#### **infer** (OPTIONAL)
-- Boolean controlling whether Copilot can automatically use this agent based on context
+#### **user-invocable** (OPTIONAL)
+- Boolean controlling whether the agent appears in the agent picker
 - Default: `true` if omitted
-- Set to `false` to require manual agent selection
+- Set to `false` for subagent-only agents
+
+#### **disable-model-invocation** (OPTIONAL)
+- Boolean controlling whether other agents can invoke this agent as a subagent
+- Default: `false` if omitted
+- Set to `true` when the agent must only be selected manually
 
 #### **metadata** (OPTIONAL, GitHub.com only)
 - Object with name-value pairs for agent annotation
@@ -850,7 +856,7 @@ Each level can override settings from previous levels.
 - [ ] `tools` configured appropriately (or intentionally omitted)
 - [ ] `model` specified for optimal performance
 - [ ] `target` set if environment-specific
-- [ ] `infer` set to `false` if manual selection required
+- [ ] `user-invocable` and `disable-model-invocation` set only when defaults are not appropriate
 
 ### Prompt Content
 - [ ] Clear agent identity and role defined
