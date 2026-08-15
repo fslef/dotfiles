@@ -99,6 +99,6 @@ This repo can also fetch additional repositories via chezmoi externals, with the
 ## Notes
 
 - Templates under `home/` use standard chezmoi naming conventions (`dot_`, `private_`, `executable_`, `symlink_`).
-- See the helper agent doc for deeper template patterns: [.github/agents/ChezMoi.agent.md](.github/agents/ChezMoi.agent.md)
+- See the helper agent doc for deeper template patterns: [.github/agents/chezmoi-expert.agent.md](.github/agents/chezmoi-expert.agent.md)
 
 Inspired by: [twpayne](https://github.com/twpayne/dotfiles) / [natelandau](https://github.com/natelandau/dotfiles) / [renemarc](https://github.com/renemarc/dotfiles)
