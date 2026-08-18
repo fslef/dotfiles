@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# chezmoi update wrapper that shows which external repo is being synced.
+# Solves the problem where credential prompts appear without repo context.
+set -euo pipefail
+
+real_git=$(command -v git)
+wrapper_dir=$(mktemp -d)
+trap 'rm -rf "$wrapper_dir"' EXIT
+
+# Create a git wrapper that prints repo context before clone/pull
+{
+    printf '#!/usr/bin/env bash\n'
+    printf 'case "${1:-}" in\n'
+    printf '    clone) printf "\\033[0;36m→ git %s\\033[0m\\n" "$*" >&2 ;;\n'
+    printf '    pull)  printf "\\033[0;36m→ git pull in %s\\033[0m\\n" "${PWD#$HOME/}" >&2 ;;\n'
+    printf 'esac\n'
+    printf 'exec "%s" "$@"\n' "$real_git"
+} > "$wrapper_dir/git"
+chmod +x "$wrapper_dir/git"
+
+PATH="$wrapper_dir:$PATH" chezmoi update "$@"
