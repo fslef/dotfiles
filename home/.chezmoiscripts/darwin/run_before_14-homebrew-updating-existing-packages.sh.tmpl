@@ -20,7 +20,7 @@ if [[ -n "$(brew outdated --quiet || true)" ]]; then
     echo
     echo -e "\033[0;36mUpgrading outdated Homebrew packages\033[0m"
     echo -e "\033[0;36m------------------------------------\033[0m"
-    brew upgrade
+    brew upgrade --no-ask
 else
     echo "No outdated Homebrew packages found"
     echo
