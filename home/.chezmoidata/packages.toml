@@ -4,6 +4,7 @@
         "brave-browser",
         "librewolf",
         "loop",
+        "flutter"
     ]
     [packages.homebrew.common]
         tap = []
@@ -34,7 +35,6 @@
         casks = [
             "autodesk-fusion",
             "calibre",
-            "flutter", # required for flutter
             "cocoapods",
             "signal",
             "yubico-authenticator",
