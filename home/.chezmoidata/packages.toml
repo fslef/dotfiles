@@ -28,7 +28,8 @@
             "zsh",
             "zsh-autosuggestions",
             "zsh-syntax-highlighting",
-            "zsh-you-should-use"
+            "zsh-you-should-use",
+            "signal-cli"
         ]
     [packages.homebrew.personal_computer]
         tap = []
