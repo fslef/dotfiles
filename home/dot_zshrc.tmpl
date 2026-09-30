@@ -1,17 +1,3 @@
-# Configure PATH
-# If you come from bash you might have to change your $PATH.
-{{- $paths := list }}
-{{- $homeDir := .chezmoi.homeDir }}
-{{- range $_, $relPath := list "bin" ".local/bin" }}
-{{    $path := joinPath $homeDir $relPath }}
-{{-   if stat $path }}
-{{-     $paths = mustAppend $paths $path }}
-{{-   end }}
-{{- end }}
-{{- if $paths }}
-export PATH={{ toStrings $paths | join ":" }}:$PATH
-{{- end }}
-
 # Configure env variables
 {{ if eq .os "linux-ubuntu" -}}
 export EDITOR=$HOME/.local/bin/nvim
@@ -35,16 +21,6 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/config
 
-# Bitwarden CLI session (used by ChezMoi templates)
-# Do not auto-unlock on shell startup (it can prompt repeatedly).
-# Instead, run `bw-unlock` once per session when you actually need secrets.
-if command -v bw &> /dev/null; then
-  bw-unlock() {
-    export BW_SESSION="$(bw unlock --raw)"
-  }
-fi
-
-# Set computer type environment variables
 {{ if .personal_computer -}}
 export PERSONAL_COMPUTER=true
 {{ end -}}
@@ -56,10 +32,29 @@ export DEV_COMPUTER=true
 {{ end -}}
 {{ if .docker_computer -}}
 export DOCKER_COMPUTER=true
-{{ end -}}
-
-# Initialize starship prompt
-eval "$(starship init zsh)"
+{{ end }}
+# Configure PATH
+# If you come from bash you might have to change your $PATH.
+{{- $paths := list }}
+{{- $homeDir := .chezmoi.homeDir }}
+{{- range $_, $relPath := list "bin" ".local/bin" }}
+{{-   $path := joinPath $homeDir $relPath }}
+{{-   if stat $path }}
+{{-     $paths = mustAppend $paths $path }}
+{{-   end }}
+{{- end }}
+{{- if $paths }}
+export PATH={{ toStrings $paths | join ":" }}:$PATH
+{{- end }}
+{{- if .personal_computer }}
+export PATH="$HOME/.openclaw/bin:$PATH"
+{{- end }}
+{{- if and (eq .chezmoi.os "darwin") (.personal_computer) }}
+# Make Flutter available on personal machines only.
+if [[ -d "$HOMEBREW_PREFIX/share/flutter/bin" ]]; then
+  export PATH="$HOMEBREW_PREFIX/share/flutter/bin:$PATH"
+fi
+{{- end }}
 
 # Configure Zsh options
 # Uncomment the following line to use case-sensitive completion.
@@ -78,6 +73,16 @@ setopt autocd
 setopt histignorespace
 setopt rm_star_silent
 
+# Initialize starship prompt
+eval "$(starship init zsh)"
+
+# Load plugins installed with Homebrew
+{{- if eq .chezmoi.os "darwin" }}
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOMEBREW_PREFIX/share/zsh-you-should-use/you-should-use.plugin.zsh
+{{- end }}
+
 # Configure aliases
 if [[ -f "$HOME/.config/shell/aliases.sh" ]]; then
   source "$HOME/.config/shell/aliases.sh"
@@ -87,30 +92,27 @@ if [[ -f "$HOME/.zshrc_aliases" ]]; then
   source "$HOME/.zshrc_aliases"
 fi
 
+# Bitwarden CLI session (used by ChezMoi templates)
+# Do not auto-unlock on shell startup (it can prompt repeatedly).
+# Instead, run `bw-unlock` once per session when you actually need secrets.
+if command -v bw &> /dev/null; then
+  bw-unlock() {
+    export BW_SESSION="$(bw unlock --raw)"
+  }
+fi
+
 # Configure direnv
 {{- if lookPath "direnv" }}
 {{ output "direnv" "hook" "zsh" | trim }}
 {{- end }}
 
-{{- /* vim: set filetype=zsh: */}}
-
-# Configure macOS specific settings
+# Navigate to git home folder (macOS)
 {{- if eq .chezmoi.os "darwin" }}
-
-# Navigating to Git HomeFolder
-{{ if .personal_computer }}
+{{ if .personal_computer -}}
 cd /Users/francois/gitrepos/
-# Make Flutter available on personal machines only.
-if [[ -d "$HOMEBREW_PREFIX/share/flutter/bin" ]]; then
-  export PATH="$HOMEBREW_PREFIX/share/flutter/bin:$PATH"
-fi
 {{ else -}}
 cd /Users/francoislefebvre/gitrepos/
 {{ end -}}
-
-# Load Modules installed with Homebrew
-source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOMEBREW_PREFIX/share/zsh-you-should-use/you-should-use.plugin.zsh
-
 {{- end }}
+
+{{- /* vim: set filetype=zsh: */}}
