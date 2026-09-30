@@ -5,7 +5,8 @@
         "librewolf",
         "loop",
         "flutter",
-        "chatgpt"
+        "chatgpt",
+        "openclaw"
     ]
     [packages.homebrew.common]
         tap = []
@@ -37,13 +38,13 @@
             "autodesk-fusion",
             "calibre",
             "cocoapods",
+            "hermes",
             "signal",
             "yubico-authenticator",
             "microsoft-auto-update",
             "microsoft-excel",
             "microsoft-powerpoint",
             "microsoft-word",
-            "openclaw",
             "protonvpn",
             "synology-drive",
             "whatsapp"
