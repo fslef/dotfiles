@@ -31,7 +31,9 @@
             "zsh-you-should-use"
         ]
     [packages.homebrew.personal_computer]
-        tap = []
+        tap = [
+            "
+        ]
         casks = [
             "autodesk-fusion",
             "calibre",
@@ -42,6 +44,7 @@
             "microsoft-excel",
             "microsoft-powerpoint",
             "microsoft-word",
+            "openclaw",
             "protonvpn",
             "synology-drive",
             "whatsapp"
