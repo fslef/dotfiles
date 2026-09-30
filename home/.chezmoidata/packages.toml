@@ -4,13 +4,13 @@
         "brave-browser",
         "librewolf",
         "loop",
-        "flutter"
+        "flutter",
+        "chatgpt"
     ]
     [packages.homebrew.common]
         tap = []
         casks = [
             "appcleaner",
-            "chatgpt",
             "claude",
             "displaylink",
             "iterm2",
