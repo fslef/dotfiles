@@ -15,6 +15,7 @@
             "appcleaner",
             "claude",
             "displaylink",
+            "hermes-desktop",
             "iterm2",
             "linearmouse",
             "obsidian",
@@ -37,7 +38,6 @@
         casks = [
             "autodesk-fusion",
             "calibre",
-            "hermes-desktop",
             "signal",
             "yubico-authenticator",
             "microsoft-auto-update",
