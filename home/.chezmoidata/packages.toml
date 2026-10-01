@@ -37,7 +37,6 @@
         casks = [
             "autodesk-fusion",
             "calibre",
-            "cocoapods",
             "hermes-desktop",
             "signal",
             "yubico-authenticator",
@@ -49,7 +48,9 @@
             "synology-drive",
             "whatsapp"
         ]
-        formulae = []
+        formulae = [
+            "cocoapods"
+        ]
     [packages.homebrew.work_computer]
         tap = []
         casks = [
@@ -62,6 +63,7 @@
     [packages.homebrew.dev_computer]
         tap = [
             "qmk/qmk",
+            "osx-cross/arm",
         ]
         casks = [
             "bruno",
@@ -71,13 +73,13 @@
             "font-monaspace",
             "git-credential-manager",
             "github",
-            "powershell",
             "visual-studio-code",
         ]
         formulae = [
             "azure-cli",
             "git",
             "ollama",
+            "powershell",
             "qmk/qmk/qmk"
         ]
     [packages.homebrew.docker_computer]
