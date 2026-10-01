@@ -6,7 +6,8 @@
         "loop",
         "flutter",
         "chatgpt",
-        "openclaw"
+        "openclaw",
+        "signal-cli"
     ]
     [packages.homebrew.common]
         tap = []
@@ -29,8 +30,7 @@
             "zsh",
             "zsh-autosuggestions",
             "zsh-syntax-highlighting",
-            "zsh-you-should-use",
-            "signal-cli"
+            "zsh-you-should-use"
         ]
     [packages.homebrew.personal_computer]
         tap = []
