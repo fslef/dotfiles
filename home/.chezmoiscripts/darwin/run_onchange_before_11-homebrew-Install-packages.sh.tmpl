@@ -145,4 +145,6 @@ echo
 echo -e "\033[0;32m✓ Homebrew updated, installed and cleaned\033[0m"
 echo
 
+# Fail the script when brew bundle failed so chezmoi re-runs it on the next apply.
+exit "$BREW_BUNDLE_EXIT_CODE"
 {{- end }}
